@@ -1,4 +1,4 @@
-import AuthSession from "@/AuthSession";
+import AuthSession from "@/app/provider/AuthSession";
 
 export default function RootLayout({
   children,
