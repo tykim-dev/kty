@@ -1,4 +1,4 @@
-import AuthSession from "@/app/provider/AuthSession";
+import SessionProvider from "@/app/context/SessionProvider";
 
 export default function RootLayout({
   children,
@@ -6,11 +6,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
-        <AuthSession>
+        <SessionProvider>
           {children}
-        </AuthSession>
+        </SessionProvider>
       </body>
     </html>
   )

@@ -1,6 +1,8 @@
 import NextAuth from "next-auth"
-import KakaoProvider from 'next-auth/providers/kakao';
+import KakaoProvider from 'next-auth/providers/kakao'
 import NaverProvider from "next-auth/providers/naver"
+import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import clientPromise from "@/app/lib/mongodb"
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -14,6 +16,7 @@ const handler = NextAuth({
       clientSecret: process.env.NAVER_SECRET,
     }),
   ],
+  adapter: MongoDBAdapter(clientPromise),
   callbacks: {
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
