@@ -16,13 +16,14 @@ const handler = NextAuth({
       clientSecret: process.env.NAVER_SECRET,
     }),
   ],
-  adapter: MongoDBAdapter(clientPromise),
-  session: {
-    strategy: "jwt",
-  },
+  // adapter: MongoDBAdapter(clientPromise),
+  // session: {
+  //   strategy: "jwt",
+  // },
   callbacks: {
     async jwt({ token, user, account, profile }) {
       // Persist the OAuth access_token to the token right after signin
+      console.log(account, profile, user);
       if (account) {
         token.accessToken = account.access_token
       }
