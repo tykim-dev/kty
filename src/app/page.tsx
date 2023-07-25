@@ -10,7 +10,6 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 export default function Home() {
   const { data: session } = useSession();
 
-  
   return (
     <main>
       <div className="flex gap-2 ml-auto">
