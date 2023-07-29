@@ -1,18 +1,21 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import Link from '@mui/material/Link';
 
 export default function Home() {
+
   const { data: session } = useSession();
 
   return (
     <main>
       <div className="flex gap-2 ml-auto">
+        <div>
+          <Link
+            href="/about"
+          >
+            About
+          </Link>
+        </div>
         {session?.user ? (
           <>
             <img
