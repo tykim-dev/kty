@@ -1,4 +1,5 @@
 import SessionProvider from "@/app/context/SessionProvider";
+import Header from "./components/global/header";
 
 export default function RootLayout({
   children,
@@ -8,8 +9,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <Header></Header>
+        
         <SessionProvider>
-          {children}
+          <main style={{margin: '50px'}}>
+            {children}
+          </main>
         </SessionProvider>
       </body>
     </html>
