@@ -8,13 +8,6 @@ export default function Home() {
 
   return (
     <div className="flex gap-2 ml-auto">
-      <div>
-        <Link
-          href="/about"
-        >
-          About
-        </Link>
-      </div>
       {session?.user ? (
         <>
           <img
