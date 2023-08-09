@@ -5,7 +5,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 // import { prisma } from '@/app/lib/prisma'
 import { compare } from 'bcryptjs'
 import User from '@/app/models/userModel'
-import { Account, Profile } from 'next-auth'
+
 
 export const options: NextAuthOptions = {
   providers: [
@@ -53,11 +53,11 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log({account, profile});
+      console.log({ user, account, profile, email, credentials });
 
-      // if(account?.type === 'oauth') {
-      //   return await signInWithOAuth({ account, profile });
-      // }
+      if(account?.type === 'oauth') {
+        return await signInWithOAuth({ account, profile });
+      }
 
       return true
     },
@@ -73,28 +73,23 @@ export const options: NextAuthOptions = {
   }
 }
 
-const signInWithOAuth = async ({ account, profile }: { account: Account, profile: Profile}) => {
-  const user = await User.findOne({ email: profile.email });
+const signInWithOAuth = async ({ account, profile }: { account: any, profile: any}) => {
+  console.log(account, profile);
+  const user = await User.findOne({ email: profile?.response?.email });
   
   if(user) return true;
 
-  let newUser = {};
+  let newUser = new User();
 
-  // if(account.provider === 'kakao') {
-  //   newUser = new User({
-  //     name: profile['response'],
-  //     email: profile.response.email
-  //   })
-  // }
-
-  // const newUser = new User({
-  //   name: profile.name,
-  //   email: profile.response.email
-  // })
-
-  // console.log(newUser);
+  if(account.provider === 'naver') {
+    newUser = new User({
+      name: profile?.response?.name ,
+      email: profile?.response?.email,
+      image: profile?.response?.profile_image
+    })
+  }
   
-  // await newUser.save();
+  await newUser.save();
 
   return true;
 }
