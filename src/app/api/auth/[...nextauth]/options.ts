@@ -1,6 +1,7 @@
 import { NextAuthOptions } from 'next-auth'
 import KakaoProvider from 'next-auth/providers/kakao'
 import NaverProvider from 'next-auth/providers/naver'
+import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 // import { prisma } from '@/app/lib/prisma'
 import { compare } from 'bcryptjs'
@@ -16,6 +17,10 @@ export const options: NextAuthOptions = {
     NaverProvider({
       clientId: process.env.NAVER_CLIENT_ID as string,
       clientSecret: process.env.NAVER_SECRET as string,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET as string,
     }),
     // CredentialsProvider({
     //   name: "Sign in",
@@ -53,10 +58,10 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log({ user, account, profile, email, credentials });
+      // console.log({ user, account, profile, email, credentials });
 
       if(account?.type === 'oauth') {
-        return await signInWithOAuth({ account, profile });
+        return await signInWithOAuth({ user, account, profile });
       }
 
       return true
@@ -73,19 +78,38 @@ export const options: NextAuthOptions = {
   }
 }
 
-const signInWithOAuth = async ({ account, profile }: { account: any, profile: any}) => {
+const signInWithOAuth = async ({ user, account, profile }: { user: any, account: any, profile: any}) => {
   console.log(account, profile);
-  const user = await User.findOne({ email: profile?.response?.email });
+  const userData = await User.findOne({ email: profile?.response?.email });
   
-  if(user) return true;
+  if(userData) return true;
 
   let newUser = new User();
+
+  // if(account.provider === 'kakao') {
+  //   newUser = new User({
+  //     name: user?.name ,
+  //     email: user?.email,
+  //     image: user?.image,
+  //     provider: account.provider,
+  //   })
+  // }
 
   if(account.provider === 'naver') {
     newUser = new User({
       name: profile?.response?.name ,
       email: profile?.response?.email,
-      image: profile?.response?.profile_image
+      image: profile?.response?.profile_image,
+      provider: account.provider,
+    })
+  }
+
+  if(account.provider === 'google') {
+    newUser = new User({
+      name: profile?.name ,
+      email: profile?.email,
+      image: profile?.picture,
+      provider: account.provider,
     })
   }
   
