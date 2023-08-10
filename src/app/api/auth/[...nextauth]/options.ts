@@ -79,21 +79,18 @@ export const options: NextAuthOptions = {
 }
 
 const signInWithOAuth = async ({ user, account, profile }: { user: any, account: any, profile: any}) => {
-  console.log(account, profile);
-  const userData = await User.findOne({ email: profile?.response?.email });
+  console.log({ account, profile });
   
-  if(userData) return true;
-
   let newUser = new User();
 
-  // if(account.provider === 'kakao') {
-  //   newUser = new User({
-  //     name: user?.name ,
-  //     email: user?.email,
-  //     image: user?.image,
-  //     provider: account.provider,
-  //   })
-  // }
+  if(account.provider === 'kakao') {
+    newUser = new User({
+      name: user?.name ,
+      email: user?.email,
+      image: user?.image,
+      provider: account.provider,
+    })
+  }
 
   if(account.provider === 'naver') {
     newUser = new User({
@@ -112,8 +109,15 @@ const signInWithOAuth = async ({ user, account, profile }: { user: any, account:
       provider: account.provider,
     })
   }
-  
-  await newUser.save();
+
+
+  if(account.provider !== 'kakao') {
+    const userData = await User.findOne({ email: newUser.email });
+    
+    if(userData) return true;
+    
+    await newUser.save();
+  }
 
   return true;
 }
