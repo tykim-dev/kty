@@ -58,22 +58,23 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      // console.log({ user, account, profile, email, credentials });
-
       if(account?.type === 'oauth') {
         return await signInWithOAuth({ user, account, profile });
       }
 
-      return true
+      return true;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl
+      return baseUrl;
     },
     async session({ session, user, token }) {
-      return session
+      return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      return token
+      // const userData = await getUserByEmail({ email: token?.email || '' });
+      // token.user = userData;
+
+      return token;
     }
   }
 }
@@ -120,4 +121,12 @@ const signInWithOAuth = async ({ user, account, profile }: { user: any, account:
   }
 
   return true;
+}
+
+const getUserByEmail = async ({ email }: { email: string }) => {
+  const user = await User.findOne({ email }).select('-password');
+
+  if(!user) throw new Error('등록된 이메일 정보가 없습니다.');
+
+  return { ...user._doc, _id: user._id.toString() };
 }
