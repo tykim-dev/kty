@@ -1,14 +1,18 @@
+import User from "@/app/models/userModel";
+import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
 
 const DATA_USERS_URL = 'https://jsonplaceholder.typicode.com/users'
 const API_KEY: string = process.env.DATA_API_KEY as string
 
+connectDB()
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
 
-  const obj = Object.fromEntries(searchParams.entries());
+  const userList = await User.find();
 
-  return NextResponse.json(obj)
+  return NextResponse.json(userList)
 }
 
 export async function POST(request: NextRequest) {
