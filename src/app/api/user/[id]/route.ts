@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server"
 connectDB()
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  
-  const user = await User.findOne({_id: params.id});
+  // .select('-email') 이메일은 빼고 조회
+  const user = await User.findOne({_id: params.id}).select('-email');
 
   return NextResponse.json(user)
 }
