@@ -5,18 +5,19 @@ import { NextRequest, NextResponse } from "next/server"
 const DATA_USERS_URL = 'https://jsonplaceholder.typicode.com/users'
 const API_KEY: string = process.env.DATA_API_KEY as string
 
-connectDB()
 
 export async function GET(request: NextRequest) {
+  await connectDB();
+
   const { searchParams } = new URL(request.url);
 
-  const userList = await User.find();
+  const userList = await User.find().select('-password');
 
   return NextResponse.json(userList)
 }
 
 export async function POST(request: NextRequest) {
-  // const data = await request.json();
+  await connectDB();
 
   const res = await fetch(DATA_USERS_URL);
   const users: User[] = await res.json();
@@ -25,6 +26,8 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  await connectDB();
+
   const { id }: Partial<User> = await request.json();
 
   const res = await fetch(`${DATA_USERS_URL}/${id}`, {

@@ -2,11 +2,11 @@ import User from "@/app/models/userModel";
 import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
 
-connectDB()
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  // .select('-email') 이메일은 빼고 조회
-  const user = await User.findOne({_id: params.id}).select('-email');
+  await connectDB()
+  // .select('-password') 비밀번호는 빼고 조회
+  const user = await User.findOne({_id: params.id}).select('-password');
 
   return NextResponse.json(user)
 }

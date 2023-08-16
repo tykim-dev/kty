@@ -6,6 +6,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 // import { prisma } from '@/app/lib/prisma'
 import { compare } from 'bcryptjs'
 import User from '@/app/models/userModel'
+import connectDB from '@/app/utils/database'
 
 
 export const options: NextAuthOptions = {
@@ -113,6 +114,8 @@ const signInWithOAuth = async ({ user, account, profile }: { user: any, account:
 
 
   if(account.provider !== 'kakao') {
+    await connectDB();
+
     const userData = await User.findOne({ email: newUser.email });
     
     if(userData) return true;
@@ -124,6 +127,8 @@ const signInWithOAuth = async ({ user, account, profile }: { user: any, account:
 }
 
 const getUserByEmail = async ({ email }: { email: string }) => {
+  await connectDB();
+    
   const user = await User.findOne({ email }).select('-password');
 
   if(!user) throw new Error('등록된 이메일 정보가 없습니다.');
