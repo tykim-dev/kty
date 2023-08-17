@@ -5,14 +5,19 @@ const wordSchema = new Schema({
   type: {
     type: String,
     required: true,
+    unique: true,
+    index: true,
   },
   level: {
     type: String,
     required: true,
+    unique: true,
+    index: true,
   },
   word: {
     type: String,
-    required: true,
+    required: false,
+    index: true,
   },
   read: {
     type: String,
@@ -24,10 +29,10 @@ const wordSchema = new Schema({
   },
   parts: {
     type: Array,
-    required: true,
+    required: false,
   },
 }, {timestamps: true})
 
-const Word = models.user || model('word', wordSchema)
+const Word = models.word || model('word', wordSchema)
 
 export default Word;
