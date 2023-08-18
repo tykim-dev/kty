@@ -5,19 +5,14 @@ const wordSchema = new Schema({
   type: {
     type: String,
     required: true,
-    unique: true,
-    index: true,
   },
   level: {
     type: String,
     required: true,
-    unique: true,
-    index: true,
   },
   word: {
     type: String,
     required: false,
-    index: true,
   },
   read: {
     type: String,

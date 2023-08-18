@@ -1,31 +1,40 @@
+'use strict'
 import User from "@/app/models/userModel";
 import Word from "@/app/models/wordModel";
 import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
 
-const DATA_USERS_URL = 'https://ja.dict.naver.com/api/jako/getJLPTList?level=1&part=%EC%A0%84%EC%B2%B4&page=1'
+const config = {
+  headers: {
+    'Accept': 'application/json'
+  }
+}
+const NEXT_URL = process.env.NEXTAUTH_URL;
+const DATA_USERS_URL = `${NEXT_URL}/naver/api/jako/getJLPTList?level=1&part=%EC%A0%84%EC%B2%B4&page=1`
 
 export async function GET(request: NextRequest) {
 
-  const res = await fetch(DATA_USERS_URL);
+  const res = await fetch(DATA_USERS_URL, config);
   const data = await res.json();
 
-  const { m_total, m_page, m_pageSize, m_start, m_end, m_totalPage, m_items } = data;
+  // const { m_total, m_page, m_pageSize, m_start, m_end, m_totalPage, m_items } = data;
+  const { m_total, m_totalPage } = data;
 
   await connectDB();
-
+  
   for (let index = 0; index < m_totalPage; index++) {
-    let url = 'https://ja.dict.naver.com/api/jako/getJLPTList?level=1&part=%EC%A0%84%EC%B2%B4&page=' + (index + 1);
-
-    let resData = await fetch(url);
+    let url = `${NEXT_URL}/naver/api/jako/getJLPTList?level=1&part=%EC%A0%84%EC%B2%B4&page=${index + 1}`;
+    
+    let resData = await fetch(url, config);
     let resJson = await resData.json();
- 
-    const wordList: [] = resJson?.m_items || [];
+    const { m_items } = resJson;
 
-    await wordList.forEach( async (wordInfo: any) => {
+    // const wordList: [] = resJson?.m_items || [];
+
+    await m_items.forEach( async (wordInfo: any) => {
       const newWord = new Word({
-        type: wordInfo?.category1,
-        level: wordInfo?.level,
+        type: wordInfo?.category1 || '',
+        level: wordInfo?.level || '',
         word: wordInfo?.pron || '',
         read: wordInfo?.entry || '',
         means: wordInfo?.means || [],
@@ -33,6 +42,7 @@ export async function GET(request: NextRequest) {
       })
 
       await newWord.save();
+
     });
   }
 
