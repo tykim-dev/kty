@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         type: wordInfo?.category1,
         level: wordInfo?.level,
         word: wordInfo?.pron || '',
-        read: wordInfo?.entry,
+        read: wordInfo?.entry || '',
         means: wordInfo?.means || [],
         parts: wordInfo?.parts || [],
       })
