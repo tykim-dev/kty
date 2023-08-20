@@ -4,17 +4,22 @@ import Word from "@/app/models/wordModel";
 import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
 
-const config = {
-  headers: {
-    'Accept': 'application/json'
-  }
+
+// 1: 3246, 2: 2648, 3: 1546, 4: 1037, 5: 744
+const DATA_USERS_URL = `https://ja.dict.naver.com/api/jako/getJLPTList?level=2&part=%EC%A0%84%EC%B2%B4&page=1`
+
+type WordInfo = {
+  category1: String,
+  level: String, 
+  pron: String, 
+  entry: String,
+  means: Array<String>,
+  parts: Array<String>,
 }
-const NEXT_URL = process.env.NEXTAUTH_URL;
-const DATA_USERS_URL = `${NEXT_URL}/naver/api/jako/getJLPTList?level=1&part=%EC%A0%84%EC%B2%B4&page=1`
 
 export async function GET(request: NextRequest) {
 
-  const res = await fetch(DATA_USERS_URL, config);
+  const res = await fetch(DATA_USERS_URL);
   const data = await res.json();
 
   // const { m_total, m_page, m_pageSize, m_start, m_end, m_totalPage, m_items } = data;
@@ -23,27 +28,29 @@ export async function GET(request: NextRequest) {
   await connectDB();
   
   for (let index = 0; index < m_totalPage; index++) {
-    let url = `${NEXT_URL}/naver/api/jako/getJLPTList?level=1&part=%EC%A0%84%EC%B2%B4&page=${index + 1}`;
+    let url = `https://ja.dict.naver.com/api/jako/getJLPTList?level=2&part=%EC%A0%84%EC%B2%B4&page=${index + 1}`;
     
-    let resData = await fetch(url, config);
+    let resData = await fetch(url);
     let resJson = await resData.json();
     const { m_items } = resJson;
 
-    // const wordList: [] = resJson?.m_items || [];
+    for (let idx = 0; idx < m_items.length; idx++) {
+    // await m_items.forEach( async (wordInfo: WordInfo) => {
+      const { category1, level, pron, show_entry, means, parts } = m_items[idx];
 
-    await m_items.forEach( async (wordInfo: any) => {
       const newWord = new Word({
-        type: wordInfo?.category1 || '',
-        level: wordInfo?.level || '',
-        word: wordInfo?.pron || '',
-        read: wordInfo?.entry || '',
-        means: wordInfo?.means || [],
-        parts: wordInfo?.parts || [],
+        type: category1 || '',
+        level: level || '',
+        word: pron || '',
+        read: show_entry || '',
+        means: means || [],
+        parts: parts || [],
       })
 
       await newWord.save();
 
-    });
+    // });
+    }
   }
 
   return NextResponse.json({m_total})
