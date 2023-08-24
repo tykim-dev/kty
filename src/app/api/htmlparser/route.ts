@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   // // const { m_total, m_page, m_pageSize, m_start, m_end, m_totalPage, m_items } = data;
   // const { m_total, m_totalPage } = data;
 
-  // await connectDB();
+  await connectDB();
   
   // for (let index = 0; index < m_totalPage; index++) {
   //   let url = `https://ja.dict.naver.com/api/jako/getJLPTList?level=4&part=%EC%A0%84%EC%B2%B4&page=${index + 1}`;
@@ -47,11 +47,75 @@ export async function GET(request: NextRequest) {
 
   // return NextResponse.json({m_total})
 
-  const word = await Word1.find();
+  // let word = await Word1.find();
 
-  for (let index = 0; index < word.length; index++) {
-    await new Word(word[index]).save();
-  }
+  // for (let index = 0; index < word.length; index++) {
+    
+  //   await new Word({
+  //           type: word[index].type,
+  //           level: word[index].level,
+  //           word: word[index].word,
+  //           read: word[index].read,
+  //           means: word[index].means,
+  //           parts: word[index].parts,
+  //         }).save();
+  // }
 
-  return NextResponse.json({word1: word.length})
+  // word = await Word2.find();
+
+  // for (let index = 0; index < word.length; index++) {
+    
+  //   await new Word({
+  //           type: word[index].type,
+  //           level: word[index].level,
+  //           word: word[index].word,
+  //           read: word[index].read,
+  //           means: word[index].means,
+  //           parts: word[index].parts,
+  //         }).save();
+  // }
+
+  // word = await Word3.find();
+
+  // for (let index = 0; index < word.length; index++) {
+    
+  //   await new Word({
+  //           type: word[index].type,
+  //           level: word[index].level,
+  //           word: word[index].word,
+  //           read: word[index].read,
+  //           means: word[index].means,
+  //           parts: word[index].parts,
+  //         }).save();
+  // }
+
+  // word = await Word4.find();
+
+  // for (let index = 0; index < word.length; index++) {
+    
+  //   await new Word({
+  //           type: word[index].type,
+  //           level: word[index].level,
+  //           word: word[index].word,
+  //           read: word[index].read,
+  //           means: word[index].means,
+  //           parts: word[index].parts,
+  //         }).save();
+  // }
+
+  // word = await Word5.find();
+
+  // for (let index = 0; index < word.length; index++) {
+    
+  //   await new Word({
+  //           type: word[index].type,
+  //           level: word[index].level,
+  //           word: word[index].word,
+  //           read: word[index].read,
+  //           means: word[index].means,
+  //           parts: word[index].parts,
+  //         }).save();
+  // }
+
+  return NextResponse.json({word1: 0})
 }
