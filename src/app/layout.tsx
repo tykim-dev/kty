@@ -1,4 +1,5 @@
 import SessionProvider from "@/app/context/SessionProvider";
+import { ThemeProvider } from "@material-tailwind/react";
 import Header from "./components/global/header";
 
 export default function RootLayout({
@@ -9,13 +10,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Header></Header>
-        
-        <SessionProvider>
-          <main style={{margin: '50px'}}>
-            {children}
-          </main>
-        </SessionProvider>
+        <ThemeProvider>
+          <Header></Header>
+          
+          <SessionProvider>
+            <main style={{margin: '50px'}}>
+              {children}
+            </main>
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
