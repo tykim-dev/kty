@@ -1,6 +1,7 @@
 import SessionProvider from "@/app/context/SessionProvider";
 import { ThemeProvider } from "@material-tailwind/react";
 import Header from "./components/global/header";
+// import SideVav from "@/app/widgets/layout/sidenav"
 
 export default function RootLayout({
   children,
@@ -12,7 +13,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <Header></Header>
-          
+          {/* <SideVav /> */}
           <SessionProvider>
             <main style={{margin: '50px'}}>
               {children}
