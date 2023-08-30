@@ -1,6 +1,5 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
-import Link from '@mui/material/Link';
 
 export default function Home() {
 

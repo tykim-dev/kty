@@ -1,16 +1,20 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Toolbar from '@mui/material/Toolbar'
+import SideVav from '../widgets/layout/sidenav'
 
 const drawerWidth = 240
 
 const DashboardPage = () => {
 
   return (
-    <Box
-    component="main"
-    sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-    >
+    <>
+      
+      {/* <Box
+      component="main"
+      sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+      > */}
+        <SideVav/>
         <Toolbar />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -39,7 +43,8 @@ const DashboardPage = () => {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </Box>
+      {/* </Box> */}
+    </> 
   )
 }
 

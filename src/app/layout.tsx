@@ -14,18 +14,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <body>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-          <Header></Header>
+          {/* <Header></Header> */}
           {/* <SideVav /> */}
           <SessionProvider>
-            <body>
               {children}
-            </body>
           </SessionProvider>
         </ThemeProvider>
       </StyledEngineProvider>
+      </body>
     </html>
   )
 }
