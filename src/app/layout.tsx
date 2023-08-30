@@ -1,5 +1,9 @@
+"use client";
+import "./globals.css";
+import { darkTheme } from "./style/theme";
 import SessionProvider from "@/app/context/SessionProvider";
-import { ThemeProvider } from "@material-tailwind/react";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { StyledEngineProvider } from "@mui/material";
 import Header from "./components/global/header";
 // import SideVav from "@/app/widgets/layout/sidenav"
 
@@ -10,17 +14,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>
-        <ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
           <Header></Header>
           {/* <SideVav /> */}
           <SessionProvider>
-            <main style={{margin: '50px'}}>
+            <body>
               {children}
-            </main>
+            </body>
           </SessionProvider>
         </ThemeProvider>
-      </body>
+      </StyledEngineProvider>
     </html>
   )
 }
