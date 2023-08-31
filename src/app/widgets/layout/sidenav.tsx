@@ -28,7 +28,7 @@ interface Props {
 }
 
 
-const SideVav = (props: Props) => {
+const SideNav = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -131,4 +131,4 @@ const SideVav = (props: Props) => {
   )
 }
 
-export default SideVav
+export default SideNav
