@@ -14,6 +14,7 @@
     "@material-tailwind/react": "^2.1.1",
     "@mui/icons-material": "^5.14.7",
     "@mui/material": "^5.14.2",
+    "@next/codemod": "^13.4.19",
     "@prisma/client": "^5.1.1",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
