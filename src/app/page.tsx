@@ -6,6 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 // import routes from "@/routes";
 // import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 import SideNav from "@/app/widgets/layout/sidenav";
+import DashboardPage from "./dashboard/page";
 
 export default function Home() {
 
@@ -13,6 +14,7 @@ export default function Home() {
 
   // const [controller, dispatch] = useMaterialTailwindController();
   // const { sidenavType } = controller;
+  
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
@@ -24,6 +26,9 @@ export default function Home() {
       />
       <div className="p-4 xl:ml-80">
       <div className="flex gap-2 ml-auto">
+        <DashboardPage />
+        </div>
+        <div>
           {session?.user ? (
             <>
               <img
@@ -40,7 +45,7 @@ export default function Home() {
               Sign In
             </button>
           )}
-        </div>
+          </div>
         <div className="text-blue-gray-600">
           {/* <Footer /> */}
         </div>

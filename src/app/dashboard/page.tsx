@@ -14,8 +14,9 @@ const DashboardPage = () => {
       component="main"
       sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       > */}
-        <SideVav/>
+        {/* <SideVav/> */}
         <Toolbar />
+        <h3>나눔글꼴</h3>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
