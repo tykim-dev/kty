@@ -1,5 +1,6 @@
 import SessionProvider from "@/app/providers/SessionProvider";
 import SideVav from '../widgets/layout/sidenav'
+import Sidebar from "../widgets/layout/Sidebar";
 // import { Nanum_Gothic } from "next/font/google";
 
 // const nanum_gothic = Nanum_Gothic({
@@ -20,9 +21,15 @@ export default function WordLayout({
 }) {
   return (
     <div>
-      <SideVav/>
-      <div className="p-4 xl:ml-80">
-        {children}
+      <Sidebar/>
+      <div className="relative md:ml-64 bg-blueGray-100">
+        {/* <AdminNavbar /> */}
+        {/* Header */}
+        {/* <HeaderStats /> */}
+        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+          {children}
+          {/* <FooterAdmin /> */}
+        </div>
       </div>
     </div>
   )
