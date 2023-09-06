@@ -1,4 +1,5 @@
 import SessionProvider from "@/app/providers/SessionProvider";
+import '@/app/style/tailwind.css'
 // import { Nanum_Gothic } from "next/font/google";
 
 // const nanum_gothic = Nanum_Gothic({

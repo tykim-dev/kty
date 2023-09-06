@@ -2,13 +2,14 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Toolbar from '@mui/material/Toolbar'
 import SideVav from '../widgets/layout/sidenav'
+import WordLayout from '../components/layout/WordLayout'
 
 const drawerWidth = 240
 
 const WordPage = () => {
 
   return (
-    <>
+    <WordLayout>
       
       {/* <Box
       component="main"
@@ -19,7 +20,7 @@ const WordPage = () => {
           단어외우기
         </Typography>
       {/* </Box> */}
-    </> 
+      </WordLayout>
   )
 }
 
