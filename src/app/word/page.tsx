@@ -1,3 +1,5 @@
+"use client"; // 필수!
+import { signIn, signOut, useSession } from "next-auth/react";
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Toolbar from '@mui/material/Toolbar'
@@ -7,6 +9,8 @@ import WordLayout from '../components/layout/WordLayout'
 const drawerWidth = 240
 
 const WordPage = () => {
+
+  const { data: session } = useSession();
 
   return (
     <WordLayout>

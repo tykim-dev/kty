@@ -47,7 +47,7 @@ export default function Home() {
           )}
           </div>
         <div className="text-blue-gray-600">
-          {/* <Footer /> */}
+        https://github.com/creativetimofficial/notus-nextjs
         </div>
       </div>
     </div>

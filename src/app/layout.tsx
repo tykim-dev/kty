@@ -1,4 +1,5 @@
 import SessionProvider from "@/app/providers/SessionProvider";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import '@/app/style/tailwind.css'
 // import { Nanum_Gothic } from "next/font/google";
 
@@ -22,7 +23,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <SessionProvider>
-          <main style={{margin: '50px'}}>
+          <main>
             {children}
           </main>
         </SessionProvider>

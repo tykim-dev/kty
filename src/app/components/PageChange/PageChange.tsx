@@ -5,7 +5,7 @@ import React from "react";
 
 // core components
 
-export default function PageChange(props) {
+export default function PageChange(props:any) {
   return (
     <div>
       <div
