@@ -10,14 +10,7 @@ const WordPage = () => {
 
   return (
     <WordLayout>
-      
-      {/* <Box
-      component="main"
-      sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-      > */}
-        {/* <SideVav/> */}
-        {/* <Typography paragraph> */}
-        <div className="w-full h-auto relative">
+      <div className="w-full h-auto relative">
     <div className="bg-white  px-5 py-3.5 rounded-lg shadow hover:shadow-xl max-w-sm mx-auto transform hover:-translate-y-[0.125rem] transition duration-100 ease-linear">
         <div className="w-full flex items-center justify-between">
             <span className="font-medium text-sm text-slate-400">New Notification</span>
@@ -39,14 +32,12 @@ const WordPage = () => {
             <div className="ml-3">
                 <span className="font-semibold tracking-tight text-xs">John Doe</span>
                 <span className="text-xs leading-none opacity-50">reacted to your comment:</span>
-                <p className="text-xs leading-4 pt-2 italic opacity-70">"This is the comment..."</p>
+                <p className="text-xs leading-4 pt-2 italic opacity-70">This is the comment...</p>
                 <span className="text-[10px] text-blue-500 font-medium leading-4 opacity-75">a few seconds ago</span>
             </div>
         </div>
     </div>
 </div>
-        {/* </Typography> */}
-      {/* </Box> */}
       </WordLayout>
   )
 }
