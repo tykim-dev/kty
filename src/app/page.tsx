@@ -17,7 +17,11 @@ export default function Home() {
         <div>
           {session?.user ? (
             <>
-              <Image alt="사진" className="rounded-full" src={session.user.image || ""} width={100} height={100} />
+              <div className="rounded-lg  lg:overflow-visible">
+                <div className="flex items-center mt-4">
+                    <Image alt="사진" className="relative inline-block h-24 w-24 rounded-full border-2 border-white object-cover object-center hover:z-10 focus:z-10" src={session.user.image || ""} width={100} height={100} />
+                </div>
+              </div>
               <p className="text-sky-600"> {session.user.email}</p>
               <button onClick={() => signOut()} className="before:ease relative h-12 w-40 overflow-hidden border border-blue-500 text-blue-500 shadow-2xl transition-all before:absolute before:top-1/2 before:h-0 before:w-64 before:origin-center before:-translate-x-20 before:rotate-45 before:bg-blue-500 before:duration-300 hover:text-white hover:shadow-blue-500 hover:before:h-64 hover:before:-translate-y-32">
                 <span className="relative z-10">Sign Out</span>
