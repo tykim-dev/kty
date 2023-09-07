@@ -1,32 +1,16 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
-// import { Routes, Route } from "react-router-dom";
-// import { Cog6ToothIcon } from "@heroicons/react/24/solid";
-// import { IconButton } from "@material-tailwind/react";
-// import routes from "@/routes";
-// import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
-import SideNav from "@/app/widgets/layout/sidenav";
 import DashboardPage from "./dashboard/page";
 
 export default function Home() {
 
   const { data: session } = useSession();
 
-  // const [controller, dispatch] = useMaterialTailwindController();
-  // const { sidenavType } = controller;
-  
-
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
-      <SideNav
-        // routes={routes}
-        // brandImg={
-        //   sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
-        // }
-      />
       <div className="p-4 xl:ml-80">
       <div className="flex gap-2 ml-auto">
-        <DashboardPage />
+        {/* <DashboardPage /> */}
         </div>
         <div>
           {session?.user ? (
