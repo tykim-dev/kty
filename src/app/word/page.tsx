@@ -1,7 +1,7 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
-import WordLayout from '../components/Layout/WordLayout'
+import WordLayout from '@/app/components/Layout/WordLayout'
 
 
 const WordPage = () => {
