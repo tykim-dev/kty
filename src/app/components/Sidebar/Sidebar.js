@@ -12,6 +12,7 @@ export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
   const pathname = usePathname();
+
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -25,14 +26,14 @@ export default function Sidebar() {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          {/* <Link href="/">
+          <Link href="/" passHref legacyBehavior>
             <a
               href="#pablo"
               className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
-              Notus NextJS
+              모쿠모쿠 일본어
             </a>
-          </Link> */}
+          </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
@@ -53,14 +54,14 @@ export default function Sidebar() {
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
               <div className="flex flex-wrap">
                 <div className="w-6/12">
-                  {/* <Link href="/">
+                  <Link href="/" passHref legacyBehavior>
                     <a
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Notus NextJS
+                      모쿠모쿠 일본어
                     </a>
-                  </Link> */}
+                  </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
                   <button
@@ -94,7 +95,7 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
-                {/* <Link href="/admin/dashboard">
+                <Link href="/admin/dashboard" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className={
@@ -114,11 +115,11 @@ export default function Sidebar() {
                     ></i>{" "}
                     Dashboard
                   </a>
-                </Link> */}
+                </Link>
               </li>
 
               <li className="items-center">
-                {/* <Link href="/admin/settings">
+                <Link href="/admin/settings" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className={
@@ -138,11 +139,11 @@ export default function Sidebar() {
                     ></i>{" "}
                     Settings
                   </a>
-                </Link> */}
+                </Link>
               </li>
 
               <li className="items-center">
-                {/* <Link href="/admin/tables" className={
+                <Link href="/admin/tables" passHref legacyBehavior className={
                       "text-xs uppercase py-3 font-bold block " +
                       (pathname.indexOf("/admin/tables") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
@@ -167,11 +168,11 @@ export default function Sidebar() {
                     ></i>{" "}
                     Tables
                   </a>
-                </Link> */}
+                </Link>
               </li>
 
               <li className="items-center">
-                {/* <Link href="/admin/maps">
+                <Link href="/admin/maps" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className={
@@ -191,7 +192,7 @@ export default function Sidebar() {
                     ></i>{" "}
                     Maps
                   </a>
-                </Link> */}
+                </Link>
               </li>
             </ul>
 
@@ -205,7 +206,7 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                {/* <Link href="/auth/login">
+                <Link href="/auth/login" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
@@ -213,11 +214,11 @@ export default function Sidebar() {
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     Login
                   </a>
-                </Link> */}
+                </Link>
               </li>
 
               <li className="items-center">
-                {/* <Link href="/auth/register">
+                <Link href="/auth/register" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
@@ -225,7 +226,7 @@ export default function Sidebar() {
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                     Register
                   </a>
-                </Link> */}
+                </Link>
               </li>
             </ul>
 
@@ -239,7 +240,7 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                {/* <Link href="/landing">
+                <Link href="/landing" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
@@ -247,11 +248,11 @@ export default function Sidebar() {
                     <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
                     Landing Page
                   </a>
-                </Link> */}
+                </Link>
               </li>
 
               <li className="items-center">
-                {/* <Link href="/profile">
+                <Link href="/profile" passHref legacyBehavior>
                   <a
                     href="#pablo"
                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
@@ -259,7 +260,7 @@ export default function Sidebar() {
                     <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
                     Profile Page
                   </a>
-                </Link> */}
+                </Link>
               </li>
             </ul>
 

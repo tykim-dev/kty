@@ -1,7 +1,7 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
-import WordLayout from '../components/layout/WordLayout'
+import WordLayout from '../components/Layout/WordLayout'
 
 
 const WordPage = () => {
@@ -20,13 +20,13 @@ const WordPage = () => {
         </div>
         <div className="flex items-center mt-2 rounded-lg px-1 py-1 cursor-pointer">
             <div className="relative flex flex-shrink-0 items-end">
-                  {/* <Image
+                  <Image
         src="https://i.pravatar.cc/300"
         className="h-16 w-16 rounded-full"
         width={500}
       height={500}
       alt="Picture of the author"
-    /> */}
+    />
                 <span className="absolute h-4 w-4 bg-green-400 rounded-full bottom-0 right-0 border-2 border-white"></span>
             </div>
             <div className="ml-3">
