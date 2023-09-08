@@ -3,6 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import WordLayout from '@/app/components/Layout/WordLayout'
 
+
 const WordPage = () => {
 
   const { data: session } = useSession();
