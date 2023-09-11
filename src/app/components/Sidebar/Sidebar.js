@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 // import { useRouter } from "next/router";
- 
+
 import { useRouter, usePathname } from 'next/navigation';
 
 // import NotificationDropdown from "@/app/components/Dropdowns/NotificationDropdown";
@@ -113,7 +113,7 @@ export default function Sidebar() {
                           : "text-blueGray-300")
                       }
                     ></i>{" "}
-                    Dashboard
+                    대시보드
                   </a>
                 </Link>
               </li>
@@ -144,11 +144,11 @@ export default function Sidebar() {
 
               <li className="items-center">
                 <Link href="/admin/tables" passHref legacyBehavior className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (pathname.indexOf("/admin/tables") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }>
+                  "text-xs uppercase py-3 font-bold block " +
+                  (pathname.indexOf("/admin/tables") !== -1
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
+                }>
                   <a
                     href="#pablo"
                     className={
@@ -200,32 +200,22 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Auth Layout Pages
+              단어 외우기
             </h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link href="/auth/login" passHref legacyBehavior>
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                    Login
-                  </a>
+                <Link href="/auth/login" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  JLPT
                 </Link>
               </li>
 
               <li className="items-center">
-                <Link href="/auth/register" passHref legacyBehavior>
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                    Register
-                  </a>
+                <Link href="/auth/register" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                  <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
+                  JPT
                 </Link>
               </li>
             </ul>
