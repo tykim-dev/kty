@@ -4,7 +4,8 @@ import Image from 'next/image'
 import WordLayout from '@/app/components/Layout/WordLayout'
 
 
-const DashboardPage = () => {
+const JlptPage = () => {
+
   const { data: session } = useSession();
 
   return (
@@ -52,4 +53,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage
+export default JlptPage
