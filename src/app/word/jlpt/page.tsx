@@ -4,20 +4,17 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import WordLayout from '@/app/components/Layout/WordLayout'
 import { use } from "react";
-
+import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 
 const JlptPage = () => {
 
   const { data: session } = useSession();
-  const [data, setData] = useState(null)
+  // const [data, setData] = useState(null)
 
-  useEffect(() => {
-    fetch('/api/word?level=1&type=jlpt').then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      setData(data)
-    })
-  }, []);
+  const { data: words, error } = useSWR({url: '/api/word', params: {type: 'jlpt', level: 1}}, {revalidateOnFocus:true});
+
+  console.log(words);
 
   return (
     <WordLayout>
