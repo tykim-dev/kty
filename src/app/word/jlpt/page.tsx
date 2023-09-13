@@ -1,12 +1,23 @@
 "use client"; // 필수!
+import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import WordLayout from '@/app/components/Layout/WordLayout'
+import { use } from "react";
 
 
 const JlptPage = () => {
 
   const { data: session } = useSession();
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    fetch('/api/word?level=1&type=jlpt').then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      setData(data)
+    })
+  }, []);
 
   return (
     <WordLayout>
