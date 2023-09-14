@@ -11,10 +11,10 @@ const JlptPage = () => {
 
   const { data: session } = useSession();
   // const [data, setData] = useState(null)
+  const [type, setType] = useState('jlpt')
+  const [level, setLevel] = useState(1)
 
-  const { data: words, error } = useSWR({url: '/api/word', params: {type: 'jlpt', level: 1}}, {revalidateOnFocus:true});
-
-  console.log(words);
+  const { data: words, error } = useSWR({url: '/api/word', params: {type, level}}, {revalidateOnFocus:true});
 
   return (
     <WordLayout>
@@ -47,15 +47,11 @@ const JlptPage = () => {
         </div>
       </div>
       <div className="w-full h-auto relative">
-        <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          Small
-        </button>
-        <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          Regular
-        </button>
-        <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          Large
-        </button>
+        {words.map((wordInfo: any) => {
+          return (
+            <div>{wordInfo.word} {wordInfo.read} {wordInfo.means.join(',')}</div>
+          )
+        })}
       </div>
     </WordLayout>
   )

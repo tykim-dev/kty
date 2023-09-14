@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
   await connectDB();
 
   const { searchParams } = new URL(request.url);
+  
   const type = searchParams.get('type');
   const level = searchParams.get('level');
   const limit = Number(searchParams.get('limit')) || 20;
