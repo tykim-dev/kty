@@ -49,7 +49,7 @@ const JlptPage = () => {
       <div className="w-full h-auto relative">
         {words.map((wordInfo: any) => {
           return (
-            <div>{wordInfo.word} {wordInfo.read} {wordInfo.means.join(',')}</div>
+            <div key={`${wordInfo._id}`}>{wordInfo.word} {wordInfo.read} {wordInfo.means.join(',')}</div>
           )
         })}
       </div>
