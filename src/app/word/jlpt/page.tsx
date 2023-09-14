@@ -14,7 +14,7 @@ const JlptPage = () => {
   const [type, setType] = useState('jlpt')
   const [level, setLevel] = useState(1)
 
-  const { data: words, error } = useSWR({url: '/api/word', params: {type, level}}, {revalidateOnFocus:true});
+  const { data: words = [], error } = useSWR({url: '/api/word', params: {type, level}}, {revalidateOnFocus:true});
 
   return (
     <WordLayout>

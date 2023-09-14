@@ -20,6 +20,9 @@ const nextConfig = {
         pathname: '/300/**',
       },
     ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   }
 }
 

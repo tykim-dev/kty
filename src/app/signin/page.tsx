@@ -1,5 +1,6 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from 'next/image'
 
 const SignInPage = () => {
 
@@ -10,10 +11,14 @@ const SignInPage = () => {
       {
         session
         ? <>
-          <img
+          <Image
+            src={session.user.image || ''}
             className="w-8 h-8 rounded-full"
-            src={session.user.image || ""}
-          />{session.user.name || ""}
+            width={500}
+            height={500}
+            alt="Picture of the author"
+          />
+          <p>{session.user.name || ""}</p>
           <p className="text-sky-600"> {session.user.email}</p>
           <button className="text-red-500" onClick={() => signOut()}>
             Sign Out
