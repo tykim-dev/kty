@@ -18,6 +18,7 @@ const JlptPage = () => {
 
   return (
     <WordLayout>
+      
       <div className="w-full h-auto relative">
         {words.map((wordInfo: any) => {
           return (

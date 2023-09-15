@@ -1,7 +1,6 @@
 import SessionProvider from "@/app/providers/SessionProvider";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
-import AdminNavbar from "@/app/components/Navbars/AdminNavbar";
-import HeaderStats from "@/app/components/Headers/HeaderStats";
+import HeaderWord from "@/app/components/Headers/HeaderWord";
 import FooterAdmin from "@/app/components/Footers/FooterAdmin";
 
 // import { Nanum_Gothic } from "next/font/google";
@@ -26,10 +25,9 @@ export default function WordLayout({
     <>
       <Sidebar />
       <div className="relative md:ml-64 bg-blueGray-100">
-        <AdminNavbar />
         {/* Header */}
-        <HeaderStats />
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        <HeaderWord />
+        <div className="px-4 md:px-10 mx-auto w-full">
           {children}
           <FooterAdmin />
         </div>
