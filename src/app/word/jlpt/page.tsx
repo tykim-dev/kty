@@ -7,6 +7,7 @@ import { use } from "react";
 import useSWR from 'swr'
 import useSWRImmutable from 'swr/immutable'
 import CardTable from '@/app/components/Cards/CardTable';
+import TableHolizontal from '@/app/components/Tables/TableHolizontal';
 
 const JlptPage = () => {
 
@@ -17,16 +18,38 @@ const JlptPage = () => {
 
   const { data: words = [], error } = useSWR({url: '/api/word', params: {type, level}}, {revalidateOnFocus:true});
 
+  const headers:TableHeadType[] = [
+    {
+      title: '단어',
+      field: 'word',
+      type: 'string',
+      width: '25%',
+    },
+    {
+      title: '읽기',
+      field: 'read',
+      type: 'string',
+      width: '25%',
+    },
+    {
+      title: '뜻',
+      field: 'means',
+      type: 'array',
+      width: '25%',
+    },
+    {
+      title: '예문',
+      field: '',
+      type: 'button',
+      width: '25%',
+    },
+  ]
+
   return (
     <WordLayout>
       
       <div className="w-full h-auto relative">
-        <CardTable />
-        {words.map((wordInfo: any) => {
-          return (
-            <div key={`${wordInfo._id}`}>{wordInfo.word} {wordInfo.read} {wordInfo.means.join(',')}</div>
-          )
-        })}
+        <TableHolizontal title='JLPT 단어외우기' headers={headers} datas={words} />
       </div>
     </WordLayout>
   )
