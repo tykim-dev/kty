@@ -6,6 +6,7 @@ import WordLayout from '@/app/components/Layout/WordLayout'
 import { use } from "react";
 import useSWR from 'swr'
 import useSWRImmutable from 'swr/immutable'
+import CardTable from '@/app/components/Cards/CardTable';
 
 const JlptPage = () => {
 
@@ -20,6 +21,7 @@ const JlptPage = () => {
     <WordLayout>
       
       <div className="w-full h-auto relative">
+        <CardTable />
         {words.map((wordInfo: any) => {
           return (
             <div key={`${wordInfo._id}`}>{wordInfo.word} {wordInfo.read} {wordInfo.means.join(',')}</div>
