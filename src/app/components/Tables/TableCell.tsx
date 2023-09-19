@@ -8,7 +8,7 @@ type TableCellProps = {
 const TableCell = ({data = '', align = 'left', type = 'string', size = 'md'}: TableCellProps) => {
   return (
     <>
-      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-${size} text-${align}`}>
+      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4 text-${size} text-${align}`}>
         {data}
       </td>
     </>
