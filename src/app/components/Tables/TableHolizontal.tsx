@@ -49,10 +49,10 @@ const TableHolizontal = ({title, headers, datas}: TableHolizontalProps) => {
               <tbody>
                 {datas.map((data, idx) => {
                   return (
-                    <tr className="border border-solid border-l-0 border-r-0">
+                    <tr key={`row-${idx}`} className="border border-solid border-l-0 border-r-0">
                       {headers?.map((head, idx) => {
                         return (
-                          <TableCell key={`head-${idx}`} data={data[head.field]} type={head.type} />
+                          <TableCell key={`cell-${idx}`} data={data[head.field]} type={head.type} />
                         )
                       })}
                     </tr>
