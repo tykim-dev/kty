@@ -23,7 +23,7 @@ const JlptPage = () => {
 
   const wordInfo =usehWordStore((state) => state.wordInfo);
   const setWordInfo = usehWordStore((state) => state.setWordInfo);
-  // {revalidateOnFocus:true}
+  
   const {data: words = [], error} = useWord({type, level});
 
   const headers:TableHeadType[] = [
