@@ -21,9 +21,9 @@ const JlptPage = () => {
   const [type, setType] = useState('jlpt')
   const [level, setLevel] = useState(1)
 
-  const wordInfo = usehWordStore((state) => state.wordInfo);
+  const wordInfo =usehWordStore((state) => state.wordInfo);
   const setWordInfo = usehWordStore((state) => state.setWordInfo);
-  
+  // {revalidateOnFocus:true}
   const {data: words = [], error} = useWord({type, level});
 
   const headers:TableHeadType[] = [
