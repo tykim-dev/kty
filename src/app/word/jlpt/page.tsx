@@ -56,9 +56,11 @@ const JlptPage = () => {
 
   return (
     <WordLayout>
+      <SearchBar />
+
       <button type='button' onClick={() => add(2)} className='bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'>zustand test({cart})</button>
       <button type='button' onClick={() => {setWordInfo({type: 'jlpt'})}} className='bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'>구분({wordInfo.type})</button>
-      <SearchBar />
+      
       <div className="w-full h-auto relative">
         <TableHolizontal title='JLPT 단어외우기' headers={headers} datas={words} />
       </div>

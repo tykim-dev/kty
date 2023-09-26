@@ -4,12 +4,12 @@ import React from "react";
 
 import CardStats from "@/app/components/Cards/CardStats";
 
-export default function HeaderStats() {
+export default function HeaderWord() {
   return (
     <>
       {/* Header */}
-      <div className="relative bg-blueGray-800 md:pt-4 pb-4 pt-4">
-        <div className="px-4 md:px-10 mx-auto w-full">
+      <div className="relative bg-blueGray-800 md:pt-32 pb-11 pt-12">
+        <nav className="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
           <div className="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
             {/* Brand */}
             <h3 className="text-white text-sm uppercase hidden lg:inline-block font-semibold">단어외우기</h3>
@@ -27,7 +27,7 @@ export default function HeaderStats() {
               </div>
             </form>
           </div>
-        </div>
+        </nav>
       </div>
     </>
   );
