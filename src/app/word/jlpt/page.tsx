@@ -16,16 +16,14 @@ const JlptPage = () => {
 
   const { data: session } = useSession();
 
-  const add = useSearchWordStore((state) => state.add);
-  const cart = useSearchWordStore((state) => state.cart);
-
-  const [type, setType] = useState('jlpt')
-  const [level, setLevel] = useState(1)
-
-  const wordInfo =usehWordStore((state) => state.wordInfo);
+  const wordInfo = usehWordStore((state) => state.wordInfo);
   const setWordInfo = usehWordStore((state) => state.setWordInfo);
   
-  const {data: words = [], error} = useWord({type, level});
+  const {data: words = [], error} = useWord({type: wordInfo.type, level: wordInfo.level});
+
+  const handleSearch = (data: any) => {
+    setWordInfo(data);
+  }
 
   const headers:TableHeadType[] = [
     {
@@ -56,11 +54,8 @@ const JlptPage = () => {
 
   return (
     <WordLayout>
-      <SearchBar />
+      <SearchBar onSearch={(data: any) => handleSearch(data)} />
 
-      <button type='button' onClick={() => add(2)} className='bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'>zustand test({cart})</button>
-      <button type='button' onClick={() => {setWordInfo({type: 'jlpt'})}} className='bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'>구분({wordInfo.type})</button>
-      
       <div className="w-full h-auto relative">
         <TableHolizontal title='JLPT 단어외우기' headers={headers} datas={words} />
       </div>
