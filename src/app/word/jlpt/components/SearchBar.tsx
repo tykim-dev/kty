@@ -1,5 +1,5 @@
 import { usehWordStore } from '@/app/store/wordStore';
-import { ChangeEvent, MouseEventHandler } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 import useWord from '@/app/swr/useWord';
 
 type SearchProps = {
@@ -14,13 +14,12 @@ const SearchBar = (props: SearchProps) => {
 
   const wordInfo =usehWordStore((state) => state.wordInfo);
   const setWordInfo = usehWordStore((state) => state.setWordInfo);
-  const setWordList = usehWordStore((state) => state.setWordList);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setWordInfo({...wordInfo, [e.target.name]: e.target.value});
   }
 
-  const handleSearch = (e: MouseEventHandler<HTMLButtonElement>) => {
+  const handleSearch = (e: MouseEvent<HTMLElement>) => {
     onSearch && onSearch(wordInfo);
   }
 

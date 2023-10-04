@@ -4,10 +4,10 @@ import TableHead from "./TableHead"
 type TableHolizontalProps = {
   title?: string,
   headers?: any[],
-  datas: any[],
+  data: any[],
 }
 
-const TableHolizontal = ({title, headers, datas}: TableHolizontalProps) => {
+const TableHolizontal = ({title, headers, data}: TableHolizontalProps) => {
   return (
     <div className="flex flex-wrap mt-4">
       <div className="w-full mb-12 px-4">
@@ -47,12 +47,12 @@ const TableHolizontal = ({title, headers, datas}: TableHolizontalProps) => {
                 </thead>
               )}
               <tbody>
-                {datas.map((data, idx) => {
+                {data.map((wordInfo, idx) => {
                   return (
                     <tr key={`row-${idx}`} className="border border-solid border-l-0 border-r-0">
                       {headers?.map((head, idx) => {
                         return (
-                          <TableCell key={`cell-${idx}`} data={data[head.field]} type={head.type} />
+                          <TableCell key={`cell-${idx}`} data={wordInfo[head.field]} type={head.type} />
                         )
                       })}
                     </tr>
