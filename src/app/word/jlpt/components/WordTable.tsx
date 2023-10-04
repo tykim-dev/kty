@@ -7,7 +7,7 @@ type WordTableProps = {
   conditions: any,
 }
 
-const WordTable = (props: any) => {
+const WordTable = (props: WordTableProps) => {
 
   const {
     conditions
