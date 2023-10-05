@@ -1,6 +1,5 @@
 import { usehWordStore } from '@/app/store/wordStore';
 import { ChangeEvent, MouseEvent } from 'react';
-import useWord from '@/app/swr/useWord';
 
 type SearchProps = {
   onSearch: (data: any) => any,

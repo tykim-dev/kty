@@ -7,7 +7,7 @@ type WordSearchProps = {
 }
 
 const useWord = (params: WordSearchProps, config?: SWRConfiguration) => {
-  const { data, error, isLoading, isValidating, mutate } = useSWR({url: '/api/word', params: params}, config);
+  const { data, error, isLoading, isValidating, mutate } = useSWR({url: '/api/word/list', params: params}, config);
 
   return {data, error, isLoading, isValidating, mutate};
 }

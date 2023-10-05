@@ -1,6 +1,7 @@
 import { usehWordStore } from '@/app/store/wordStore';
 import { ChangeEvent, MouseEvent } from 'react';
 import useWord from '@/app/swr/useWord';
+import useWordPage from '@/app/swr/useWordPage';
 import TableHolizontal from '@/app/components/Tables/TableHolizontal';
 
 type WordTableProps = {
@@ -14,6 +15,8 @@ const WordTable = (props: WordTableProps) => {
   } = props
 
   const {data: words = [], isLoading, error} = useWord(conditions);
+
+  // const {data: pageInfo} = useWordPage(conditions);
 
   const headers:TableHeadType[] = [
     {
