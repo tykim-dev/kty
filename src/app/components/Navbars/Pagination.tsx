@@ -15,7 +15,7 @@ const Pagination = (props: PaginationProps) => {
 
   const {data: pageInfo, isLoading} = useWordPage(conditions);
 
-  const { total, totalPage, currentPage, startPage, endPage } = pageInfo;
+  // const { total, totalPage, currentPage, startPage, endPage } = pageInfo;
 
   return (
     <>
