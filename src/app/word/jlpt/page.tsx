@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import WordLayout from '@/app/components/Layout/WordLayout'
 import SearchBar from './components/SearchBar';
 import WordTable from './components/WordTable';
+import Pagination from '@/app/components/Navbars/Pagination';
 
 const JlptPage = () => {
 
@@ -21,6 +22,7 @@ const JlptPage = () => {
 
       <div className="w-full h-auto relative">
         <WordTable conditions={conditions} />
+        <Pagination conditions={conditions} />
       </div>
     </WordLayout>
   )

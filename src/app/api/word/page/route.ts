@@ -18,6 +18,8 @@ export async function GET(request: NextRequest) {
     total: wordCount, 
     totalPage: Math.ceil(wordCount / limit) ,
     currentPage: page,
+    startPage: 1,
+    endPage: 10,
   })
 }
 
