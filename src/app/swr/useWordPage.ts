@@ -7,7 +7,7 @@ type WordPageProps = {
 }
 
 const useWordPage = (params: WordPageProps, config?: SWRConfiguration) => {
-  const { data, error, isLoading, isValidating, mutate } = useSWR({url: '/api/word/page', params: params}, config);
+  const { data, error, isLoading, isValidating, mutate } = useSWR<Paginate>({url: '/api/word/page', params: params}, config);
 
   return {data, error, isLoading, isValidating, mutate};
 }

@@ -14,13 +14,7 @@ const Pagination = (props: PaginationProps) => {
   } = props
 
   const {data: pageInfo, isLoading} = useWordPage(conditions);
-  // const { 
-  //   total?, 
-  //   totalPage = 0, 
-  //   currentPage = 0, 
-  //   startPage = 0, 
-  //   pageSize = 0
-  // }:Paginate = pageInfo;
+  const { total = 0, totalPage = 0, currentPage = 0, startPage = 0, pageSize = 0 } = pageInfo || {};
 
   return (
     <>
@@ -32,10 +26,10 @@ const Pagination = (props: PaginationProps) => {
                 <i className="fas fa-chevron-left -ml-px"></i>
               </a>
             </li>
-            {Array(pageInfo?.pageSize).fill(pageInfo?.startPage).map((num, index) => {
+            {Array(pageSize).fill(startPage).map((num, index) => {
               let pageClass = "first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500";
 
-              if(pageInfo?.currentPage === (num + index)) {
+              if(currentPage === (num + index)) {
                 pageClass += ' text-white bg-lightBlue-500';
               } else {
                 pageClass += ' bg-white text-lightBlue-500';

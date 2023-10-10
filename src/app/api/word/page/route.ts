@@ -12,15 +12,27 @@ export async function GET(request: NextRequest) {
   const limit = Number(searchParams.get('limit')) || 20;
   const page = Number(searchParams.get('page') || 1);
   
+  let pageInfo: Paginate = {
+    total: 0, 
+    totalPage: 1, 
+    currentPage: 1, 
+    startPage: 1, 
+    pageSize: 1,
+  };
+
   const wordCount = await Word.count({ type, level }).exec();
 
-  return NextResponse.json({ 
-    total: wordCount, 
-    totalPage: Math.ceil(wordCount / limit) ,
-    currentPage: page,
-    startPage: 1,
-    pageSize: 10,
-  })
+  if(wordCount > 0) {
+    pageInfo.total = wordCount;
+    pageInfo.totalPage = Math.ceil(wordCount / limit);
+    pageInfo.currentPage = page;
+
+    
+
+    pageInfo.pageSize = 10;
+  }
+
+  return NextResponse.json(pageInfo)
 }
 
 export async function POST(request: NextRequest) {
