@@ -4,7 +4,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import WordLayout from '@/app/components/Layout/WordLayout'
 import SearchBar from './components/SearchBar';
 import WordTable from './components/WordTable';
-import Pagination from '@/app/components/Navbars/Pagination';
+// import Pagination from '@/app/components/Navbars/Pagination';
+import Pagination from '@/app/components/Navbars/Pagination2';
 
 const JlptPage = () => {
 
