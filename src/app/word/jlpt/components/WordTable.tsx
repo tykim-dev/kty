@@ -45,9 +45,9 @@ const WordTable = (props: WordTableProps) => {
     },
   ]
 
-  if (isLoading) {
-    return <p>조회중...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>조회중...</p>;
+  // }
 
   return (
     <>
