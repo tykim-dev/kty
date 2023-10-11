@@ -1,55 +1,39 @@
-import { usehWordStore } from '@/app/store/wordStore';
-import { ChangeEvent, MouseEvent } from 'react';
-import useWord from '@/app/swr/useWord';
 import useWordPage from '@/app/swr/useWordPage';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/classic.css';
 
 type PaginationProps = {
   conditions: any,
+  onPageChange: (newPage: number) => any,
 }
 
 const Pagination = (props: PaginationProps) => {
 
   const {
-    conditions
+    conditions,
+    onPageChange,
   } = props
 
   const {data: pageInfo, isLoading} = useWordPage(conditions);
   const { total = 0, totalPage = 0, currentPage = 0, startPage = 0, pageSize = 0 } = pageInfo || {};
 
+  const handlePageClick = (newPage: number) => {
+    onPageChange(newPage);
+  }
+
   return (
     <>
-      <div className="px-4 mb-4">
-        <nav className="block">
-          <ul className="flex pl-0 rounded list-none flex-wrap justify-center">
-            <li>
-              <a href="#pablo" className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 bg-white text-lightBlue-500">
-                <i className="fas fa-chevron-left -ml-px"></i>
-              </a>
-            </li>
-            {Array(pageSize).fill(startPage).map((num, index) => {
-              let pageClass = "first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500";
-
-              if(currentPage === (num + index)) {
-                pageClass += ' text-white bg-lightBlue-500';
-              } else {
-                pageClass += ' bg-white text-lightBlue-500';
-              }
-
-              return (
-                <li key={`page-${num + index}`}>
-                  <a href="#pablo" className={`${pageClass}`}>
-                    {num + index}
-                  </a>
-                </li>
-              )
-            })}
-            <li>
-              <a href="#pablo" className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 bg-white text-lightBlue-500">
-                <i className="fas fa-chevron-right -mr-px"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
+      <div className='px-4 mb-4'>
+      <ResponsivePagination
+        // className='flex justify-center '
+        // activeItemClassName='first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 text-white bg-lightBlue-500'
+        // pageLinkClassName='first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 bg-white text-lightBlue-500'
+        // previousClassName='text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 bg-white text-lightBlue-500'
+        // navClassName='first:ml-0 font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 bg-white text-lightBlue-500'
+        onPageChange={handlePageClick}
+        total={totalPage}
+        current={currentPage}
+      />
       </div>
     </>
   )

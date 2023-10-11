@@ -4,8 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import WordLayout from '@/app/components/Layout/WordLayout'
 import SearchBar from './components/SearchBar';
 import WordTable from './components/WordTable';
-// import Pagination from '@/app/components/Navbars/Pagination';
-import Pagination from '@/app/components/Navbars/Pagination2';
+import Pagination from '@/app/components/Navbars/Pagination';
 
 const JlptPage = () => {
 
@@ -17,13 +16,17 @@ const JlptPage = () => {
     setConditions(data);
   }
 
+  const handlePageChange = (page: number) => {
+    setConditions({...conditions, page});
+  }
+
   return (
     <WordLayout>
       <SearchBar onSearch={(data: any) => handleSearch(data)} />
 
       <div className="w-full h-auto relative">
         <WordTable conditions={conditions} />
-        <Pagination conditions={conditions} />
+        <Pagination conditions={conditions} onPageChange={(newPage: number) => handlePageChange(newPage)} />
       </div>
     </WordLayout>
   )
