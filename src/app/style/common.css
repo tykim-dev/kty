@@ -1,0 +1,11 @@
+.paginate .active a {
+  --tw-bg-opacity: 1;
+  background-color: rgba(14, 165, 233, var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, var(--tw-text-opacity)) !important;
+}
+
+.paginate .disabled a {
+  /* --tw-bg-opacity: 1;
+  background-color: gray !important; */
+}
