@@ -1,11 +1,15 @@
 .paginate .active a {
   --tw-bg-opacity: 1;
-  background-color: rgba(14, 165, 233, var(--tw-bg-opacity)) !important;
+    background-color: rgba(14, 165, 233, var(--tw-bg-opacity)) !important;
   --tw-text-opacity: 1;
     color: rgba(255, 255, 255, var(--tw-text-opacity)) !important;
 }
 
-.paginate .disabled a {
-  /* --tw-bg-opacity: 1;
-  background-color: gray !important; */
+.paginate .disabled span[aria-label=Previous], .paginate .disabled span[aria-label=Next] {
+  --tw-text-opacity: 1;
+    color: rgba(255,255,255,var(--tw-text-opacity)) !important;
+  --tw-border-opacity: 1;
+    border-color: rgba(186,230,253,var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+    background-color: rgba(186,230,253,var(--tw-bg-opacity));
 }
