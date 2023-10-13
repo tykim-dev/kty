@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
   
   const type = searchParams.get('type');
   const level = searchParams.get('level');
+  const part = searchParams.get('part');
   const limit = Number(searchParams.get('limit')) || 20;
   const page = Number(searchParams.get('page') || 1);
   
@@ -20,7 +21,7 @@ export async function GET(request: NextRequest) {
     pageSize: 1,
   };
 
-  const wordCount = await Word.count({ type, level }).exec();
+  const wordCount = await Word.count({ type, level, parts: part ? [part] : [] }).exec();
 
   if(wordCount > 0) {
     pageInfo.total = wordCount;
@@ -38,11 +39,11 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   await connectDB();
   
-  const {type, level, limit = 20, page = 1} = await request.json();
+  const {type, level, part, limit = 20, page = 1} = await request.json();
   const limit1 = limit;
   const page1 = page;
   
-  const wordList = await Word.find({ type, level })
+  const wordList = await Word.find({ type, level, parts: part ? [part] : [] })
     .limit(limit1 * 1)
     .skip((page1 - 1) * limit1)
     .exec();
