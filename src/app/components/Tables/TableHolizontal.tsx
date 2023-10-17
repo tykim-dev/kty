@@ -40,7 +40,7 @@ const TableHolizontal = ({title, headers, data}: TableHolizontalProps) => {
                   <tr>
                     {headers.map((data, idx) => {
                       return (
-                        <TableHead key={`head-${idx}`} title={data?.title} width={data?.width} align={data?.align} />
+                        <TableHead visibleResponsive={data?.visibleResponsive} key={`head-${idx}`} title={data?.title} width={data?.width} align={data?.align} />
                       )
                     })}
                   </tr>
@@ -52,7 +52,7 @@ const TableHolizontal = ({title, headers, data}: TableHolizontalProps) => {
                     <tr key={`row-${idx}`} className="border border-solid border-l-0 border-r-0">
                       {headers?.map((head, idx) => {
                         return (
-                          <TableCell key={`cell-${idx}`} data={wordInfo[head.field]} type={head.type} />
+                          <TableCell visibleResponsive={head?.visibleResponsive}  key={`cell-${idx}`} data={wordInfo[head.field]} type={head.type} />
                         )
                       })}
                     </tr>

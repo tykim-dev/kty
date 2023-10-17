@@ -30,12 +30,14 @@ const WordTable = (props: WordTableProps) => {
       field: 'read',
       type: 'string',
       width: '25%',
+      visibleResponsive: ['sm'],
     },
     {
       title: '뜻',
       field: 'means',
       type: 'array',
       width: '25%',
+      visibleResponsive: ['sm'],
     },
     {
       title: '예문',
