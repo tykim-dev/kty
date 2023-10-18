@@ -8,7 +8,7 @@ type TableHolizontalProps = {
   className?: string,
 }
 
-const TableHolizontal = ({title, headers, data, className}: TableHolizontalProps) => {
+const TableVertical = ({title, headers, data, className}: TableHolizontalProps) => {
   return (
     <div className={`flex flex-wrap mt-4 ${className}`}>
       <div className="w-full mb-4 px-4">
@@ -53,8 +53,12 @@ const TableHolizontal = ({title, headers, data, className}: TableHolizontalProps
                     <tr key={`row-${idx}`} className="border border-solid border-l-0 border-r-0">
                       {headers?.map((head, idx) => {
                         return (
-                          <TableCell key={`cell-${idx}`} data={wordInfo[head.field]} type={head.type} />
-                        )
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 p-4 text-md text-left">
+                            {head.fields.map((item:string) => {
+                              return (<div>{wordInfo[item]}</div>);
+                            })}
+                          </td>
+                        );
                       })}
                     </tr>
                   )
@@ -68,4 +72,4 @@ const TableHolizontal = ({title, headers, data, className}: TableHolizontalProps
   )
 }
 
-export default TableHolizontal
+export default TableVertical

@@ -4,4 +4,5 @@ type TableHeadType = {
   align?: 'left' | 'center' | 'right',
   type?: 'string' | 'number' | 'array' | 'button',
   field?: string,
+  fields?: Array,
 }

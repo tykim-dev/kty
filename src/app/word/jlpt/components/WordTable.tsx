@@ -3,6 +3,7 @@ import { ChangeEvent, MouseEvent } from 'react';
 import useWord from '@/app/swr/useWord';
 import useWordPage from '@/app/swr/useWordPage';
 import TableHolizontal from '@/app/components/Tables/TableHolizontal';
+import TableVertical from '@/app/components/Tables/TableVertical';
 
 type WordTableProps = {
   conditions: any,
@@ -45,13 +46,29 @@ const WordTable = (props: WordTableProps) => {
     },
   ]
 
+  const headersMobile:TableHeadType[] = [
+    {
+      title: '단어',
+      fields: ['word', 'read', 'means'],
+      type: 'string',
+      width: '25%',
+    },
+    {
+      title: '예문',
+      fields: ['word'],
+      type: 'button',
+      width: '25%',
+    },
+  ]
+
   // if (isLoading) {
   //   return <p>조회중...</p>;
   // }
 
   return (
     <>
-      <TableHolizontal title='JLPT 단어외우기' headers={headers} data={words} />
+      <TableHolizontal className='hidden lg:flex xl:flex 2xl:flex' title='JLPT 단어외우기' headers={headers} data={words} />
+      <TableVertical className='hidden sm:flex md:flex' title='JLPT 단어외우기' headers={headersMobile} data={words} />
     </>
   )
 }
