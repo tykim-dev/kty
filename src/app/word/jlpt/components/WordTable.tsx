@@ -67,10 +67,10 @@ const WordTable = (props: WordTableProps) => {
 
   return (
     <>
-      <div className='hidden lg:flex xl:flex 2xl:flex'>
+      <div className='hidden md:block lg:block xl:block 2xl:block'>
         <TableHolizontal title='JLPT 단어외우기' headers={headers} data={words} />
       </div>
-      <div className='hidden hidden sm:flex md:flex'>
+      <div className='hidden mobile:block sm:block'>
         <TableVertical title='JLPT 단어외우기' headers={headersMobile} data={words} />
       </div>
     </>
