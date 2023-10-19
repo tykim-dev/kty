@@ -21,10 +21,7 @@ export async function GET(request: NextRequest) {
     pageSize: 1,
   };
 
-  const wordCount = await Word.find({ type, level, parts: part ? [part] : [] })
-    .limit(limit * 1)
-    .skip((page - 1) * limit)
-    .countDocuments();
+  const wordCount = await Word.count({ type, level, parts: { $in: [part]} }).exec();
 
   if(wordCount > 0) {
     pageInfo.total = wordCount;
