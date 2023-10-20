@@ -2,14 +2,14 @@ import { usehWordStore } from '@/app/store/wordStore';
 import { ChangeEvent, MouseEvent } from 'react';
 import useWord from '@/app/swr/useWord';
 import useWordPage from '@/app/swr/useWordPage';
-import TableHolizontal from '@/app/components/Tables/TableHolizontal';
-import TableVertical from '@/app/components/Tables/TableVertical';
+import WordTable from '@/app/components/Tables/WordTable';
+import WordList from '@/app/components/Tables/WordList';
 
 type WordTableProps = {
   conditions: any,
 }
 
-const WordTable = (props: WordTableProps) => {
+const WordTableContent = (props: WordTableProps) => {
 
   const {
     conditions
@@ -68,13 +68,13 @@ const WordTable = (props: WordTableProps) => {
   return (
     <>
       <div className='xs:hidden sm:hidden'>
-        <TableHolizontal title='JLPT 단어외우기' headers={headers} data={words} />
+        <WordTable title='JLPT 단어외우기' headers={headers} data={words} />
       </div>
       <div className='md:hidden lg:hidden xl:hidden 2xl:hidden'>
-        <TableVertical title='JLPT 단어외우기' headers={headersMobile} data={words} />
+        <WordList title='JLPT 단어외우기' headers={headersMobile} data={words} />
       </div>
     </>
   )
 }
 
-export default WordTable
+export default WordTableContent

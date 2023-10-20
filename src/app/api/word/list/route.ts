@@ -14,7 +14,13 @@ export async function GET(request: NextRequest) {
   const limit = Number(searchParams.get('limit')) || 20;
   const page = Number(searchParams.get('page') || 1);
   
-  const wordList = await Word.find({ type, level, parts: part ? [part] : [] })
+  let conditions:any = {type, level};
+
+  if(part) {
+    conditions = {...conditions, parts: [part] };
+  }
+
+  const wordList = await Word.find(conditions)
     .limit(limit * 1)
     .skip((page - 1) * limit)
     .exec();

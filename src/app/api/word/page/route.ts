@@ -21,7 +21,13 @@ export async function GET(request: NextRequest) {
     pageSize: 1,
   };
 
-  const wordCount = await Word.count({ type, level, parts: { $in: [part]} }).exec();
+  let conditions:any = {type, level};
+
+  if(part) {
+    conditions = {...conditions, parts: [part] };
+  }
+
+  const wordCount = await Word.count(conditions);
 
   if(wordCount > 0) {
     pageInfo.total = wordCount;

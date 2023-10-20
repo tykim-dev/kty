@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession } from "next-auth/react";
 import WordLayout from '@/app/components/Layout/WordLayout'
 import SearchBar from './components/SearchBar';
-import WordTable from './components/WordTable';
+import WordContent from './components/WordContent';
 import Pagination from '@/app/components/Navbars/Pagination';
 
 const JlptPage = () => {
@@ -25,7 +25,7 @@ const JlptPage = () => {
       <SearchBar onSearch={(data: any) => handleSearch(data)} />
 
       <div className="w-full h-auto relative">
-        <WordTable conditions={conditions} />
+        <WordContent conditions={conditions} />
         <Pagination conditions={conditions} onPageChange={(newPage: number) => handlePageChange(newPage)} />
       </div>
     </WordLayout>

@@ -1,14 +1,14 @@
 import TableCell from "./TableCell"
 import TableHead from "./TableHead"
 
-type TableHolizontalProps = {
+type WordTableProps = {
   title?: string,
   headers?: any[],
   data: any[],
   className?: string,
 }
 
-const TableHolizontal = ({title, headers, data, className}: TableHolizontalProps) => {
+const WordTable = ({title, headers, data, className}: WordTableProps) => {
   return (
     <div className={`flex flex-wrap mt-4 ${className}`}>
       <div className="w-full mb-4 px-4">
@@ -68,4 +68,4 @@ const TableHolizontal = ({title, headers, data, className}: TableHolizontalProps
   )
 }
 
-export default TableHolizontal
+export default WordTable
