@@ -1,4 +1,4 @@
-import CardWord from "../Cards/CardWord"
+import CardWord from "@/app/components/Cards/CardWord"
 
 type WordListProps = {
   title?: string,

@@ -1,6 +1,5 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
-import DashboardPage from "./dashboard/page";
 import Image from "next/image";
 import useOpenAI from "./swr/useOpenAI";
 import { useState } from "react";
@@ -10,7 +9,7 @@ export default function Home() {
   const { data: session } = useSession();
 
   const [conditions, setConditions] = useState({word: '愛想'});
-  const {data: resAi = [], isLoading, error} = useOpenAI(conditions);
+  const {data: resAi = [], isLoading, error} = useOpenAI(conditions, {});
 
   const handleClick = async () => {
     // const res = await sendMessage();

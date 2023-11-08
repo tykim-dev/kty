@@ -1,5 +1,3 @@
-import TableCell from "./TableCell"
-import TableHead from "./TableHead"
 
 type WordTableProps = {
   title?: string,
@@ -36,26 +34,22 @@ const WordTable = ({title, headers, data, className}: WordTableProps) => {
           )}
           <div className="block w-full overflow-x-auto">
             <table className="items-center w-full bg-transparent border-collapse">
-              {headers && (
-                <thead>
-                  <tr>
-                    {headers.map((data, idx) => {
-                      return (
-                        <TableHead key={`head-${idx}`} title={data?.title} width={data?.width} align={data?.align} />
-                      )
-                    })}
-                  </tr>
-                </thead>
-              )}
+              <thead>
+                <tr>
+                  <th>단어</th>
+                  <th>읽기</th>
+                  <th>뜻</th>
+                  <th>예문</th>
+                </tr>
+              </thead>
               <tbody>
                 {data.map((wordInfo, idx) => {
                   return (
                     <tr key={`row-${idx}`} className="border border-solid border-l-0 border-r-0">
-                      {headers?.map((head, idx) => {
-                        return (
-                          <TableCell key={`cell-${idx}`} data={wordInfo[head.field]} type={head.type} />
-                        )
-                      })}
+                      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}>{wordInfo.word}</td>
+                      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}>{wordInfo.read}</td>
+                      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}>{wordInfo.means}</td>
+                      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}></td>
                     </tr>
                   )
                 })}

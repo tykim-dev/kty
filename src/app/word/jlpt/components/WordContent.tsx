@@ -1,9 +1,6 @@
-import { usehWordStore } from '@/app/store/wordStore';
-import { ChangeEvent, MouseEvent } from 'react';
 import useWord from '@/app/swr/useWord';
-import useWordPage from '@/app/swr/useWordPage';
-import WordTable from '@/app/components/Tables/WordTable';
-import WordList from '@/app/components/Tables/WordList';
+import WordTable from './WordTable';
+import WordList from './WordList';
 
 type WordTableProps = {
   conditions: any,
