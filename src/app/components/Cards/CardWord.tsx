@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type TableCellProps = {
   data?: any,
   align?: 'left' | 'center' | 'right',
@@ -37,4 +39,4 @@ const CardWord = ({
   )
 }
 
-export default CardWord;
+export default memo(CardWord);

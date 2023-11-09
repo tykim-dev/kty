@@ -1,20 +1,10 @@
 "use client"; // 필수!
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import useOpenAI from "./swr/useOpenAI";
-import { useState } from "react";
 
 export default function Home() {
 
   const { data: session } = useSession();
-
-  const [conditions, setConditions] = useState({word: '愛想'});
-  const {data: resAi = [], isLoading, error} = useOpenAI(conditions, {});
-
-  const handleClick = async () => {
-    // const res = await sendMessage();
-    setConditions({word: '笑顔'});
-  }
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
@@ -48,12 +38,6 @@ export default function Home() {
           </div>
         <div className="text-blue-gray-600">
         https://github.com/creativetimofficial/notus-nextjs
-        </div>
-        <button onClick={handleClick} className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          chat gpt
-        </button>
-        <div style={{whiteSpace: "pre-wrap"}}>
-          {resAi[0]?.message?.content}
         </div>
       </div>
     </div>
