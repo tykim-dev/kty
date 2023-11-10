@@ -1,4 +1,5 @@
 import { memo } from "react";
+import CardSentence from "./CardSentence";
 
 type TableCellProps = {
   data?: any,
@@ -31,7 +32,7 @@ const CardWord = ({
               </p>
           </div>
           <div className={`inline-flex items-center text-${size}`}>
-              예문
+              <CardSentence word={data?.word} />
           </div>
         </div>
     </li>
