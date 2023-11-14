@@ -211,11 +211,16 @@ export default function Sidebar() {
                   JLPT
                 </Link>
               </li>
-
               <li className="items-center">
                 <Link href="/auth/register" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                   <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                   JPT
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/word/slide" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  단어암기
                 </Link>
               </li>
             </ul>
