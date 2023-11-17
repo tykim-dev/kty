@@ -2,12 +2,11 @@ import CardSentence from "@/app/components/Cards/CardSentence"
 
 type WordTableProps = {
   title?: string,
-  headers?: any[],
   data: any[],
   className?: string,
 }
 
-const WordTable = ({title, headers, data, className}: WordTableProps) => {
+const WordTable = ({title, data, className}: WordTableProps) => {
   return (
     <div className={`flex flex-wrap mt-4 ${className}`}>
       <div className="w-full mb-4 px-4">

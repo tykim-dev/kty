@@ -2,12 +2,11 @@ import CardWord from "@/app/components/Cards/CardWord"
 
 type WordListProps = {
   title?: string,
-  headers?: any[],
   data: any[],
   className?: string,
 }
 
-const WordList = ({title, headers, data, className}: WordListProps) => {
+const WordList = ({title, data, className}: WordListProps) => {
   return (
     <div className={`flex flex-wrap mt-4 ${className}`}>
       <div className="w-full mb-4 px-4">
