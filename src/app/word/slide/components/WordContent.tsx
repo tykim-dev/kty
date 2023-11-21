@@ -1,3 +1,4 @@
+'use client'
 import useWord from '@/app/swr/useWord';
 import { Carousel } from '@material-tailwind/react';
 import WordCard from './WordCard';
