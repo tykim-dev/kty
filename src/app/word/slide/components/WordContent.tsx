@@ -22,7 +22,10 @@ const WordContent = (props: WordTableProps) => {
 
   return (
     <>
-      <Carousel className="rounded-xl align-middle" autoplay={true}>
+      <Carousel className='w-full' 
+        autoplay={true} 
+        loop={true}
+      >
         {words.map((wordInfo: any, index: number) => {
           return (
             <WordCard key={`word-${index}`} wordInfo={wordInfo} />

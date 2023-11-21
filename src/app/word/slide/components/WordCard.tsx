@@ -13,17 +13,19 @@ const WordCard = (props: WordCardProps) => {
 
   return (
     <>
-      <Card className="w-full">
-        <CardBody className="text-center inline-block">
-          <Typography variant="h4" color="blue-gray" className="mb-2">
-            {wordInfo?.word}
-          </Typography>
-          <Typography color="blue-gray" className="font-medium" textGradient>
-            {wordInfo?.read}
-          </Typography>
-          <Typography color="blue-gray" className="font-medium" textGradient>
-            {wordInfo?.means}
-          </Typography>
+      <Card className="rounded-none">
+        <CardBody className="h-96 text-center flex items-center justify-center">
+          <div>
+            <Typography variant="h4" color="blue-gray" className="mb-2">
+              {wordInfo?.word}
+            </Typography>
+            <Typography variant="h4" color="blue-gray" className="mb-2">
+              {wordInfo?.read}
+            </Typography>
+            <Typography variant="h4" color="blue-gray">
+              {wordInfo?.means}
+            </Typography>
+          </div>
         </CardBody>
       </Card>
     </>
