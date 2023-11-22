@@ -1,3 +1,4 @@
+'use client'
 import { memo } from 'react';
 import { Card, CardBody, Typography } from '@material-tailwind/react';
 
@@ -13,7 +14,7 @@ const WordCard = (props: WordCardProps) => {
 
   return (
     <>
-      <Card className="rounded-none">
+      <Card className="rounded-none relative h-full w-full">
         <CardBody className="h-96 text-center flex items-center justify-center">
           <div>
             <Typography variant="h4" color="blue-gray" className="mb-2">
