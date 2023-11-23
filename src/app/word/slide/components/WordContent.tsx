@@ -1,6 +1,12 @@
 'use client'
 import useWord from '@/app/swr/useWord';
 import { Button, Carousel, IconButton, Typography } from '@material-tailwind/react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 import WordCard from './WordCard';
 import { prevArrow, propTypesPrevArrow } from '@material-tailwind/react/types/components/carousel';
 
@@ -16,6 +22,30 @@ const WordContent = (props: WordTableProps) => {
 
   const {data: words = [], isLoading, error} = useWord(conditions);
 
+  // // init Swiper:
+  // const swiper = new Swiper('.swiper', {
+  //   modules: [Navigation, Pagination, Autoplay],
+  //   // Optional parameters
+  //   direction: 'vertical',
+  //   loop: true,
+  //   autoplay: true,
+  //   // If we need pagination
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //   },
+  
+  //   // Navigation arrows
+  //   navigation: {
+  //     nextEl: '.swiper-button-next',
+  //     prevEl: '.swiper-button-prev',
+  //   },
+  
+  //   // And if we need scrollbar
+  //   scrollbar: {
+  //     el: '.swiper-scrollbar',
+  //   },
+  // });
+
   // const {data: pageInfo} = useWordPage(conditions);
 
   // if (isLoading) {
@@ -24,7 +54,24 @@ const WordContent = (props: WordTableProps) => {
 
   return (
     <>
-      <Carousel
+      
+      <Swiper modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+        navigation={true}
+        pagination={true}
+        autoplay={true}
+        loop={true}
+        spaceBetween={50}
+        slidesPerView={1}
+        onSlideChange={() => console.log('slide change')}
+        onSwiper={(swiper) => console.log(swiper)}
+        className='w-full h-96'
+      >
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+      </Swiper>
+      {/* <Carousel
         autoplay={false} 
         loop={false}
       >
@@ -32,7 +79,7 @@ const WordContent = (props: WordTableProps) => {
           return (
             <WordCard key={`word-${index}`} wordInfo={wordInfo} />
           )
-        })}
+        })} */}
         {/* <div className="relative h-full w-full">
         <img
           src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
@@ -141,7 +188,7 @@ const WordContent = (props: WordTableProps) => {
           </div>
         </div>
       </div> */}
-      </Carousel>
+      {/* </Carousel> */}
     </>
   )
 }
