@@ -5,14 +5,13 @@ import WordLayout from '@/app/components/Layout/WordLayout'
 import { Button, Card, CardBody, Carousel, Typography } from "@material-tailwind/react";
 import useWord from '@/app/swr/useWord';
 import WordContent from './components/WordContent';
+import SearchBar from './components/SearchBar';
 
 const SlidePage = () => {
 
   const { data: session } = useSession();
 
-  const [conditions, setConditions] = useState({type: 'jlpt', level: 1});
-
-  const {data: words = [], isLoading, error} = useWord(conditions);
+  const [conditions, setConditions] = useState({});
   
   const handleSearch = (data: any) => {
     setConditions(data);
@@ -24,7 +23,11 @@ const SlidePage = () => {
 
   return (
     <WordLayout>
-      <WordContent conditions={conditions} />
+      <SearchBar onSearch={(data: any) => handleSearch(data)} />
+
+      <div className="w-full h-auto relative">
+        <WordContent conditions={conditions} />
+      </div>
     </WordLayout>
   )
 }

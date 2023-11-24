@@ -1,12 +1,15 @@
 'use client'
 import useWord from '@/app/swr/useWord';
-import { Button, Carousel, IconButton, Typography } from '@material-tailwind/react';
-// Import Swiper React components
+import { Button, Card, CardBody, Carousel, IconButton, Typography } from '@material-tailwind/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import WordCard from './WordCard';
 import { prevArrow, propTypesPrevArrow } from '@material-tailwind/react/types/components/carousel';
 
@@ -22,30 +25,6 @@ const WordContent = (props: WordTableProps) => {
 
   const {data: words = [], isLoading, error} = useWord(conditions);
 
-  // // init Swiper:
-  // const swiper = new Swiper('.swiper', {
-  //   modules: [Navigation, Pagination, Autoplay],
-  //   // Optional parameters
-  //   direction: 'vertical',
-  //   loop: true,
-  //   autoplay: true,
-  //   // If we need pagination
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //   },
-  
-  //   // Navigation arrows
-  //   navigation: {
-  //     nextEl: '.swiper-button-next',
-  //     prevEl: '.swiper-button-prev',
-  //   },
-  
-  //   // And if we need scrollbar
-  //   scrollbar: {
-  //     el: '.swiper-scrollbar',
-  //   },
-  // });
-
   // const {data: pageInfo} = useWordPage(conditions);
 
   // if (isLoading) {
@@ -54,141 +33,51 @@ const WordContent = (props: WordTableProps) => {
 
   return (
     <>
-      
-      <Swiper modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-        navigation={true}
-        pagination={true}
-        autoplay={true}
-        loop={true}
-        spaceBetween={50}
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        className='w-full h-96'
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-      </Swiper>
-      {/* <Carousel
-        autoplay={false} 
-        loop={false}
-      >
-        {words.map((wordInfo: any, index: number) => {
-          return (
-            <WordCard key={`word-${index}`} wordInfo={wordInfo} />
-          )
-        })} */}
-        {/* <div className="relative h-full w-full">
-        <img
-          src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-          alt="image 1"
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
-          <div className="w-3/4 text-center md:w-2/4">
-            <Typography
-              variant="h1"
-              color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-            >
-              The Beauty of Nature
-            </Typography>
-            <Typography
-              variant="lead"
-              color="white"
-              className="mb-12 opacity-80"
-            >
-              It is not so much for its beauty that the forest makes a claim
-              upon men&apos;s hearts, as for that subtle something, that quality
-              of air that emanation from old trees, that so wonderfully changes
-              and renews a weary spirit.
-            </Typography>
-            <div className="flex justify-center gap-2">
-              <Button size="lg" color="white">
-                Explore
-              </Button>
-              <Button size="lg" color="white" variant="text">
-                Gallery
-              </Button>
-            </div>
-          </div>
+      <div className={`flex flex-wrap mt-4`}>
+        <div className="w-full mb-4 px-4">
+          <div
+            className={
+              "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
+              "bg-white"
+            }
+          >
+            <Swiper
+            // spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="w-full"
+          >
+            {words.map((wordInfo: any, index: number) => {
+              return (
+                // <SwiperSlide>
+                //   <div className="h-96 text-center flex flex-col items-center justify-center">
+                //       <Typography variant="h4" color="blue-gray" className="mb-2">
+                //         {wordInfo?.word}
+                //       </Typography>
+                //     <Typography variant="h4" color="blue-gray" className="mb-2">
+                //       {wordInfo?.read}
+                //     </Typography>
+                //     <Typography variant="h4" color="blue-gray">
+                //       {wordInfo?.means}
+                //     </Typography>
+                //   </div>
+                // </SwiperSlide>
+                <SwiperSlide key={index}><WordCard wordInfo={wordInfo} /></SwiperSlide>
+                // <WordCard key={index} wordInfo={wordInfo} />
+              )
+            })}
+          </Swiper>
         </div>
       </div>
-      <div className="relative h-full w-full">
-        <img
-          src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-          alt="image 2"
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 grid h-full w-full items-center bg-black/75">
-          <div className="w-3/4 pl-12 md:w-2/4 md:pl-20 lg:pl-32">
-            <Typography
-              variant="h1"
-              color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-            >
-              The Beauty of Nature
-            </Typography>
-            <Typography
-              variant="lead"
-              color="white"
-              className="mb-12 opacity-80"
-            >
-              It is not so much for its beauty that the forest makes a claim
-              upon men&apos;s hearts, as for that subtle something, that quality
-              of air that emanation from old trees, that so wonderfully changes
-              and renews a weary spirit.
-            </Typography>
-            <div className="flex gap-2">
-              <Button size="lg" color="white">
-                Explore
-              </Button>
-              <Button size="lg" color="white" variant="text">
-                Gallery
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
-      <div className="relative h-full w-full">
-        <img
-          src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-          alt="image 3"
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 grid h-full w-full items-end bg-black/75">
-          <div className="w-3/4 pl-12 pb-12 md:w-2/4 md:pl-20 md:pb-20 lg:pl-32 lg:pb-32">
-            <Typography
-              variant="h1"
-              color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-            >
-              The Beauty of Nature
-            </Typography>
-            <Typography
-              variant="lead"
-              color="white"
-              className="mb-12 opacity-80"
-            >
-              It is not so much for its beauty that the forest makes a claim
-              upon men&apos;s hearts, as for that subtle something, that quality
-              of air that emanation from old trees, that so wonderfully changes
-              and renews a weary spirit.
-            </Typography>
-            <div className="flex gap-2">
-              <Button size="lg" color="white">
-                Explore
-              </Button>
-              <Button size="lg" color="white" variant="text">
-                Gallery
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* </Carousel> */}
     </>
   )
 }
