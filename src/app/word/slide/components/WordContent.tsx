@@ -57,21 +57,7 @@ const WordContent = (props: WordTableProps) => {
           >
             {words.map((wordInfo: any, index: number) => {
               return (
-                // <SwiperSlide>
-                //   <div className="h-96 text-center flex flex-col items-center justify-center">
-                //       <Typography variant="h4" color="blue-gray" className="mb-2">
-                //         {wordInfo?.word}
-                //       </Typography>
-                //     <Typography variant="h4" color="blue-gray" className="mb-2">
-                //       {wordInfo?.read}
-                //     </Typography>
-                //     <Typography variant="h4" color="blue-gray">
-                //       {wordInfo?.means}
-                //     </Typography>
-                //   </div>
-                // </SwiperSlide>
                 <SwiperSlide key={index}><WordCard wordInfo={wordInfo} /></SwiperSlide>
-                // <WordCard key={index} wordInfo={wordInfo} />
               )
             })}
           </Swiper>
