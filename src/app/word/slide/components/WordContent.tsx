@@ -13,6 +13,7 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import WordCard from './WordCard';
 import { prevArrow, propTypesPrevArrow } from '@material-tailwind/react/types/components/carousel';
+import ModalFullScreen from '@/app/components/Modals/ModalFullScreen';
 
 type WordTableProps = {
   conditions: any,
@@ -33,50 +34,30 @@ const WordContent = (props: WordTableProps) => {
   //   return <p>조회중...</p>;
   // }
 
-  const handleChangeScreen = (size: string | undefined) => {
-    setFullScreen(size === 'full');
-  }
-
   return (
     <>
-      <div className={`${isFullScreen ? 'fixed inset-0 z-10 overflow-y-auto h-screen' : 'flex flex-wrap mt-4'}`}>
-        <div className={`w-full ${isFullScreen ? '' : 'mb-4 px-4'}`}>
-          <div className={`relative flex flex-col min-w-0 break-words w-full shadow-lg bg-blueGray-100 border-0 ${isFullScreen ? '' : 'rounded'}`}>
-          <div className="rounded-t bg-white mb-0 px-6 py-6">
-            <div className={`text-center flex justify-between`}>
-              <h6 className="text-blueGray-700 text-xl font-bold">단어암기</h6>
-              <button
-                className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => handleChangeScreen(isFullScreen ? '' : 'full')}
-              >
-                전체화면
-              </button>
-            </div>
-          </div>
-          <Swiper
-            // spaceBetween={30}
-            centeredSlides={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="w-full"
-          >
-            {words.map((wordInfo: any, index: number) => {
-              return (
-                <SwiperSlide key={index}><WordCard fullScreen={isFullScreen} wordInfo={wordInfo} /></SwiperSlide>
-              )
-            })}
-          </Swiper>
-        </div>
-      </div>
-      </div> 
+      <ModalFullScreen title='단어암기' onChange={setFullScreen}>
+        <Swiper
+          // spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="w-full"
+        >
+          {words.map((wordInfo: any, index: number) => {
+            return (
+              <SwiperSlide key={index}><WordCard fullScreen={isFullScreen} wordInfo={wordInfo} /></SwiperSlide>
+            )
+          })}
+        </Swiper>
+      </ModalFullScreen>
     </>
   )
 }
