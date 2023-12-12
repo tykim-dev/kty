@@ -2,12 +2,13 @@ import React, { useState } from "react";
 
 type ModalFullScreenProps = {
   title?: string,
+  visible: boolean,
   onChange?: (fullScreen: boolean) => void,
   children: any,
 }
 
 const ModalFullScreen = (props: ModalFullScreenProps) => {
-  const {title, onChange, children} = props;
+  const {title, visible=false, onChange, children} = props;
   const [isFullScreen, setFullScreen] = useState<boolean>(false);
 
   const handleChangeScreen = (size: string | undefined) => {
@@ -18,7 +19,7 @@ const ModalFullScreen = (props: ModalFullScreenProps) => {
 
   return (
     <>
-      <div className={`${isFullScreen ? 'fixed inset-0 z-10 overflow-y-auto h-screen' : 'flex flex-wrap mt-4'}`}>
+      <div className={`${isFullScreen ? 'fixed inset-0 z-10 overflow-y-auto h-screen' : 'flex flex-wrap mt-4'} ${visible ? '' : 'hidden'}`}>
         <div className={`w-full ${isFullScreen ? '' : 'mb-4 px-4'}`}>
           <div className={`relative flex flex-col min-w-0 break-words w-full shadow-lg bg-blueGray-100 border-0 ${isFullScreen ? '' : 'rounded'}`}>
             <div className="rounded-t bg-white mb-0 px-6 py-6">

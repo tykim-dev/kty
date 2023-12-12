@@ -36,13 +36,14 @@ const WordContent = (props: WordTableProps) => {
 
   return (
     <>
-      <ModalFullScreen title='단어암기' onChange={setFullScreen}>
+      <ModalFullScreen visible={words.length > 0} title='단어암기' onChange={setFullScreen}>
         <Swiper
           // spaceBetween={30}
           centeredSlides={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
           }}
           pagination={{
             clickable: true,
