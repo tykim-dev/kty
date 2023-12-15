@@ -1,29 +1,46 @@
 import { Schema, model, models } from 'mongoose'
 
 {/*
-문제그룹
-id: string
-question: string
-parent_question: string
-
 문제
 id.
 year: number
 grade: string
 no: number
 question: string
-choices: array[1.예1,2.예2,3.예3,4.예4]
 translation: array [
 	kor: 한국어
 	chn: 중국어
 	eng: 영어
 ]
-group_id: string
+question_type: group, single
+choices: [
+	{
+		no: 1
+		text: '예문'
+	},
+	{
+		no: 2
+		text: '예문'
+	},
+	{
+		no: 3
+		text: '예문'
+	},
+	{
+		no: 4
+		text: '예문'
+	}
+]
 
 
 정답
 문제1.id	2
 문제2.id	4
+
+SELECT 
+	CONCAT('{"year":"', year, '", "grade":"', grade, '", "no":', sort, ', "question":"', ifnull(question, ''), '", "translation":[{"kor":"', ifnull(kor, '') ,'"},{"chn":"', ifnull(chn, '') ,'"},{"eng":"', ifnull(eng, '') ,'"}]}') as question 
+FROM vocabulary v 
+order by year, grade, sort
 */}
 
 const vocabularySchema = new Schema({
