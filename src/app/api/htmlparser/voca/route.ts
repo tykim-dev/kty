@@ -4,6 +4,8 @@ import { Word1, Word2, Word3, Word4, Word5 } from "@/app/models/word1Model";
 import Word from "@/app/models/wordModel";
 import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
+import { parse } from 'node-html-parser';
+import { HTMLToJSON } from 'html-to-json-parser'; 
 
 // 1: 3246, 2: 2648, 3: 1546, 4: 1037, 5: 744
 const DATA_USERS_URL = `https://dethitiengnhat.com/en/jlpt/N1`
@@ -25,6 +27,23 @@ export async function GET(request: NextRequest) {
       let url = `https://dethitiengnhat.com/en/jlpt/N1/202307/1`;
       let resData = await fetch(url);
       let resHtml = await resData.text();
+
+      const root = parse(resHtml);
+      const fHtml = root.querySelector('.dttn')?.toString() || '';
+
+      // Conversion
+      const result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
+      const cHtml = JSON.parse(result.toString());
+      
+      cHtml.content.map((item: any) => {
+        if(item.attributes?.class === 'big_item') {
+          console.log(item.content);
+        }
+
+        if(item.attributes?.class === 'question_list') {
+          console.log(item.content);
+        }
+      });
     
   //   let resData = await fetch(url);
   //   let resJson = await resData.json();
