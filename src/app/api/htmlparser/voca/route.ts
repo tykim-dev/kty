@@ -36,11 +36,37 @@ export async function GET(request: NextRequest) {
       const cHtml = JSON.parse(result.toString());
       
       cHtml.content.map((item: any) => {
+        // 그룹문제
         if(item.attributes?.class === 'big_item') {
           console.log(item.content);
         }
 
+        // 문제
         if(item.attributes?.class === 'question_list') {
+          console.log(item.content);
+        }
+
+        // 본문
+        if(item.attributes?.class === 'question_content') {
+          console.log(item.content);
+        }
+
+        // 보기
+        if(item.attributes?.class === 'answer_2row') {
+          item.content.forEach((ansContent: any) => {
+            
+            if(typeof ansContent === 'object') {
+              ansContent.content.forEach((ans: any) => {
+                if(ans.attributes?.class === 'answers') {
+                  console.log(ans?.content);
+                }
+              });
+            }
+          });
+        }
+
+        // 정답
+        if((item.attributes?.id || '').includes('AS')) {
           console.log(item.content);
         }
       });
