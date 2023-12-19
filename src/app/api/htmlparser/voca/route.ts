@@ -43,6 +43,22 @@ export async function GET(request: NextRequest) {
 
         // 문제
         if(item.attributes?.class === 'question_list') {
+        //   let question = item.content.forEach((item: any) => {
+        //     let q = '';
+
+        //     if(typeof item === 'object') {
+        //       if(item?.type === 'u') {
+        //         q += `<u>${item}</u>`;
+        //       }
+        //     } else {
+        //       q += item;
+        //     }
+
+        //     return q;
+        //   });
+
+        //   console.log(question ? question.join() : '');
+
           console.log(item.content);
         }
 
