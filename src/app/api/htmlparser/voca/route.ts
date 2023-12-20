@@ -6,6 +6,7 @@ import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
 import { parse } from 'node-html-parser';
 import { HTMLToJSON } from 'html-to-json-parser'; 
+import { isQuestionOrExclamationToken } from "typescript";
 
 // 1: 3246, 2: 2648, 3: 1546, 4: 1037, 5: 744
 const DATA_USERS_URL = `https://dethitiengnhat.com/en/jlpt/N1`
@@ -59,7 +60,30 @@ export async function GET(request: NextRequest) {
 
         //   console.log(question ? question.join() : '');
 
-          console.log(item.content);
+          let qList = item.content.forEach((qItem: any) => {
+            let result = '';
+console.log(qItem, typeof qItem);
+            if(typeof qItem === 'object') {
+              if(qItem?.type) {
+                if((qItem?.type || '').toLowerCase() === 'u') {
+                  console.log(`<u>${(qItem?.content || []).join()}</u>`);
+                  result = `<u>${(qItem?.content || []).join()}</u>`;
+                } else {
+                  result = qItem?.content;
+                }
+              } else {
+                result = qItem;
+              }
+            } else if(typeof qItem === 'string') {
+              result = qItem;
+            } else {
+              result = qItem;
+            }
+
+            return result;
+          });
+
+          console.log((qList || []).join(''));
         }
 
         // 본문
