@@ -11,6 +11,30 @@ import { isQuestionOrExclamationToken } from "typescript";
 // 1: 3246, 2: 2648, 3: 1546, 4: 1037, 5: 744
 const DATA_USERS_URL = `https://dethitiengnhat.com/en/jlpt/N1`
 
+export function parseContent(content: any) {
+  if(!content) return '';
+
+  let qList = content.map((qItem: any) => {
+    let result = '';
+
+    if(typeof qItem === 'object') {
+      if(qItem?.type === 'u') {
+        result = '<u>' + qItem?.content.toString() + '</u>';
+      } else if(qItem?.type === 'br') {
+        result = '<br>';
+      } else {
+        result = qItem?.content;
+      }
+    } else if(typeof qItem === 'string') {
+      result = qItem;
+    }
+
+    return result;
+  });
+
+  return (qList || []).join('').trim();
+}
+
 export async function GET(request: NextRequest) {
 
   // const res = await fetch(DATA_USERS_URL);
@@ -39,75 +63,41 @@ export async function GET(request: NextRequest) {
       cHtml.content.map((item: any) => {
         // 그룹문제
         if(item.attributes?.class === 'big_item') {
-          console.log(item.content);
+          console.log(parseContent(item.content));
         }
 
         // 문제
         if(item.attributes?.class === 'question_list') {
-        //   let question = item.content.forEach((item: any) => {
-        //     let q = '';
-
-        //     if(typeof item === 'object') {
-        //       if(item?.type === 'u') {
-        //         q += `<u>${item}</u>`;
-        //       }
-        //     } else {
-        //       q += item;
-        //     }
-
-        //     return q;
-        //   });
-
-        //   console.log(question ? question.join() : '');
-
-          let qList = item.content.forEach((qItem: any) => {
-            let result = '';
-console.log(qItem, typeof qItem);
-            if(typeof qItem === 'object') {
-              if(qItem?.type) {
-                if((qItem?.type || '').toLowerCase() === 'u') {
-                  console.log(`<u>${(qItem?.content || []).join()}</u>`);
-                  result = `<u>${(qItem?.content || []).join()}</u>`;
-                } else {
-                  result = qItem?.content;
-                }
-              } else {
-                result = qItem;
-              }
-            } else if(typeof qItem === 'string') {
-              result = qItem;
-            } else {
-              result = qItem;
-            }
-
-            return result;
-          });
-
-          console.log((qList || []).join(''));
+          console.log(parseContent(item.content));
         }
 
         // 본문
         if(item.attributes?.class === 'question_content') {
-          console.log(item.content);
+          console.log(parseContent(item.content));
         }
 
         // 보기
         if(item.attributes?.class === 'answer_2row') {
           item.content.forEach((ansContent: any) => {
-            
+            let result = [];
+
             if(typeof ansContent === 'object') {
-              ansContent.content.forEach((ans: any) => {
+              result = ansContent.content.map((ans: any) => {
                 if(ans.attributes?.class === 'answers') {
-                  console.log(ans?.content);
+                  return parseContent(ans?.content).trim();
+                } else {
+                  return '';
                 }
               });
             }
+
+            console.log(result.join('').trim());
           });
         }
 
         // 정답
         if((item.attributes?.id || '').includes('AS')) {
-          console.log(item.content);
+          console.log(parseContent(item?.content));
         }
       });
     
