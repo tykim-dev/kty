@@ -78,6 +78,7 @@ export async function GET(request: NextRequest) {
 
         // 보기
         if(item.attributes?.class === 'answer_2row') {
+          
           item.content.forEach((ansContent: any) => {
             let result = [];
 
@@ -89,6 +90,12 @@ export async function GET(request: NextRequest) {
                   return '';
                 }
               });
+            } else {
+              if(typeof ansContent === 'string') {
+                if(ansContent === '\r\n') {
+                  return '';
+                }
+              }
             }
 
             console.log(result.join('').trim());

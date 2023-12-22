@@ -43,7 +43,7 @@ FROM vocabulary v
 order by year, grade, sort
 */}
 
-const vocabularySchema = new Schema({
+const answersSchema = new Schema({
   // 단어구분
   year: {
     type: Number,
@@ -55,30 +55,21 @@ const vocabularySchema = new Schema({
     required: true,
     index: true,
   },
-  no: {
+  classification: {
+    type: String,
+    enum: ['voca', 'read', 'listen'],
+  },
+  questionNo: {
     type: Number,
     required: true,
     index: true,
   },
-  question: {
+  answer: {
     type: String,
     required: true,
-  },
-  translation: {
-    type: Array,
-    require: false,
-  },
-  questionType: {
-    type: String,
-    enum: ['group', 'normal'],
-    required: true,
-  },
-  choices: {
-    type: Array,
-    required: false,
   },
 }, {timestamps: true})
 
-const Vocabulary = models?.vocabulary || model('vocabulary', vocabularySchema)
+const Answers = models?.answers || model('vocabulary', answersSchema)
 
-export default Vocabulary;
+export default Answers;
