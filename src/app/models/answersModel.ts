@@ -1,75 +1,42 @@
 import { Schema, model, models } from 'mongoose'
 
-{/*
-문제
-id.
-year: number
-grade: string
-no: number
-question: string
-translation: array [
-	kor: 한국어
-	chn: 중국어
-	eng: 영어
-]
-question_type: group, single
-choices: [
-	{
-		no: 1
-		text: '예문'
-	},
-	{
-		no: 2
-		text: '예문'
-	},
-	{
-		no: 3
-		text: '예문'
-	},
-	{
-		no: 4
-		text: '예문'
-	}
-]
-
-
-정답
-문제1.id	2
-문제2.id	4
-
-SELECT 
-	CONCAT('{"year":"', year, '", "grade":"', grade, '", "no":', sort, ', "question":"', ifnull(question, ''), '", "translation":[{"kor":"', ifnull(kor, '') ,'"},{"chn":"', ifnull(chn, '') ,'"},{"eng":"', ifnull(eng, '') ,'"}]}') as question 
-FROM vocabulary v 
-order by year, grade, sort
-*/}
-
 const answersSchema = new Schema({
-  // 단어구분
+  // 년도
   year: {
     type: Number,
     required: true,
     index: true,
   },
-  level: {
+  // 회차
+  order: {
     type: Number,
     required: true,
     index: true,
   },
+  // 등급
+  level: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  // 분류(과목)
   classification: {
     type: String,
-    enum: ['voca', 'read', 'listen'],
+    enum: ['vocabulary', 'grammar ', 'reading', 'listening'],
   },
+  // 문제번호
   questionNo: {
     type: Number,
     required: true,
     index: true,
   },
+  // 정답
   answer: {
     type: String,
     required: true,
   },
 }, {timestamps: true})
 
-const Answers = models?.answers || model('vocabulary', answersSchema)
+const Answers = models?.answers || model('answers', answersSchema)
 
 export default Answers;

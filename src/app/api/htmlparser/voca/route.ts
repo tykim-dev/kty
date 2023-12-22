@@ -7,6 +7,8 @@ import { NextRequest, NextResponse } from "next/server"
 import { parse } from 'node-html-parser';
 import { HTMLToJSON } from 'html-to-json-parser'; 
 import { isQuestionOrExclamationToken } from "typescript";
+import Vocabulary from "@/app/models/vocabularyModel";
+import Answers from "@/app/models/answersModel";
 
 // 1: 3246, 2: 2648, 3: 1546, 4: 1037, 5: 744
 const DATA_USERS_URL = `https://dethitiengnhat.com/en/jlpt/N1`
@@ -44,12 +46,13 @@ export async function GET(request: NextRequest) {
   // const { m_total, m_totalPage } = data;
 
   // await connectDB();
-  
+  const LEVEL = 'N1';
+
   for (let index = 2023; index <= 2023; index++) {
-    // for (let index = 0; index < 2; index++) {
+    for (let order = 0; order < 2; order++) {
       let month = index === 0 ? '07' : '12';
 
-      let url = `https://dethitiengnhat.com/en/jlpt/N1/202307/1`;
+      let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL}/${index}${month}/1`;
       let resData = await fetch(url);
       let resHtml = await resData.text();
 
@@ -60,25 +63,43 @@ export async function GET(request: NextRequest) {
       const result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
       const cHtml = JSON.parse(result.toString());
       
-      cHtml.content.map((item: any) => {
+      cHtml.content.map(async(item: any, contentNo: number) => {
+        let vocaInfo = {};
+
         // 그룹문제
         if(item.attributes?.class === 'big_item') {
           console.log(parseContent(item.content));
+          vocaInfo = {
+            ...vocaInfo, 
+            question: parseContent(item.content),
+            questionType: 'group'
+          };
         }
 
         // 문제
         if(item.attributes?.class === 'question_list') {
           console.log(parseContent(item.content));
+          vocaInfo = {
+            ...vocaInfo, 
+            question: parseContent(item.content),
+            questionType: 'group'
+          };
         }
 
         // 본문
         if(item.attributes?.class === 'question_content') {
           console.log(parseContent(item.content));
+          vocaInfo = {
+            ...vocaInfo, 
+            question: parseContent(item.content),
+            questionType: 'normal'
+          };
         }
 
         // 보기
         if(item.attributes?.class === 'answer_2row') {
-          
+          let ansArr = new Array();
+
           item.content.forEach((ansContent: any) => {
             let result = [];
 
@@ -99,110 +120,48 @@ export async function GET(request: NextRequest) {
             }
 
             console.log(result.join('').trim());
+            ansArr = [...ansArr, result.join('').trim()]
           });
+
+          vocaInfo = {
+            ...vocaInfo, 
+            choices: ansArr,
+          };
+
+          vocaInfo = {
+            ...vocaInfo, 
+            year: index,
+            order: order+1,
+            level: LEVEL,
+            no: contentNo,
+          };
         }
+
+        // // 문제 저장
+        // const newVoca = new Vocabulary(vocaInfo);
+        // await newVoca.save();
+
+        console.log(vocaInfo);
 
         // 정답
         if((item.attributes?.id || '').includes('AS')) {
           console.log(parseContent(item?.content));
+
+          const newAnswer = new Answers({
+            year: index,
+            order: order+1,
+            level: LEVEL,
+            classification: 'vocabulary',
+            questionNo: contentNo,
+            answer: parseContent(item?.content),
+          });
+
+          await newAnswer.save();
         }
       });
     
-  //   let resData = await fetch(url);
-  //   let resJson = await resData.json();
-  //   const { m_items } = resJson;
-
-  //   for (let idx = 0; idx < m_items.length; idx++) {
-  //   // await m_items.forEach( async (wordInfo: WordInfo) => {
-  //     const { category1, level, pron, show_entry, means, parts } = m_items[idx];
-
-  //     const newWord = new Word4({
-  //       type: category1 || '',
-  //       level: level || '',
-  //       word: pron || '',
-  //       read: show_entry || '',
-  //       means: means || [],
-  //       parts: parts || [],
-  //     })
-
-  //     await newWord.save();
-
-  //   // });
-  //   }
-    // }
+    }
   }
-
-  // return NextResponse.json({m_total})
-
-  // let word = await Word1.find();
-
-  // for (let index = 0; index < word.length; index++) {
-    
-  //   await new Word({
-  //           type: word[index].type,
-  //           level: word[index].level,
-  //           word: word[index].word,
-  //           read: word[index].read,
-  //           means: word[index].means,
-  //           parts: word[index].parts,
-  //         }).save();
-  // }
-
-  // word = await Word2.find();
-
-  // for (let index = 0; index < word.length; index++) {
-    
-  //   await new Word({
-  //           type: word[index].type,
-  //           level: word[index].level,
-  //           word: word[index].word,
-  //           read: word[index].read,
-  //           means: word[index].means,
-  //           parts: word[index].parts,
-  //         }).save();
-  // }
-
-  // word = await Word3.find();
-
-  // for (let index = 0; index < word.length; index++) {
-    
-  //   await new Word({
-  //           type: word[index].type,
-  //           level: word[index].level,
-  //           word: word[index].word,
-  //           read: word[index].read,
-  //           means: word[index].means,
-  //           parts: word[index].parts,
-  //         }).save();
-  // }
-
-  // word = await Word4.find();
-
-  // for (let index = 0; index < word.length; index++) {
-    
-  //   await new Word({
-  //           type: word[index].type,
-  //           level: word[index].level,
-  //           word: word[index].word,
-  //           read: word[index].read,
-  //           means: word[index].means,
-  //           parts: word[index].parts,
-  //         }).save();
-  // }
-
-  // word = await Word5.find();
-
-  // for (let index = 0; index < word.length; index++) {
-    
-  //   await new Word({
-  //           type: word[index].type,
-  //           level: word[index].level,
-  //           word: word[index].word,
-  //           read: word[index].read,
-  //           means: word[index].means,
-  //           parts: word[index].parts,
-  //         }).save();
-  // }
 
   return NextResponse.json({word1: 0})
 }
