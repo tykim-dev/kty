@@ -7,9 +7,9 @@ const answersSchema = new Schema({
     required: true,
     index: true,
   },
-  // 회차
-  order: {
-    type: Number,
+  // 월
+  month: {
+    type: String,
     required: true,
     index: true,
   },

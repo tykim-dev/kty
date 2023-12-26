@@ -1,5 +1,11 @@
 import { Schema, model, models } from 'mongoose'
 
+// 정답 선택
+const ChoiceSchema = new Schema({
+  no: Number,
+  content: String
+});
+
 const vocabularySchema = new Schema({
   // 년도
   year: {
@@ -7,9 +13,9 @@ const vocabularySchema = new Schema({
     required: true,
     index: true,
   },
-  // 회차
-  order: {
-    type: Number,
+  // 월
+  month: {
+    type: String,
     required: true,
     index: true,
   },
@@ -20,9 +26,15 @@ const vocabularySchema = new Schema({
     index: true,
   },
   // 문제번호
-  no: {
+  sortNo: {
     type: Number,
     required: true,
+    index: true,
+  },
+  // 문제번호
+  questionNo: {
+    type: Number,
+    required: false,
     index: true,
   },
   // 문제
@@ -38,12 +50,12 @@ const vocabularySchema = new Schema({
   // 문제 구분
   questionType: {
     type: String,
-    enum: ['group', 'normal'],  // group: 그룹문제, normal: 일반문제
+    enum: ['group', 'content', 'normal'],  // group: 그룹문제, content: 지문, normal: 일반문제
     required: true,
   },
   // 선택지
   choices: {
-    type: Array,
+    type: [ChoiceSchema],
     required: false,
   },
 }, {timestamps: true})
