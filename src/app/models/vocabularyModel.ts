@@ -35,7 +35,7 @@ const vocabularySchema = new Schema({
   questionNo: {
     type: Number,
     required: false,
-    index: true,
+    index: false,
   },
   // 문제
   question: {

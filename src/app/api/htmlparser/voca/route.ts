@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
   const LEVEL = 'N1';
   let resultCnt = 0;
 
-  for (let index = 2023; index <= 2023; index++) {
+  for (let index = 2017; index <= 2018; index++) {
     for (let order = 0; order < 2; order++) {
       let sortNo = 1;
       let questionNo = 1;
@@ -60,6 +60,8 @@ export async function GET(request: NextRequest) {
 
       const root = parse(resHtml);
       const fHtml = root.querySelector('.dttn')?.toString() || '';
+
+      if(!fHtml) return;
 
       // Conversion
       const result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
@@ -92,11 +94,11 @@ export async function GET(request: NextRequest) {
           newQuestion.question = parseContent(item.content);
           newQuestion.questionType = 'normal';
           newQuestion.sortNo = sortNo++;
-          newQuestion.questionNo = questionNo++;
+          newQuestion.questionNo = questionNo;
         }
 
         // 보기
-        if(item.attributes?.class === 'answer_2row') {
+        if(item.attributes?.class?.includes('answer_')) {
           let ansArr = new Array();
           let choiceIdx = 0;
 
@@ -134,13 +136,14 @@ export async function GET(request: NextRequest) {
             month: month,
             level: LEVEL,
             classification: 'vocabulary',
-            questionNo: questionNo - 1,
+            questionNo: questionNo,
             answer: parseContent(item?.content),
           });
 
           // console.log(newAnswer);
-          // await newAnswer.save();
+          await newAnswer.save();
 
+          questionNo++;
           resultCnt++;
         }
 
@@ -149,23 +152,25 @@ export async function GET(request: NextRequest) {
         newQuestion.level = LEVEL;
         newQuestion.classification = 'vocabulary';
 
+        (newQuestion.questionNo === 20) && console.log(newQuestion);
+        
         if('group' === newQuestion?.questionType) {
           await newQuestion.save();
 
-          console.log(newQuestion);
+          // console.log(newQuestion);
 
           newQuestion = new Vocabulary();
         } else if('content' === newQuestion?.questionType) {
           await newQuestion.save();
 
-          console.log(newQuestion);
+          // console.log(newQuestion);
 
           newQuestion = new Vocabulary();
         } else if('normal' === newQuestion?.questionType) {
           if(isChoice) {
             await newQuestion.save();
 
-            console.log(newQuestion);
+            // console.log(newQuestion);
 
             newQuestion = new Vocabulary();
             isChoice = false;
