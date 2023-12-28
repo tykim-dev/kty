@@ -46,9 +46,10 @@ export async function GET(request: NextRequest) {
 
   const LEVEL = 'N1';
   let resultCnt = 0;
+  let invalidSaves = Array();
 
-  for (let index = 2017; index <= 2018; index++) {
-    for (let order = 0; order < 2; order++) {
+  for (let index = 2017; index <= 2017; index++) {
+    for (let order = 0; order < 1; order++) {
       let sortNo = 1;
       let questionNo = 1;
 
@@ -58,20 +59,25 @@ export async function GET(request: NextRequest) {
       let resData = await fetch(url);
       let resHtml = await resData.text();
 
+
       const root = parse(resHtml);
       const fHtml = root.querySelector('.dttn')?.toString() || '';
 
-      if(!fHtml) return;
-
       // Conversion
-      const result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
-      const cHtml = JSON.parse(result.toString());
+      let result = null;
       
+      if(fHtml) {
+        result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
+      } else {
+        invalidSaves.push({year: index, month: month});
+        continue;
+      }
+
+      const cHtml = JSON.parse(result.toString());
       let newQuestion = new Vocabulary();
 
       let isChoice = false;
 
-      // cHtml.content.forEach(async(item: any) => {
       for(let itemIdx = 0; itemIdx < cHtml.content.length; itemIdx++) {
         let item = cHtml.content[itemIdx];
         
@@ -180,5 +186,5 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  return NextResponse.json({resultCnt: resultCnt})
+  return NextResponse.json({resultCnt: resultCnt, invalidSaves: invalidSaves})
 }
