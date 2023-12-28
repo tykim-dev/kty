@@ -31,6 +31,12 @@ const vocabularySchema = new Schema({
     required: true,
     index: true,
   },
+  // 분류(과목)
+  classification: {
+    type: String,
+    enum: ['vocabulary', 'grammar ', 'reading', 'listening'],
+    required: true,
+  },
   // 문제번호
   questionNo: {
     type: Number,

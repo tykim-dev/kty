@@ -7,7 +7,7 @@ import Vocabulary from "@/app/models/vocabularyModel";
 import Answers from "@/app/models/answersModel";
 import { isEmpty } from "lodash";
 
-const CLASSIFICATION = 'vocabulary';
+const CLASSIFICATION = 'reading';
 
 export function parseContent(content: any) {
   if(!content) return '';
@@ -35,12 +35,6 @@ export function parseContent(content: any) {
 
 export async function GET(request: NextRequest) {
 
-  // const res = await fetch(DATA_USERS_URL);
-  // const data = await res.json();
-
-  // // const { m_total, m_page, m_pageSize, m_start, m_end, m_totalPage, m_items } = data;
-  // const { m_total, m_totalPage } = data;
-
   await connectDB();
 
   const LEVEL = 'N1';
@@ -54,7 +48,7 @@ export async function GET(request: NextRequest) {
 
       let month = order === 0 ? '07' : '12';
 
-      let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL}/${index}${month}/1`;
+      let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL}/${index}${month}/3`;
       let resData = await fetch(url);
       let resHtml = await resData.text();
 
@@ -83,7 +77,7 @@ export async function GET(request: NextRequest) {
         // 그룹문제
         if(item.attributes?.class === 'big_item') {
           newQuestion.question = parseContent(item.content);
-
+          
           if('  ' === newQuestion.question) {
             newQuestion = new Vocabulary();
             continue;
@@ -101,7 +95,7 @@ export async function GET(request: NextRequest) {
             newQuestion = new Vocabulary();
             continue;
           }
-
+          
           newQuestion.questionType = 'content';
           newQuestion.sortNo = sortNo++;
         }
