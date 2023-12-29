@@ -17,14 +17,14 @@ export function parseContent(content: any) {
 
     if(typeof qItem === 'object') {
       if(qItem?.type === 'u') {
-        result = '<u>' + qItem?.content.toString() + '</u>';
+        result = '<u>' + (qItem?.content || '').toString().trim() + '</u>';
       } else if(qItem?.type === 'br') {
         result = '<br>';
       } else {
-        result = qItem?.content;
+        result = (qItem?.content || '').toString().trim();
       }
     } else if(typeof qItem === 'string') {
-      result = qItem;
+      result = (qItem || '').toString().trim();
     }
 
     return result;
@@ -76,9 +76,9 @@ export async function GET(request: NextRequest) {
         
         // 그룹문제
         if(item.attributes?.class === 'big_item') {
-          newQuestion.question = parseContent(item.content);
+          newQuestion.question = { content: parseContent(item.content) };
           
-          if('  ' === newQuestion.question) {
+          if(!newQuestion.question) {
             newQuestion = new Vocabulary();
             continue;
           }
@@ -89,9 +89,9 @@ export async function GET(request: NextRequest) {
 
         // 본문
         if(item.attributes?.class === 'question_content') {
-          newQuestion.question = parseContent(item.content);
+          newQuestion.question = { content: parseContent(item.content) };
 
-          if('  ' === newQuestion.question) {
+          if(!newQuestion.question) {
             newQuestion = new Vocabulary();
             continue;
           }
@@ -102,9 +102,9 @@ export async function GET(request: NextRequest) {
 
         // 문제
         if(item.attributes?.class === 'question_list') {
-          newQuestion.question = parseContent(item.content);
+          newQuestion.question = { content: parseContent(item.content) };
 
-          if('  ' === newQuestion.question) {
+          if(!newQuestion.question) {
             newQuestion = new Vocabulary();
             continue;
           }

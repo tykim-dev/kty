@@ -1,9 +1,15 @@
 import { Schema, model, models } from 'mongoose'
 
-// 정답 선택
+// 정답 선택 스키마
 const ChoiceSchema = new Schema({
   no: Number,
   content: String
+});
+
+// 문제 스키마
+const QuestionSchema = new Schema({
+  content: String,
+  audio: String
 });
 
 const vocabularySchema = new Schema({
@@ -45,7 +51,7 @@ const vocabularySchema = new Schema({
   },
   // 문제
   question: {
-    type: String,
+    type: QuestionSchema,
     required: true,
   },
   // 해석

@@ -7,7 +7,7 @@ import Vocabulary from "@/app/models/vocabularyModel";
 import Answers from "@/app/models/answersModel";
 import { isEmpty } from "lodash";
 
-const CLASSIFICATION = 'vocabulary';
+const CLASSIFICATION = 'listening';
 
 export function parseContent(content: any) {
   if(!content) return '';
@@ -41,14 +41,14 @@ export async function GET(request: NextRequest) {
   let resultCnt = 0;
   let invalidSaves = Array();
 
-  for (let index = 2017; index <= 2017; index++) {
+  for (let index = 2010; index <= 2010; index++) {
     for (let order = 0; order < 2; order++) {
       let sortNo = 1;
       let questionNo = 1;
 
       let month = order === 0 ? '07' : '12';
 
-      let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL}/${index}${month}/1`;
+      let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL}/${index}${month}/4`;
       let resData = await fetch(url);
       let resHtml = await resData.text();
 
@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
         // 그룹문제
         if(item.attributes?.class === 'big_item') {
           newQuestion.question = { content: parseContent(item.content) };
-
+          console.log(item);
           if(!newQuestion.question) {
             newQuestion = new Vocabulary();
             continue;
@@ -95,7 +95,7 @@ export async function GET(request: NextRequest) {
             newQuestion = new Vocabulary();
             continue;
           }
-
+          
           newQuestion.questionType = 'content';
           newQuestion.sortNo = sortNo++;
         }
