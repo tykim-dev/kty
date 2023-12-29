@@ -37,161 +37,163 @@ export async function GET(request: NextRequest) {
 
   await connectDB();
 
-  const LEVEL = 'N1';
+  const LEVEL = ['N1', 'N2', 'N3'];
   let resultCnt = 0;
   let invalidSaves = Array();
 
-  for (let index = 2010; index <= 2023; index++) {
-    for (let order = 0; order < 2; order++) {
-      let sortNo = 1;
-      let questionNo = 1;
+  for (let levelIdx = 0; levelIdx < LEVEL.length; levelIdx++) {
+    for (let index = 2010; index <= 2023; index++) {
+      for (let order = 0; order < 2; order++) {
+        let sortNo = 1;
+        let questionNo = 1;
 
-      let month = order === 0 ? '07' : '12';
+        let month = order === 0 ? '07' : '12';
 
-      let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL}/${index}${month}/3`;
-      let resData = await fetch(url);
-      let resHtml = await resData.text();
+        let url = `https://dethitiengnhat.com/en/jlpt/${LEVEL[levelIdx]}/${index}${month}/3`;
+        let resData = await fetch(url);
+        let resHtml = await resData.text();
 
 
-      const root = parse(resHtml);
-      const fHtml = root.querySelector('.dttn')?.toString() || '';
+        const root = parse(resHtml);
+        const fHtml = root.querySelector('.dttn')?.toString() || '';
 
-      // Conversion
-      let result = null;
-      
-      if(fHtml) {
-        result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
-      } else {
-        invalidSaves.push({year: index, month: month});
-        continue;
-      }
-
-      const cHtml = JSON.parse(result.toString());
-      let newQuestion = new Vocabulary();
-
-      let isChoice = false;
-
-      for(let itemIdx = 0; itemIdx < cHtml.content.length; itemIdx++) {
-        let item = cHtml.content[itemIdx];
+        // Conversion
+        let result = null;
         
-        // 그룹문제
-        if(item.attributes?.class === 'big_item') {
-          newQuestion.question = { content: parseContent(item.content) };
+        if(fHtml) {
+          result = await HTMLToJSON(fHtml.replaceAll('\t', ''), true);
+        } else {
+          invalidSaves.push({level: LEVEL[levelIdx], year: index, month: month});
+          continue;
+        }
+
+        const cHtml = JSON.parse(result.toString());
+        let newQuestion = new Vocabulary();
+
+        let isChoice = false;
+
+        for(let itemIdx = 0; itemIdx < cHtml.content.length; itemIdx++) {
+          let item = cHtml.content[itemIdx];
           
-          if(!newQuestion.question) {
-            newQuestion = new Vocabulary();
-            continue;
-          }
-
-          newQuestion.questionType = 'group';
-          newQuestion.sortNo = sortNo++;
-        }
-
-        // 본문
-        if(item.attributes?.class === 'question_content') {
-          newQuestion.question = { content: parseContent(item.content) };
-
-          if(!newQuestion.question) {
-            newQuestion = new Vocabulary();
-            continue;
-          }
-          
-          newQuestion.questionType = 'content';
-          newQuestion.sortNo = sortNo++;
-        }
-
-        // 문제
-        if(item.attributes?.class === 'question_list') {
-          newQuestion.question = { content: parseContent(item.content) };
-
-          if(!newQuestion.question) {
-            newQuestion = new Vocabulary();
-            continue;
-          }
-
-          newQuestion.questionType = 'normal';
-          newQuestion.sortNo = sortNo++;
-          newQuestion.questionNo = questionNo;
-        }
-
-        // 보기
-        if(item.attributes?.class?.includes('answer_')) {
-          let ansArr = new Array();
-          let choiceIdx = 0;
-
-          item.content.forEach((ansContent: any) => {
-            let result = [];
-
-            if(typeof ansContent === 'object') {
-              result = ansContent.content.map((ans: any) => {
-                if(ans.attributes?.class === 'answers') {
-                  return parseContent(ans?.content).trim();
-                } else {
-                  return '';
-                }
-              });
-            } else {
-              if(typeof ansContent === 'string') {
-                if(ansContent === '\r\n') {
-                  return '';
-                }
-              }
+          // 그룹문제
+          if(item.attributes?.class === 'big_item') {
+            newQuestion.question = { content: parseContent(item.content) };
+            
+            if(!newQuestion.question) {
+              newQuestion = new Vocabulary();
+              continue;
             }
 
-            ansArr = [...ansArr, { no: ++choiceIdx, content: result.join('').trim()}];
+            newQuestion.questionType = 'group';
+            newQuestion.sortNo = sortNo++;
+          }
 
-            isChoice = true;
-          });
+          // 본문
+          if(item.attributes?.class === 'question_content') {
+            newQuestion.question = { content: parseContent(item.content) };
 
-          newQuestion.choices = ansArr;
-        }
+            if(!newQuestion.question) {
+              newQuestion = new Vocabulary();
+              continue;
+            }
+            
+            newQuestion.questionType = 'content';
+            newQuestion.sortNo = sortNo++;
+          }
 
-        // 정답
-        if((item.attributes?.id || '').includes('AS')) {
-          const newAnswer = new Answers({
-            year: index,
-            month: month,
-            level: LEVEL,
-            classification: CLASSIFICATION,
-            questionNo: questionNo,
-            answer: parseContent(item?.content),
-          });
+          // 문제
+          if(item.attributes?.class === 'question_list') {
+            newQuestion.question = { content: parseContent(item.content) };
 
-          // console.log(newAnswer);
-          await newAnswer.save();
+            if(!newQuestion.question) {
+              newQuestion = new Vocabulary();
+              continue;
+            }
 
-          questionNo++;
-          resultCnt++;
-        }
+            newQuestion.questionType = 'normal';
+            newQuestion.sortNo = sortNo++;
+            newQuestion.questionNo = questionNo;
+          }
 
-        newQuestion.year = index;
-        newQuestion.month = month;
-        newQuestion.level = LEVEL;
-        newQuestion.classification = CLASSIFICATION;
-        
-        if('group' === newQuestion?.questionType) {
-          await newQuestion.save();
+          // 보기
+          if(item.attributes?.class?.includes('answer_')) {
+            let ansArr = new Array();
+            let choiceIdx = 0;
 
-          // console.log(newQuestion);
+            item.content.forEach((ansContent: any) => {
+              let result = [];
 
-          newQuestion = new Vocabulary();
-        } else if('content' === newQuestion?.questionType) {
-          await newQuestion.save();
+              if(typeof ansContent === 'object') {
+                result = ansContent.content.map((ans: any) => {
+                  if(ans.attributes?.class === 'answers') {
+                    return parseContent(ans?.content).trim();
+                  } else {
+                    return '';
+                  }
+                });
+              } else {
+                if(typeof ansContent === 'string') {
+                  if(ansContent === '\r\n') {
+                    return '';
+                  }
+                }
+              }
 
-          // console.log(newQuestion);
+              ansArr = [...ansArr, { no: ++choiceIdx, content: result.join('').trim()}];
 
-          newQuestion = new Vocabulary();
-        } else if('normal' === newQuestion?.questionType) {
-          if(isChoice) {
+              isChoice = true;
+            });
+
+            newQuestion.choices = ansArr;
+          }
+
+          // 정답
+          if((item.attributes?.id || '').includes('AS')) {
+            const newAnswer = new Answers({
+              year: index,
+              month: month,
+              level: LEVEL[levelIdx],
+              classification: CLASSIFICATION,
+              questionNo: questionNo,
+              answer: parseContent(item?.content),
+            });
+
+            // console.log(newAnswer);
+            await newAnswer.save();
+
+            questionNo++;
+            resultCnt++;
+          }
+
+          newQuestion.year = index;
+          newQuestion.month = month;
+          newQuestion.level = LEVEL[levelIdx];
+          newQuestion.classification = CLASSIFICATION;
+          
+          if('group' === newQuestion?.questionType) {
             await newQuestion.save();
 
             // console.log(newQuestion);
 
             newQuestion = new Vocabulary();
-            isChoice = false;
+          } else if('content' === newQuestion?.questionType) {
+            await newQuestion.save();
+
+            // console.log(newQuestion);
+
+            newQuestion = new Vocabulary();
+          } else if('normal' === newQuestion?.questionType) {
+            if(isChoice) {
+              await newQuestion.save();
+
+              // console.log(newQuestion);
+
+              newQuestion = new Vocabulary();
+              isChoice = false;
+            }
           }
-        }
-      };
+        };
+      }
     }
   }
 
