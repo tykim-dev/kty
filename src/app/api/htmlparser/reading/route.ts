@@ -5,33 +5,9 @@ import { parse } from 'node-html-parser';
 import { HTMLToJSON } from 'html-to-json-parser'; 
 import Vocabulary from "@/app/models/vocabularyModel";
 import Answers from "@/app/models/answersModel";
-import { isEmpty } from "lodash";
+import { parseContent } from "@/app/utils/common";
 
 const CLASSIFICATION = 'reading';
-
-export function parseContent(content: any) {
-  if(!content) return '';
-
-  let qList = content.map((qItem: any) => {
-    let result = '';
-
-    if(typeof qItem === 'object') {
-      if(qItem?.type === 'u') {
-        result = '<u>' + (qItem?.content || '').toString().trim() + '</u>';
-      } else if(qItem?.type === 'br') {
-        result = '<br>';
-      } else {
-        result = (qItem?.content || '').toString().trim();
-      }
-    } else if(typeof qItem === 'string') {
-      result = (qItem || '').toString().trim();
-    }
-
-    return result;
-  });
-
-  return (qList || []).join('').trim();
-}
 
 export async function GET(request: NextRequest) {
 

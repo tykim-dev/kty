@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation'
 const JlptPage = () => {
   const searchParams = useSearchParams();
   const { data: session } = useSession();
-console.log(searchParams.getAll);
+console.log(searchParams.get('level'));
   return (
     <WordLayout>
       <div className="w-full h-auto relative">
