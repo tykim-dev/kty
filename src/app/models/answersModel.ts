@@ -37,6 +37,7 @@ const answersSchema = new Schema({
   },
 }, {timestamps: true})
 
+answersSchema.index({ year: 1, month: 1, level: 1, questionNo: 1, classification: 1, }, { unique: true });
 const Answers = models?.answers || model('answers', answersSchema)
 
 export default Answers;

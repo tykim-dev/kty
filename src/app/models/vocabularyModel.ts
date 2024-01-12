@@ -72,6 +72,8 @@ const vocabularySchema = new Schema({
   },
 }, {timestamps: true})
 
+vocabularySchema.index({ year: 1, month: 1, level: 1, sortNo: 1, classification: 1, }, { unique: true });
+
 const Vocabulary = models?.vocabulary || model('vocabulary', vocabularySchema)
 
 export default Vocabulary;

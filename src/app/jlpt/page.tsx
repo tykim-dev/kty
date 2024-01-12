@@ -2,13 +2,15 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import WordLayout from '@/app/components/Layout/WordLayout'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, usePathname } from 'next/navigation'
 
 
 const JlptPage = () => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+
   const { data: session } = useSession();
-console.log(searchParams.get('level'));
+
   return (
     <WordLayout>
       <div className="w-full h-auto relative">
