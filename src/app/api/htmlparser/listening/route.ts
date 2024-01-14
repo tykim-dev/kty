@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   let invalidSaves = Array();
 
   // for (let levelIdx = 0; levelIdx < LEVEL.length; levelIdx++) {
-  //   for (let index = 2010; index <= 2023; index++) {
+  //   for (let index = 2013; index <= 2023; index++) {
   //     for (let order = 0; order < 2; order++) {
   //       let sortNo = 1;
   //       let questionNo = 1;

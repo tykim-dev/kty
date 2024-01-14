@@ -33,11 +33,11 @@ const answersSchema = new Schema({
   // 정답
   answer: {
     type: String,
-    required: true,
+    required: false,
   },
 }, {timestamps: true})
 
-answersSchema.index({ year: 1, month: 1, level: 1, questionNo: 1, classification: 1, }, { unique: true });
+answersSchema.index({ classification: 1, year: 1, month: 1, level: 1, questionNo: 1 }, { unique: true });
 const Answers = models?.answers || model('answers', answersSchema)
 
 export default Answers;
