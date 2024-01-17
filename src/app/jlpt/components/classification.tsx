@@ -2,8 +2,8 @@ import { usehWordStore } from '@/app/store/wordStore';
 import { ChangeEvent, MouseEvent } from 'react';
 
 type ClassificationProps = {
-  onSearch: (data: any) => any,
-  onClick: (data: any) => any,
+  onSearch?: (data: any) => any,
+  onClick?: (data: any) => any,
 }
 
 const Classification = (props: ClassificationProps) => {
