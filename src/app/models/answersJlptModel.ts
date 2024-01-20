@@ -1,6 +1,6 @@
 import { Schema, model, models } from 'mongoose'
 
-const answersSchema = new Schema({
+const answersJlptSchema = new Schema({
   // 년도
   year: {
     type: Number,
@@ -37,7 +37,7 @@ const answersSchema = new Schema({
   },
 }, {timestamps: true})
 
-answersSchema.index({ classification: 1, year: 1, month: 1, level: 1, questionNo: 1 }, { unique: true });
-const Answers = models?.answers || model('answers', answersSchema)
+answersJlptSchema.index({ classification: 1, year: 1, month: 1, level: 1, questionNo: 1 }, { unique: true });
+const AnswersJlpt = models?.answers || model('answersJlpt', answersJlptSchema)
 
-export default Answers;
+export default AnswersJlpt;

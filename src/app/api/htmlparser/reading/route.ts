@@ -3,8 +3,8 @@ import connectDB from "@/app/utils/database";
 import { NextRequest, NextResponse } from "next/server"
 import { parse } from 'node-html-parser';
 import { HTMLToJSON } from 'html-to-json-parser'; 
-import Vocabulary from "@/app/models/vocabularyModel";
-import Answers from "@/app/models/answersModel";
+import Jlpt from "@/app/models/jlptModel";
+import AnswersJlpt from "@/app/models/answersJlptModel";
 import { parseContent } from "@/app/utils/common";
 
 const CLASSIFICATION = 'reading';
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
   //       }
 
   //       const cHtml = JSON.parse(result.toString());
-  //       let newQuestion = new Vocabulary();
+  //       let newQuestion = new Jlpt();
 
   //       let isChoice = false;
 
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
   //           newQuestion.question = { content: parseContent(item.content) };
             
   //           if(!newQuestion.question) {
-  //             newQuestion = new Vocabulary();
+  //             newQuestion = new Jlpt();
   //             continue;
   //           }
 
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
   //           newQuestion.question = { content: parseContent(item.content) };
 
   //           if(!newQuestion.question) {
-  //             newQuestion = new Vocabulary();
+  //             newQuestion = new Jlpt();
   //             continue;
   //           }
             
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
   //           newQuestion.question = { content: parseContent(item.content) };
 
   //           if(!newQuestion.question) {
-  //             newQuestion = new Vocabulary();
+  //             newQuestion = new Jlpt();
   //             continue;
   //           }
 
@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
 
   //         // 정답
   //         if((item.attributes?.id || '').includes('AS')) {
-  //           const newAnswer = new Answers({
+  //           const newAnswer = new AnswersJlpt({
   //             year: index,
   //             month: month,
   //             level: LEVEL[levelIdx],
@@ -151,20 +151,20 @@ export async function GET(request: NextRequest) {
 
   //           // console.log(newQuestion);
 
-  //           newQuestion = new Vocabulary();
+  //           newQuestion = new Jlpt();
   //         } else if('content' === newQuestion?.questionType) {
   //           await newQuestion.save();
 
   //           // console.log(newQuestion);
 
-  //           newQuestion = new Vocabulary();
+  //           newQuestion = new Jlpt();
   //         } else if('normal' === newQuestion?.questionType) {
   //           if(isChoice) {
   //             await newQuestion.save();
 
   //             // console.log(newQuestion);
 
-  //             newQuestion = new Vocabulary();
+  //             newQuestion = new Jlpt();
   //             isChoice = false;
   //           }
   //         }

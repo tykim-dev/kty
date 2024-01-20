@@ -12,7 +12,7 @@ const QuestionSchema = new Schema({
   audio: String
 });
 
-const vocabularySchema = new Schema({
+const jlptSchema = new Schema({
   // 년도
   year: {
     type: Number,
@@ -72,8 +72,8 @@ const vocabularySchema = new Schema({
   },
 }, {timestamps: true})
 
-vocabularySchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });
+jlptSchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });
 
-const Vocabulary = models?.vocabulary || model('vocabulary', vocabularySchema)
+const Jlpt = models?.jlpt || model('jlpt', jlptSchema)
 
-export default Vocabulary;
+export default Jlpt;
