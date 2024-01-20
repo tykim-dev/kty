@@ -2,16 +2,20 @@ import React from "react";
 
 // components
 
-import CardStats from "@/app/components/Cards/CardStats";
+type HeaderWordProps = {
+  title?: string,
+}
 
-export default function HeaderWord() {
+export default function HeaderWord(props: HeaderWordProps) {
+  const {title} = props;
+
   return (
     <>
       {/* Header */}
       <nav className="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
         <div className="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
           {/* Brand */}
-          <h3 className="text-white text-sm uppercase hidden lg:inline-block font-semibold">단어외우기</h3>
+          <h3 className="text-white text-sm uppercase hidden lg:inline-block font-semibold">{title}</h3>
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
             <div className="relative flex w-full flex-wrap items-stretch">

@@ -27,7 +27,7 @@ export default function WordLayout({
       <Sidebar />
       <div className="relative md:ml-64 bg-blueGray-100">
         {/* Header */}
-        <HeaderWord />
+        <HeaderWord title="단어외우기" />
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full">
           {children}
