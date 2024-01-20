@@ -5,7 +5,6 @@ import JlptLayout from '@/app/components/Layout/JlptLayout'
 import { useSearchParams, usePathname } from 'next/navigation'
 import Classification from "./components/classification";
 
-
 const JlptPage = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
