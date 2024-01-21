@@ -70,6 +70,11 @@ const jlptSchema = new Schema({
     type: [ChoiceSchema],
     required: false,
   },
+  // 정답
+  answer: {
+    type: Number,
+    required: false,
+  },
 }, {timestamps: true})
 
 jlptSchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });

@@ -117,29 +117,29 @@ export async function GET(request: NextRequest) {
   //             }
 
   //             ansArr = [...ansArr, { no: ++choiceIdx, content: result.join('').trim()}];
-
-  //             isChoice = true;
   //           });
 
   //           newQuestion.choices = ansArr;
   //         }
-
+          
   //         // 정답
   //         if((item.attributes?.id || '').includes('AS')) {
-  //           const newAnswer = new AnswersJlpt({
-  //             year: index,
-  //             month: month,
-  //             level: LEVEL[levelIdx],
-  //             classification: CLASSIFICATION,
-  //             questionNo: questionNo,
-  //             answer: parseContent(item?.content),
-  //           });
+  //           // const newAnswer = new AnswersJlpt({
+  //           //   year: index,
+  //           //   month: month,
+  //           //   level: LEVEL[levelIdx],
+  //           //   classification: CLASSIFICATION,
+  //           //   questionNo: questionNo,
+  //           //   answer: parseContent(item?.content),
+  //           // });
 
-  //           // console.log(newAnswer);
-  //           await newAnswer.save();
+  //           // // console.log(newAnswer);
+  //           // await newAnswer.save();
+  //           // questionNo++;
+  //           // resultCnt++;
 
-  //           questionNo++;
-  //           resultCnt++;
+  //           newQuestion.answer = Number(parseContent(item?.content));
+  //           isChoice = true;
   //         }
 
   //         newQuestion.year = index;
@@ -166,7 +166,10 @@ export async function GET(request: NextRequest) {
   //             // console.log(newQuestion);
 
   //             newQuestion = new Jlpt();
+
   //             isChoice = false;
+  //             questionNo++;
+  //             resultCnt++;
   //           }
   //         }
   //       };
