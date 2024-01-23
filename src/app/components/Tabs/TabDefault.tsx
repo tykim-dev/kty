@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 type TabDefaultProps = {
   data: any[],
@@ -10,6 +10,10 @@ type TabDefaultProps = {
 const TabDefault = (props: TabDefaultProps) => {
   const { data, selectedIdx = 0 } = props;
   const [openTab, setOpenTab] = useState(selectedIdx);
+
+  useEffect(() => {
+    setOpenTab(selectedIdx);
+  }, [selectedIdx]);
 
   return (
     <>
