@@ -11,8 +11,23 @@ export async function GET(request: NextRequest) {
   
   let conditions:any = {};
 
-  const jlptClassList = await Jlpt.find()
-    .distinct('classification')  
+  const jlptClassList = await Jlpt.aggregate([
+    { $match : { level : level} },
+    { $group : 
+        {
+            '_id' : '$classification', 
+            'startYear' : {'$min' : '$year'},
+            'endYear' : {'$max' : '$year'},
+            'startMonth' : {'$min' : '$month'},
+            'endMonth' : {'$max' : '$month'},
+            'level' : {'$max' : '$level'}
+        },
+        // $match : { level : 'N1'}
+    }
+])
+
+  // const jlptClassList = await Jlpt.find()
+  //   .distinct('classification')  
     // .select('year month level classification')
     // .sort('level -year -month');
 
