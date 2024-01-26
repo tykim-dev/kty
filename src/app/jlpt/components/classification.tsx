@@ -2,6 +2,7 @@ import React, {memo} from 'react';
 import TabDefault from '@/app/components/Tabs/TabDefault';
 import { usehWordStore } from '@/app/store/wordStore';
 import { ChangeEvent, MouseEvent } from 'react';
+import useClassTypeList from '@/app/swr/useClassTypeList';
 
 type ClassificationProps = {
   level?: string;
@@ -15,6 +16,8 @@ const Classification = (props: ClassificationProps) => {
     level,
     onSearch
   } = props
+
+  const {data: words = [], isLoading, error} = useClassTypeList({params: {level: level}});
 
   const wordInfo =usehWordStore((state) => state.wordInfo);
   const setWordInfo = usehWordStore((state) => state.setWordInfo);
@@ -44,6 +47,7 @@ const Classification = (props: ClassificationProps) => {
               {title: 'N4', content: 'content4'},
               {title: 'N5', content: 'content5'},
             ]} />
+            {words.toString()}
           </div>
         </div>
       </div>
