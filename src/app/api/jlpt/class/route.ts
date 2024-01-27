@@ -10,17 +10,23 @@ export async function GET(request: NextRequest) {
   const level = searchParams.get('level');
 
   const jlptClassList = await Jlpt.aggregate([
-    { $group : 
+    { '$group' : 
         {
-            '_id' : '$level', 
-            'classification' : {'$addToSet' : '$classification'}, 
-            'startYear' : {'$min' : '$year'},
-            'endYear' : {'$max' : '$year'},
-            'startMonth' : {'$min' : '$month'},
-            'endMonth' : {'$max' : '$month'},
-            'level' : {'$max' : '$level'}
+            '_id' : 'class', 
+            'levelArr': {'$addToSet' : '$level'}, 
+            'classificationArr' : {'$addToSet' : '$classification'}, 
+            'yearArr' : {'$addToSet' : '$year'}, 
+            'monthArr' : {'$addToSet' : '$month'}, 
+            // 'startYear' : {'$min' : '$year'},
+            // 'endYear' : {'$max' : '$year'},
+            // 'startMonth' : {'$min' : '$month'},
+            // 'endMonth' : {'$max' : '$month'},
+            // 'level' : {'$max' : '$level'}
         }
-    }
+    },
+    // { $sort: { levelArr: 1, yearArr: -1, monthArr: 1 } }
+
+    // { '$sort': { "levelArr": 1} },
 ])
 
   // const jlptClassList = await Jlpt.find()
