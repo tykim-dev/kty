@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import JlptLayout from '@/app/components/Layout/JlptLayout'
 import { useSearchParams, usePathname } from 'next/navigation'
-import Classification from "./components/classification";
+import JlptList from "./components/jlptList";
 
 const JlptPage = () => {
   const searchParams = useSearchParams();
@@ -14,7 +14,7 @@ const JlptPage = () => {
   return (
     <JlptLayout>
       {/* {searchParams.get('level')} */}
-      <Classification level={searchParams.get('level') || 'N1'} />
+      <JlptList level={searchParams.get('level') || 'N1'} />
     </JlptLayout>
   )
 }
