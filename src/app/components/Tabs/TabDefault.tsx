@@ -1,15 +1,22 @@
 import React, { memo, useEffect, useState } from "react";
+import { MouseEvent } from 'react';
 
 type TabDefaultProps = {
   data: any[],
   selectedIdx?: number,
   onSearch?: (data: any) => any,
-  onClick?: (data: any) => any,
+  onChange?: (data: any) => any,
 }
 
 const TabDefault = (props: TabDefaultProps) => {
-  const { data, selectedIdx = 0 } = props;
+  const { data, selectedIdx = 0, onChange } = props;
   const [openTab, setOpenTab] = useState(selectedIdx);
+
+  const handleClick = (selectedData: any) => (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setOpenTab(selectedData.idx);
+    onChange && onChange(selectedData);
+  }
 
   useEffect(() => {
     setOpenTab(selectedIdx);
@@ -33,10 +40,7 @@ const TabDefault = (props: TabDefaultProps) => {
                         ? "text-white bg-blueGray-600"
                         : "text-blueGray-600 bg-white")
                     }
-                    onClick={e => {
-                      e.preventDefault();
-                      setOpenTab(idx);
-                    }}
+                    onClick={handleClick({idx: idx, data: item})}
                     data-toggle="tab"
                     href={`#link${idx}`}
                     role="tablist"

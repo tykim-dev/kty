@@ -32,6 +32,14 @@ const JlptList = (props: JlptListProps) => {
     onSearch && onSearch(wordInfo);
   }
 
+  const handleClick = (selectedData: any) => {
+    console.log(selectedData);
+  }
+
+  const handleTabChange = (selectedData: any) => {
+    console.log(selectedData);
+  }
+
   return (
     <>
       <div className="px-4 mx-auto w-full -m-24 mb-12">
@@ -42,11 +50,11 @@ const JlptList = (props: JlptListProps) => {
             </div>
           </div>
           <div className="flex-auto mt-3 lg:px-10 py-10 pt-0">
-            <TabDefault selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
+            <TabDefault onChange={handleTabChange} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
               sortBy(classInfos[0]?.levelArr).map((item) => {
                 return {
                   title: item,
-                  content: (<Classification classData={classInfos[0]}/>),
+                  content: (<Classification classData={classInfos[0]} onClick={(data) => handleClick(data)}/>),
                 };
               })} />
             {}
