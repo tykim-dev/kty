@@ -1,4 +1,4 @@
-import { usehWordStore } from '@/app/store/wordStore';
+import { useWordStore } from '@/app/store/wordStore';
 import { ChangeEvent, MouseEvent } from 'react';
 
 type SearchProps = {
@@ -11,8 +11,8 @@ const SearchBar = (props: SearchProps) => {
     onSearch
   } = props
 
-  const wordInfo =usehWordStore((state) => state.wordInfo);
-  const setWordInfo = usehWordStore((state) => state.setWordInfo);
+  const wordInfo =useWordStore((state) => state.wordInfo);
+  const setWordInfo = useWordStore((state) => state.setWordInfo);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setWordInfo({...wordInfo, [e.target.name]: e.target.value});

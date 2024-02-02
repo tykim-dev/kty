@@ -1,44 +1,42 @@
+'use client';
 import React, {memo, useEffect} from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import TabDefault from '@/app/components/Tabs/TabDefault';
-import { usehWordStore } from '@/app/store/wordStore';
-import { ChangeEvent, MouseEvent } from 'react';
+import { useJlptStore } from '@/app/store/jlptStore';
 import useClassTypeList from '@/app/swr/useClassTypeList';
 import { sortBy } from 'lodash';
 import Classification from './classification';
 
 type JlptListProps = {
-  level?: string;
+  level?: string,
   onSearch?: (data: any) => any,
   onClick?: (data: any) => any,
 }
 
 const JlptList = (props: JlptListProps) => {
-
   const {
-    level,
-    onSearch
+    level
   } = props
+  
+  const pathname = usePathname();
+  const router = useRouter();
+  const jlptInfo =useJlptStore((state) => state.jlptInfo);
+  const setJlptInfo = useJlptStore((state) => state.setJlptInfo);
 
-  const {data: classInfos = [], isLoading, error} = useClassTypeList({params: {level: level}});
-
-  const wordInfo =usehWordStore((state) => state.wordInfo);
-  const setWordInfo = usehWordStore((state) => state.setWordInfo);
-
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setWordInfo({...wordInfo, [e.target.name]: e.target.value});
-  }
-
-  const handleSearch = (e: MouseEvent<HTMLElement>) => {
-    onSearch && onSearch(wordInfo);
-  }
+  const {data: classInfos = [], isLoading, error} = useClassTypeList({params: {level: jlptInfo.level || level}});
 
   const handleClick = (selectedData: any) => {
-    console.log(selectedData);
+    setJlptInfo({...jlptInfo, ...selectedData});
+    router.push('/jlpt/test');
   }
 
   const handleTabChange = (selectedData: any) => {
-    console.log(selectedData);
+    setJlptInfo({...jlptInfo, level: selectedData.level});
   }
+
+  useEffect(() => {
+    setJlptInfo({...jlptInfo, level: level});
+  }, [level])
 
   return (
     <>
@@ -51,13 +49,12 @@ const JlptList = (props: JlptListProps) => {
           </div>
           <div className="flex-auto mt-3 lg:px-10 py-10 pt-0">
             <TabDefault onChange={handleTabChange} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
-              sortBy(classInfos[0]?.levelArr).map((item) => {
+              sortBy(classInfos[0]?.levelArr).map((item, idx) => {
                 return {
                   title: item,
                   content: (<Classification classData={classInfos[0]} onClick={(data) => handleClick(data)}/>),
                 };
               })} />
-            {}
           </div>
         </div>
       </div>

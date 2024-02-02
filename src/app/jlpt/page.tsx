@@ -8,7 +8,7 @@ import JlptList from "./components/jlptList";
 const JlptPage = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  console.log(searchParams.get('level'));
+  
   const { data: session } = useSession();
 
   return (

@@ -17,14 +17,7 @@ export async function GET(request: NextRequest) {
             'monthArr' : {'$addToSet' : '$month'}, 
         }
     },
-])
-
-  // const jlptClassList = await Jlpt.find()
-  //   .distinct('classification')  
-    // .select('year month level classification')
-    // .sort('level -year -month');
-
-  // const userList = await User.find().select('-password');
+  ])
 
   return NextResponse.json(jlptClassList)
 }

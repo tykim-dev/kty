@@ -13,7 +13,7 @@ type WordStore = {
     init: () => void,
 }
 
-export const usehWordStore = create(devtools<WordStore>((set) => ({
+export const useWordStore = create(devtools<WordStore>((set) => ({
     wordInfo: {
         type: 'jlpt',
         level: 1,

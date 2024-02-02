@@ -40,7 +40,7 @@ const TabDefault = (props: TabDefaultProps) => {
                         ? "text-white bg-blueGray-600"
                         : "text-blueGray-600 bg-white")
                     }
-                    onClick={handleClick({idx: idx, data: item})}
+                    onClick={handleClick({idx: idx, level: item.title})}
                     data-toggle="tab"
                     href={`#link${idx}`}
                     role="tablist"
@@ -57,9 +57,9 @@ const TabDefault = (props: TabDefaultProps) => {
                 {data.map((item, idx) => {
                   return (
                     <div key={`tab-content-${idx}`} className={openTab === idx ? "block" : "hidden"} id={`link${idx}`}>
-                      <p>
+                      <div>
                         {item.content}
-                      </p>
+                      </div>
                     </div>
                   )
                 })}
