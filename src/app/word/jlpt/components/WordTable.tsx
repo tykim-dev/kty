@@ -39,7 +39,7 @@ const WordTable = ({title, data, className}: WordTableProps) => {
                   <th className={"px-6 align-middle border border-solid py-3 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>단어</th>
                   <th className={"px-6 align-middle border border-solid py-3 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>읽기</th>
                   <th className={"px-6 align-middle border border-solid py-3 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>뜻</th>
-                  <th className={"px-6 align-middle border border-solid py-3 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>예문</th>
+                  {/* <th className={"px-6 align-middle border border-solid py-3 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>예문</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -49,7 +49,7 @@ const WordTable = ({title, data, className}: WordTableProps) => {
                       <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}>{wordInfo.word}</td>
                       <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}>{wordInfo.read}</td>
                       <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}>{wordInfo.means}</td>
-                      <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}><CardSentence word={wordInfo?.word || wordInfo?.read} /></td>
+                      {/* <td className={`border-t-0 px-6 align-middle border-l-0 border-r-0 p-4`}><CardSentence word={wordInfo?.word || wordInfo?.read} /></td> */}
                     </tr>
                   )
                 })}

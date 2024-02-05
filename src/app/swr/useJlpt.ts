@@ -11,4 +11,13 @@ const useClassTypeList = (params: ClassTypeProps, config?: SWRConfiguration) => 
   return {data, error, isLoading, isValidating, mutate};
 }
 
-export default useClassTypeList;
+const useJlptList = (params: ClassTypeProps, config?: SWRConfiguration) => {
+  const { data, error, isLoading, isValidating, mutate } = useSWR({url: '/api/jlpt/list', params: params, method: 'POST'}, config);
+
+  return {data, error, isLoading, isValidating, mutate};
+}
+
+export {
+  useClassTypeList,
+  useJlptList
+};
