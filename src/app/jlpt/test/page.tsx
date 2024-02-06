@@ -5,7 +5,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import JlptLayout from '@/app/components/Layout/JlptLayout'
 import { useJlptList } from '@/app/swr/useJlpt';
-import Question from '../components/question';
 import CardJlptQuestion from '@/app/components/Cards/CardJlptQuestion';
 
 const JlptTestPage = () => {
