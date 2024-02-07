@@ -1,11 +1,8 @@
 "use client"; // 필수!
-import {useRouter} from 'next/router'
 import { useJlptStore } from '@/app/store/jlptStore';
-import { signIn, signOut, useSession } from "next-auth/react";
-import Image from 'next/image'
 import JlptLayout from '@/app/components/Layout/JlptLayout'
 import { useJlptList } from '@/app/swr/useJlpt';
-import CardJlptQuestion from '@/app/components/Cards/CardJlptQuestion';
+import Question from '../components/question';
 
 const JlptTestPage = () => {
   const jlptInfo =useJlptStore((state) => state.jlptInfo);
@@ -26,7 +23,7 @@ const JlptTestPage = () => {
           </div>
           <div className="grid grid-flow-row auto-rows-max bg-white">
               {jlptList.map((questionInfo: any, idx: number) => {
-                return (<CardJlptQuestion key={`jlpt-test-${idx}`} questionInfo={questionInfo} />)
+                return (<Question key={`jlpt-test-${idx}`} questionInfo={questionInfo} />)
               })}
           </div>
         </div>
