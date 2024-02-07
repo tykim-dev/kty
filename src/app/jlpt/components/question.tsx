@@ -8,7 +8,7 @@ type QuestionProps = {
 
 const Question = (props:QuestionProps) => {
   const {questionInfo} = props;
-  const {year, month, level, classification, question, questionType, choices, answer} = questionInfo;
+  const {year, month, level, classification, question, questionNo, questionType, choices, answer} = questionInfo;
 
   return (
     <>
@@ -16,7 +16,7 @@ const Question = (props:QuestionProps) => {
       {questionType === 'normal' && (
         <>
           <CardJlptQuestion question={question} />
-          {choices && <CardJlptAnswer choices={choices} answer={answer} />}
+          {choices && <CardJlptAnswer questionNo={questionNo} choices={choices} answer={answer} />}
         </>
       )}
     </>
