@@ -5,8 +5,8 @@ import { useJlptList } from '@/app/swr/useJlpt';
 import Question from '../components/question';
 
 const JlptTestPage = () => {
-  const jlptInfo =useJlptStore((state) => state.jlptInfo);
-  const setJlptInfo = useJlptStore((state) => state.setJlptInfo);
+  const { jlptInfo } =useJlptStore();
+  const setJlptList = useJlptStore((state) => state.setJlptList);
 
   const {data: jlptList = [], isLoading, error} = useJlptList({params: jlptInfo});
   
