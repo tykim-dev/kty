@@ -5,6 +5,7 @@ import { useJlptList } from '@/app/swr/useJlpt';
 import Question from '../components/question';
 import { useEffect, memo, useState } from 'react';
 import { isEmpty } from 'lodash';
+import ModalAnswer from '@/app/components/Modals/ModalAnswer';
 
 const JlptTestPage = () => {
   const { jlptInfo, jlptList, getJlptList, init } = useJlptStore();
@@ -23,7 +24,7 @@ const JlptTestPage = () => {
               <span
                 className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               >
-                {`${jlptInfo.year}/${jlptInfo.month}/${jlptInfo.level}`}
+                {`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level}`}
               </span>
             </div>
           </div>
@@ -31,6 +32,9 @@ const JlptTestPage = () => {
               {jlptList.map((questionInfo: any, idx: number) => {
                 return (<Question key={`jlpt-test-${idx}`} questionInfo={questionInfo} />)
               })}
+          </div>
+          <div className="rounded-b bg-white mb-0 px-6 py-6 flex justify-center">
+            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} />
           </div>
         </div>
       </div>
