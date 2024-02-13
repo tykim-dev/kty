@@ -12,12 +12,10 @@ const Question = (props:QuestionProps) => {
   const {year, month, level, classification, question, questionNo, questionType, choices, answer} = questionInfo;
 
   const jlptList = useJlptStore((state) => state.jlptList);
-  const setJlptList = useJlptStore((state) => state.setJlptList);
+  const setJlptAnswer = useJlptStore((state) => state.setJlptAnswer);
 
   const handleClick = (selectedData: any) => {
-    // setJlptList(jlptList.map((item) => {
-    //   if(item.questionNo || '' === selectedData?.questionNo)
-    // }))
+    setJlptAnswer(selectedData);
   }
 
   return (

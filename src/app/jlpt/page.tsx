@@ -13,7 +13,6 @@ const JlptPage = () => {
 
   return (
     <JlptLayout>
-      {/* {searchParams.get('level')} */}
       <JlptList level={searchParams.get('level') || 'N1'} />
     </JlptLayout>
   )

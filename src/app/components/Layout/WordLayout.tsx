@@ -3,6 +3,7 @@ import Sidebar from "@/app/components/Sidebar/Sidebar";
 import HeaderWord from "@/app/components/Headers/HeaderWord";
 import FooterAdmin from "@/app/components/Footers/FooterAdmin";
 import HeaderStats from "../Headers/HeaderStats";
+import HeaderTitle from "../Headers/HeaderTitle";
 
 // import { Nanum_Gothic } from "next/font/google";
 
@@ -27,8 +28,8 @@ export default function WordLayout({
       <Sidebar />
       <div className="relative md:ml-64 bg-blueGray-100">
         {/* Header */}
-        <HeaderWord title="단어외우기" />
-        <HeaderStats />
+        <HeaderTitle title="단어외우기" />
+        {/* <HeaderStats /> */}
         <div className="px-4 md:px-10 mx-auto w-full">
           {children}
           <FooterAdmin />
