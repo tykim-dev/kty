@@ -28,13 +28,13 @@ const JlptTestPage = () => {
               </span>
             </div>
           </div>
-          <div className="flex-auto mt-3 lg:px-10 py-10 pt-0">
+          <div className="flex-auto bg-white mt-2 lg:px-10 p-10">
               {jlptList.map((questionInfo: any, idx: number) => {
                 return (<Question key={`jlpt-test-${idx}`} questionInfo={questionInfo} />)
               })}
           </div>
           <div className="rounded-b bg-white mb-0 px-6 py-6 flex justify-center">
-            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} />
+            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} questionList={jlptList.filter((item) => item.questionNo)} />
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { useJlptStore } from '@/app/store/jlptStore';
 type ModalAnswerProps = {
   title: String,
   btnTitle?: String,
+  questionList: Array<any>,
 }
 
 const ModalAnswer = (props:ModalAnswerProps) => {
@@ -33,9 +34,9 @@ const ModalAnswer = (props:ModalAnswerProps) => {
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-            onClick={() => setShowModal(false)}
+            // onClick={() => setShowModal(false)}
           >
-            <div className="relative w-auto my-6 mx-auto max-w-6xl">
+            <div className="relative w-auto my-6 mx-auto max-w-xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
@@ -53,14 +54,27 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They're slowed down by their perception of
-                    themselves. If you're taught you can’t do anything, you
-                    won’t do anything. I was taught I could do everything.
-                  </p>
+                <div className="container px-4 mx-auto">
+                  <div className="flex flex-wrap">
+                    <div className="w-1/2 px-4">
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                    </div>
+                    <div className="w-1/2 px-4">
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                    </div>
+                    <div className="w-1/2 px-4">
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                    </div>
+                    <div className="w-1/2 px-4">
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                    </div>
+                    <div className="w-1/2 px-4">
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                    </div>
+                    <div className="w-1/2 px-4">
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                    </div>
+                  </div>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -69,14 +83,14 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
-                    Close
+                    닫기
                   </button>
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
-                    Save Changes
+                    확인
                   </button>
                 </div>
               </div>
