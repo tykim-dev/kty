@@ -57,7 +57,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                 <div className="container px-4 mx-auto">
                   <div className="flex flex-wrap">
                     <div className="w-1/2 px-4">
-                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
+                      <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One 1of three columns</span>
                     </div>
                     <div className="w-1/2 px-4">
                       <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
