@@ -6,14 +6,11 @@ import { useJlptStore } from '@/app/store/jlptStore';
 type ModalAnswerProps = {
   title: String,
   btnTitle?: String,
-  questionList: Array<any>,
 }
 
 const ModalAnswer = (props:ModalAnswerProps) => {
   const {title, btnTitle = '정답확인'} = props;
-
   const [showModal, setShowModal] = React.useState(false);
-
   const jlptList = useJlptStore((state) => state.jlptList);
   const setJlptAnswer = useJlptStore((state) => state.setJlptAnswer);
 
@@ -26,7 +23,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
       <button
         className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
-        onClick={() => setShowModal(true)}
+        onClick={() => {setShowModal(true)}}
       >
         {btnTitle}
       </button>
@@ -54,7 +51,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="container px-4 mx-auto">
+                {/* <div className="container px-4 mx-auto">
                   <div className="flex flex-wrap">
                     <div className="w-1/2 px-4">
                       <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One 1of three columns</span>
@@ -74,6 +71,49 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                     <div className="w-1/2 px-4">
                       <span className="text-sm block my-4 p-3 text-blueGray-700 rounded border border-solid border-blueGray-100">One of three columns</span>
                     </div>
+                  </div>
+                </div> */}
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full">
+                  <div className="block w-full overflow-x-auto">
+                    {/* Projects table */}
+                    <table className="items-center w-full bg-transparent border-collapse">
+                      <thead>
+                        <tr>
+                          <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            문제번호
+                          </th>
+                          <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            선택
+                          </th>
+                          <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            정답
+                          </th>
+                          <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            바로가기
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {jlptList.filter((item) => item.questionNo).map((item, idx) => {
+                          return (
+                            <tr key={`jlpt-question-answer-${idx}`}>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                {item.questionNo}
+                              </th>
+                              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {item.selectedAnswer}
+                              </td>
+                              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {item.answer}
+                              </td>
+                              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                340
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 {/*footer*/}

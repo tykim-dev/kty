@@ -34,7 +34,7 @@ const JlptTestPage = () => {
               })}
           </div>
           <div className="rounded-b bg-white mb-0 px-6 py-6 flex justify-center">
-            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} questionList={jlptList.filter((item) => item.questionNo)} />
+            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} />
           </div>
         </div>
       </div>
