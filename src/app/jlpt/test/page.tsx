@@ -1,11 +1,9 @@
 "use client"; // 필수!
 import { useJlptStore } from '@/app/store/jlptStore';
 import JlptLayout from '@/app/components/Layout/JlptLayout'
-import { useJlptList } from '@/app/swr/useJlpt';
 import Question from '../components/question';
-import { useEffect, memo, useState } from 'react';
-import { isEmpty } from 'lodash';
-import ModalAnswer from '@/app/components/Modals/ModalAnswer';
+import { useEffect, memo } from 'react';
+import ModalAnswer from '../components/modalAnswer';
 
 const JlptTestPage = () => {
   const { jlptInfo, jlptList, getJlptList, init } = useJlptStore();
