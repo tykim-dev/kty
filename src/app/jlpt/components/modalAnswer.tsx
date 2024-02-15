@@ -7,18 +7,22 @@ import { maxBy } from "lodash";
 type ModalAnswerProps = {
   title: String,
   btnTitle?: String,
+  goQuestion?: (questionId: string) => any,
 }
 
 const ModalAnswer = (props:ModalAnswerProps) => {
-  const {title, btnTitle = '정답확인'} = props;
+  const {title, btnTitle = '정답확인', goQuestion} = props;
   const [showModal, setShowModal] = React.useState(false);
   const jlptList = useJlptStore((state) => state.jlptList);
   const setJlptAnswer = useJlptStore((state) => state.setJlptAnswer);
 
-  const handleClick = (selectedData: any) => {
-    setJlptAnswer(selectedData);
+  const handleGoQuestion = (questionId: string) => {
+    goQuestion && goQuestion(questionId);
   }
 
+  const getCollectCnt = useMemo(() => (collectType: String) => {
+    return jlptList.filter((item) => item.answer && (collectType === 'collect' ? item.answer === item.selectedAnswer : item.answer !== item.selectedAnswer)).length;
+  }, [jlptList]);
 
   return (
     <>
@@ -61,7 +65,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                           전체
                         </h5>
                         <span className="font-semibold text-xl text-blueGray-700">
-                          {maxBy(jlptList.filter((item) => item.questionNo), 'questionNo')?.questionNo}
+                          {(jlptList.filter((item) => item.answer) || []).length}
                         </span>
                       </div>
                       <div className="relative w-full pr-4 max-w-full flex-grow flex-1 text-center">
@@ -69,7 +73,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                           정답
                         </h5>
                         <span className="font-semibold text-xl text-lightBlue-500">
-                          30
+                          {getCollectCnt('collect')}
                         </span>
                       </div>
                       <div className="relative w-full pr-4 max-w-full flex-grow flex-1 text-center">
@@ -77,7 +81,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                           오답
                         </h5>
                         <span className="font-semibold text-xl text-red-500">
-                          30
+                          {getCollectCnt('uncollect')}
                         </span>
                       </div>
                     </div>
@@ -102,7 +106,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {jlptList.filter((item) => item.questionNo).map((item, idx) => {
+                      {jlptList.filter((item) => item.answer).map((item, idx) => {
                         return (
                           <tr key={`jlpt-question-answer-${idx}`} className="border-b">
                             <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-center bg-blueGray-50 text-gray-800">
@@ -123,7 +127,12 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                               {item.answer}
                             </td>
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-center text-gray-800">
-                              340
+                              {/* <button onClick={() => handleGoQuestion(`jlpt-question-${item.questionNo}`)} className="bg-lightBlue-500 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                바로가기
+                              </button> */}
+                              <a href={`#jlpt-question-${item.questionNo}`} className="bg-lightBlue-500 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                바로가기
+                              </a>
                             </td>
                           </tr>
                         )
