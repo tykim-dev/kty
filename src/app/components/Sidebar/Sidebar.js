@@ -200,21 +200,39 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              JLPT 문제풀이
+              레벨업 문제풀이
             </h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link scroll={false} href="/jlpt?level=N1" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+            <li className="items-center">
+                <Link scroll={false} href="/levelUp?level=N1" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                   <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  문자/어휘
+                  N1
                 </Link>
               </li>
               <li className="items-center">
-                <Link scroll={false} href="/jlpt?level=N2" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                <Link scroll={false} href="/levelUp?level=N2" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                   <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                  문법
+                  N2
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link scroll={false} href="/levelUp?level=N3" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  N3
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link scroll={false} href="/levelUp?level=N4" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  N4
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link scroll={false} href="/levelUp?level=N5" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  N5
                 </Link>
               </li>
             </ul>
