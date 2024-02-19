@@ -1,5 +1,6 @@
 import React, {memo, useMemo} from "react";
 import { useJlptStore } from '@/app/store/jlptStore';
+import { useLevelUpStore } from "@/app/store/levelUpStore";
 
 type ModalAnswerProps = {
   title: String,
@@ -10,16 +11,16 @@ type ModalAnswerProps = {
 const ModalAnswer = (props:ModalAnswerProps) => {
   const {title, btnTitle = '정답확인', goQuestion} = props;
   const [showModal, setShowModal] = React.useState(false);
-  const jlptList = useJlptStore((state) => state.jlptList);
-  const setJlptAnswer = useJlptStore((state) => state.setJlptAnswer);
+  const levelUpList = useLevelUpStore((state) => state.levelUpList);
+  const setLevelUpAnswer = useLevelUpStore((state) => state.setLevelUpAnswer);
 
   const handleGoQuestion = (questionId: string) => {
     goQuestion && goQuestion(questionId);
   }
 
   const getCollectCnt = useMemo(() => (collectType: String) => {
-    return jlptList.filter((item) => item.answer && (collectType === 'collect' ? item.answer === item.selectedAnswer : item.answer !== item.selectedAnswer)).length;
-  }, [jlptList]);
+    return levelUpList.filter((item) => item.answer && (collectType === 'collect' ? item.answer === item.selectedAnswer : item.answer !== item.selectedAnswer)).length;
+  }, [levelUpList]);
 
   return (
     <>
@@ -62,7 +63,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                           전체
                         </h5>
                         <span className="font-semibold text-xl text-blueGray-700">
-                          {(jlptList.filter((item) => item.answer) || []).length}
+                          {(levelUpList.filter((item) => item.answer) || []).length}
                         </span>
                       </div>
                       <div className="relative w-full pr-4 max-w-full flex-grow flex-1 text-center">
@@ -103,7 +104,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {jlptList.filter((item) => item.answer).map((item, idx) => {
+                      {levelUpList.filter((item) => item.answer).map((item, idx) => {
                         return (
                           <tr key={`jlpt-question-answer-${idx}`} className="border-b">
                             <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-center bg-blueGray-50 text-gray-800">

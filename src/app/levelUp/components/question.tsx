@@ -11,7 +11,6 @@ const Question = (props:QuestionProps) => {
   const {questionInfo} = props;
   const {year, month, level, classification, question, questionNo, questionType, choices, answer} = questionInfo;
 
-  const levelUpList = useLevelUpStore((state) => state.levelUpList);
   const setLevelUpAnswer = useLevelUpStore((state) => state.setLevelUpAnswer);
 
   const handleClick = (selectedData: any) => {
@@ -23,7 +22,7 @@ const Question = (props:QuestionProps) => {
       {questionType === 'group' && <CardLevelUpQuestion question={question} />}
       {questionType === 'normal' && (
         <>
-          <CardLevelUpQuestion question={question} id={`levelup-question-${questionNo}`} />
+          <CardLevelUpQuestion question={question} id={`levelup-question-${questionNo}`} questionNo={questionNo} />
           {choices && <CardLevelUpAnswer onClick={handleClick} questionNo={questionNo} choices={choices} answer={answer} />}
         </>
       )}
