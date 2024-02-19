@@ -40,7 +40,7 @@ const levelUpSchema = new Schema({
   // 분류(과목)
   classification: {
     type: String,
-    enum: ['kanji', 'voca1', 'voca2', 'voca3', 'grammar'], // 'vocabulary', 'grammar ', 'reading', 'listening'
+    enum: ['kanji', 'vocabulary1', 'vocabulary2', 'vocabulary3', 'grammar'], // 'vocabulary', 'grammar ', 'reading', 'listening'
     required: true,
   },
   // 문제번호
@@ -75,7 +75,7 @@ const levelUpSchema = new Schema({
     type: Number,
     required: false,
   },
-}, {timestamps: true, collection: 'levelUp'})
+}, {timestamps: true, collection: 'level_up'})
 
 levelUpSchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });
 

@@ -1,14 +1,14 @@
 import { sortBy } from "lodash";
 import React, {memo} from "react";
 
-type JlptAnswerProps = {
+type LevelUpAnswerProps = {
   questionNo: number,
   choices: Array<any>,
   answer: number,
   onClick?: (data: any) => any,
 }
 
-const CardJlptAnswer = (props:JlptAnswerProps) => {
+const CardLevelUpAnswer = (props:LevelUpAnswerProps) => {
   const {questionNo, choices, answer, onClick} = props;
 
   const handleClick = (selectedAnswer: number) => {
@@ -35,4 +35,4 @@ const CardJlptAnswer = (props:JlptAnswerProps) => {
   );
 }
 
-export default memo(CardJlptAnswer);
+export default memo(CardLevelUpAnswer);

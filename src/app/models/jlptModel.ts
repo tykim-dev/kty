@@ -75,7 +75,7 @@ const jlptSchema = new Schema({
     type: Number,
     required: false,
   },
-}, {timestamps: true})
+}, {timestamps: true, collection: 'jlpt'})
 
 jlptSchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });
 

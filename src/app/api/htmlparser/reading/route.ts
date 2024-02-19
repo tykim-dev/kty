@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server"
 import { parse } from 'node-html-parser';
 import { HTMLToJSON } from 'html-to-json-parser'; 
 import Jlpt from "@/app/models/jlptModel";
-import AnswersJlpt from "@/app/models/answersJlptModel";
 import { parseContent } from "@/app/utils/common";
 
 const CLASSIFICATION = 'reading';

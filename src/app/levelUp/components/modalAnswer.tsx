@@ -127,7 +127,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                               {/* <button onClick={() => handleGoQuestion(`jlpt-question-${item.questionNo}`)} className="bg-lightBlue-500 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                                 바로가기
                               </button> */}
-                              <a href={`#jlpt-question-${item.questionNo}`} className="bg-lightBlue-500 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                              <a href={`#levelup-question-${item.questionNo}`} className="bg-lightBlue-500 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                 바로가기
                               </a>
                             </td>

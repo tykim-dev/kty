@@ -20,7 +20,7 @@ const userSchema = new Schema({
     type: String,
     default: 'credentials',
   }
-}, {timestamps: true})
+}, {timestamps: true, collection: 'users'})
 
 const User = models?.user || model('user', userSchema)
 
