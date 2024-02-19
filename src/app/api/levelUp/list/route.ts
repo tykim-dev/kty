@@ -63,12 +63,15 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  let resultData: any[] = [];
+
   // 문자/어휘
   if('vocabulary' === classification) {
       classNm = 'kangi';
 
       // 1. kangi GROUP 문제 조회
-      levelUpList = [...levelUpList, ...await LevelUp.find({level, classification: classNm, questionType: 'group', questionGroupNo: {$exists: false}}).exec()];
+      resultData = await LevelUp.find({level, classification: classNm, questionType: 'group', questionGroupNo: {$exists: false}}).exec();
+      levelUpList = [...levelUpList, ...await resultData];
 
       // 2. kangi 문제번호 랜덤 조회
       let questionGroupNoList = await LevelUp.aggregate([
@@ -82,15 +85,17 @@ export async function POST(request: NextRequest) {
       ]);
 
       // 3. kangi 문제 랜덤 조회
-      levelUpList = [...levelUpList, ...await LevelUp.aggregate([
-        { $match: {level, classification: classNm, questionGroupNo: questionGroupNoList.map((item) => item._id)} },
+      resultData = await LevelUp.aggregate([
+        { $match: {level, classification: classNm, questionGroupNo: { $in: await questionGroupNoList.map((item) => item._id)} } },
         { $sample: { size : questionSize[level][classNm] } }
-      ])];
+      ]);
+      levelUpList = [...levelUpList, ...await resultData];
 
       classNm = 'vocabulary1';
 
       // 1. vocabulary1 GROUP 문제 조회
-      levelUpList = [...levelUpList, ...await LevelUp.find({level, classification: classNm, questionType: 'group'}).exec()];
+      resultData = await LevelUp.find({level, classification: classNm, questionType: 'group'}).exec();
+      levelUpList = [...levelUpList, ...await resultData];
       // 2. vocabulary1 문제 랜덤 조회
       levelUpList = [...levelUpList, ...await LevelUp.aggregate([
         { $match: {level, classification: classNm, 'questionType': {'$ne': 'group'}} },
@@ -100,23 +105,27 @@ export async function POST(request: NextRequest) {
       classNm = 'vocabulary2';
       
       // 1. vocabulary1 GROUP 문제 조회
-      levelUpList = [...levelUpList, ...await LevelUp.find({level, classification: classNm, questionType: 'group'}).exec()];
+      resultData = await LevelUp.find({level, classification: classNm, questionType: 'group'}).exec();
+      levelUpList = [...levelUpList, ...await resultData];
       // 2. vocabulary1 문제 랜덤 조회
-      levelUpList = [...levelUpList, ...await LevelUp.aggregate([ 
+      resultData = await LevelUp.aggregate([ 
         { $match: {level, classification: classNm, 'questionType': {'$ne': 'group'}} },
         { $sample: { size : questionSize[level][classNm] } }
-      ])];
+      ]);
+      levelUpList = [...levelUpList, ...await resultData];
 
       classNm = 'vocabulary3';
       
       if(['N1', 'N2', 'N3'].includes(level)) {
         // 1. vocabulary1 GROUP 문제 조회
-        levelUpList = [...levelUpList, ...await LevelUp.find({level, classification: classNm, questionType: 'group'}).exec()];
+        resultData = await LevelUp.find({level, classification: classNm, questionType: 'group'}).exec();
+        levelUpList = [...levelUpList, ...await resultData];
         // 2. vocabulary1 문제 랜덤 조회
-        levelUpList = [...levelUpList, ...await LevelUp.aggregate([ 
+        resultData = await LevelUp.aggregate([ 
           { $match: {level, classification: classNm, 'questionType': {'$ne': 'group'}} },
           { $sample: { size : questionSize[level][classNm] } }
-        ])];
+        ]);
+        levelUpList = [...levelUpList, ...await resultData];
       }
   } else if('grammar' === classification) {
     questionSize = 10;

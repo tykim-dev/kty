@@ -3,7 +3,7 @@ const dns = require("dns");
 dns.setDefaultResultOrder("ipv4first")
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     // domains: ['http://k.kakaocdn.net', 'http://k.kakaocdn.net'],
     remotePatterns: [
