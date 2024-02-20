@@ -34,30 +34,30 @@ export async function POST(request: NextRequest) {
   // 조회 문제 수
   let questionSize:any = {
     N1: {
-      kangi: 1,
+      kangi: 3,
       vocabulary1: 3,
       vocabulary2: 2,
       vocabulary3: 2,
     },
     N2: {
-      kangi: 1,
+      kangi: 3,
       vocabulary1: 3,
       vocabulary2: 2,
       vocabulary3: 2,
     },
     N3: {
-      kangi: 1,
+      kangi: 4,
       vocabulary1: 3,
       vocabulary2: 2,
       vocabulary3: 1,
     },
     N4: {
-      kangi: 1,
+      kangi: 5,
       vocabulary1: 3,
       vocabulary2: 2,
     },
     N5: {
-      kangi: 1,
+      kangi: 5,
       vocabulary1: 3,
       vocabulary2: 2,
     }
@@ -131,10 +131,12 @@ export async function POST(request: NextRequest) {
     questionSize = 10;
 
     // 1. GROUP 문제 조회
-    levelUpList = await LevelUp.find({level, classification, questionType: 'group'}).exec();
+    resultData = await LevelUp.find({level, classification, questionType: 'group'}).exec();
+    levelUpList = [...levelUpList, ...resultData];
 
     // 2. 문제 랜덤 조회
-    levelUpList = [...levelUpList, ...await LevelUp.aggregate([ { $match: {level, classification, 'questionType': {'$ne': 'group'}} } , { $sample: { size : questionSize } } ])];
+    resultData = await LevelUp.aggregate([ { $match: {level, classification, 'questionType': {'$ne': 'group'}} } , { $sample: { size : questionSize } } ]);
+    levelUpList = [...levelUpList, ...resultData];
   }
 
   let questionNo = 0;
