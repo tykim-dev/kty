@@ -32,8 +32,7 @@ const JlptTestPage = () => {
                 return (<Question key={`levelUp-test-${idx}`} questionInfo={questionInfo} />)
               })}
           </div>
-          <div className="rounded-b bg-white mb-0 border-t p-6 flex justify-center sticky bottom-0">
-            {/* <ModalAnswer title={`${levelUpInfo.year}/${levelUpInfo.month} - ${levelUpInfo.level} 정답`} /> */}
+          <div className="rounded-b bg-white mb-0 border-t p-6 flex justify-center sticky bottom-0 z-50">
             <ModalAnswer title={`레벨업 - ${levelUpInfo.level} 정답`} />
           </div>
         </div>

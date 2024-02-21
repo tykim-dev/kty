@@ -12,11 +12,6 @@ const ModalAnswer = (props:ModalAnswerProps) => {
   const {title, btnTitle = '정답확인', goQuestion} = props;
   const [showModal, setShowModal] = React.useState(false);
   const levelUpList = useLevelUpStore((state) => state.levelUpList);
-  const setLevelUpAnswer = useLevelUpStore((state) => state.setLevelUpAnswer);
-
-  const handleGoQuestion = (questionId: string) => {
-    goQuestion && goQuestion(questionId);
-  }
 
   const getCollectCnt = useMemo(() => (collectType: String) => {
     return levelUpList.filter((item) => item.answer && (collectType === 'collect' ? item.answer === item.selectedAnswer : item.answer !== item.selectedAnswer)).length;
