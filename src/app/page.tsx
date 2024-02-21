@@ -162,7 +162,7 @@ export default function Home() {
                 JavaScript.
               </p>
               {/* <Link href="/">
-                <a href="#pablo" className="font-bold text-blueGray-700 mt-8">
+                <a href="#" className="font-bold text-blueGray-700 mt-8">
                   Check Notus NextJS!
                 </a>
               </Link> */}

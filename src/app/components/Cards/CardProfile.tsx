@@ -70,7 +70,7 @@ export default function CardProfile() {
                   range.
                 </p>
                 <a
-                  href="#pablo"
+                  href="#"
                   className="font-normal text-lightBlue-500"
                   onClick={(e) => e.preventDefault()}
                 >

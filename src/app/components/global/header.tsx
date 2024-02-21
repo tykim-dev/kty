@@ -7,18 +7,18 @@ const Header = async () => {
 
   return (
     <header style={{display: 'flex', gap: 30}}>
-      <Link href="/">홈</Link>
-      <Link href="/protected/client">Protected (client)</Link>
-      <Link href="/protected/server">Protected (server)</Link>
+      <Link scroll={false} href="/">홈</Link>
+      <Link scroll={false} href="/protected/client">Protected (client)</Link>
+      <Link scroll={false} href="/protected/server">Protected (server)</Link>
       {
         session 
         ? <>
-          <Link href="/profile/client">Profile (client)</Link>
-          <Link href="/profile/server">Profile (server)</Link>
-          <Link href="/dashboard">Admin Dashboard</Link>
+          <Link scroll={false} href="/profile/client">Profile (client)</Link>
+          <Link scroll={false} href="/profile/server">Profile (server)</Link>
+          <Link scroll={false} href="/dashboard">Admin Dashboard</Link>
         </> 
         : <>
-          <Link href="/signin">Sign In</Link>
+          <Link scroll={false} href="/signin">Sign In</Link>
         </>
       }
     </header>
