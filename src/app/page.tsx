@@ -63,7 +63,7 @@ export default function Home() {
         <div className="container relative mx-auto">
           <div className="items-center flex flex-wrap">
             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-              <div className="pr-12">
+              <div className="">
                 <h1 className="text-white font-semibold text-5xl">
                   제목
                 </h1>
@@ -103,7 +103,7 @@ export default function Home() {
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                 <div className="px-4 py-5 flex-auto">
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                    <i className="fas fa-award"></i>
+                    <i className="fas fa-paper-plane"></i>
                   </div>
                   <h6 className="text-xl font-semibold">레벨업 문제풀이</h6>
                   <p className="mt-2 mb-4 text-blueGray-500">
@@ -117,7 +117,7 @@ export default function Home() {
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                 <div className="px-4 py-5 flex-auto">
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
-                    <i className="fas fa-retweet"></i>
+                    <i className="fas fa-list-ol"></i>
                   </div>
                   <h6 className="text-xl font-semibold">JLPT 기출문제</h6>
                   <p className="mt-2 mb-4 text-blueGray-500">
@@ -131,7 +131,7 @@ export default function Home() {
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                 <div className="px-4 py-5 flex-auto">
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
-                    <i className="fas fa-fingerprint"></i>
+                    <i className="fas fa-spell-check"></i>
                   </div>
                   <h6 className="text-xl font-semibold">단어 외우기</h6>
                   <p className="mt-2 mb-4 text-blueGray-500">
