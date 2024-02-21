@@ -65,12 +65,11 @@ export default function Home() {
             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
               <div className="pr-12">
                 <h1 className="text-white font-semibold text-5xl">
-                  Your story starts with us.
+                  제목
                 </h1>
                 <p className="mt-4 text-lg text-blueGray-200">
-                  This is a simple example of a Landing Page you can build
-                  using Notus NextJS. It features multiple CSS components
-                  based on the Tailwind CSS design system.
+                  내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 
+                  내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 
                 </p>
               </div>
             </div>
@@ -106,10 +105,9 @@ export default function Home() {
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                     <i className="fas fa-award"></i>
                   </div>
-                  <h6 className="text-xl font-semibold">Awarded Agency</h6>
+                  <h6 className="text-xl font-semibold">레벨업 문제풀이</h6>
                   <p className="mt-2 mb-4 text-blueGray-500">
-                    Divide details about your product or agency work into
-                    parts. A paragraph describing a feature will be enough.
+                    과목별 문제를 테스트, 채점기능을 제공한다.
                   </p>
                 </div>
               </div>
@@ -121,10 +119,9 @@ export default function Home() {
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
                     <i className="fas fa-retweet"></i>
                   </div>
-                  <h6 className="text-xl font-semibold">Free Revisions</h6>
+                  <h6 className="text-xl font-semibold">JLPT 기출문제</h6>
                   <p className="mt-2 mb-4 text-blueGray-500">
-                    Keep you user engaged by providing meaningful information.
-                    Remember that by this time, the user is curious.
+                    과목별 기출문제를 테스트, 채점기능을 제공한다.
                   </p>
                 </div>
               </div>
@@ -136,10 +133,9 @@ export default function Home() {
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                     <i className="fas fa-fingerprint"></i>
                   </div>
-                  <h6 className="text-xl font-semibold">Verified Company</h6>
+                  <h6 className="text-xl font-semibold">단어 외우기</h6>
                   <p className="mt-2 mb-4 text-blueGray-500">
-                    Write a few lines about each one. A paragraph describing a
-                    feature will be enough. Keep you user engaged!
+                    등급별, 품사별 단어 외우기 학습을 할수있다.
                   </p>
                 </div>
               </div>

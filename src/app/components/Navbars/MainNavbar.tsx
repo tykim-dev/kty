@@ -5,15 +5,15 @@ import React, { useEffect, useState } from "react";
 const mainNavbarMenuList = [
   {
     name: '레벨업 문제풀이',
-    link: '/',
+    link: '/levelUp',
   },
   {
     name: 'JLPT 기출문제',
-    link: '/',
+    link: '/jlpt',
   },
   {
     name: '단어 외우기',
-    link: '/',
+    link: '/word/jlpt',
   },
 ];
 
