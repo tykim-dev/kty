@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: NextRequest) {
   const drive = google.drive({
     version: 'v3',
-    auth: 'AIzaSyBuE_vnpnm-jDx-V0yk4-4IpkH4boUnCUU' // specify your API key here
+    auth: process.env.GOOGLE_API_KEY as string // specify your API key here
   });
 
   const listParams: drive_v3.Params$Resource$Files$List = {
