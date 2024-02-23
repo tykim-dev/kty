@@ -9,11 +9,14 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: NextRequest) {
   const drive = google.drive({
     version: 'v3',
-    auth: process.env.GOOGLE_API_KEY as string // specify your API key here
+    auth: process.env.GOOGLE_API_KEY as string,
   });
 
   const listParams: drive_v3.Params$Resource$Files$List = {
-    driveId: '1o0ZC4Vki1U_EyMi96P4KZX-2dfMIbbAH',
+    corpora: 'user',
+    q: `name='n5-215.mp3'`,
+    supportsAllDrives: true,
+    // driveId: '1o0ZC4Vki1U_EyMi96P4KZX-2dfMIbbAH',
   };
   const res = await drive.files.list(listParams);
 
