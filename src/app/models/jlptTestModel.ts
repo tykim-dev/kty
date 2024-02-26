@@ -12,7 +12,7 @@ const QuestionSchema = new Schema({
   audio: String
 });
 
-const jlptSchema = new Schema({
+const jlptTestSchema = new Schema({
   // 년도
   year: {
     type: Number,
@@ -77,8 +77,8 @@ const jlptSchema = new Schema({
   },
 }, {timestamps: true, collection: 'jlpt_test'})
 
-jlptSchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });
+jlptTestSchema.index({ classification: 1, year: 1, month: 1, level: 1, sortNo: 1 }, { unique: true });
 
-const JlptTest = models?.jlpt || model('jlptTest', jlptSchema)
+const JlptTest = models?.jlptTest || model('jlptTest', jlptTestSchema)
 
 export default JlptTest;
