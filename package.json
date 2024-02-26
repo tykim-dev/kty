@@ -24,7 +24,6 @@
     "dotenv": "^16.3.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "googleapis": "^133.0.0",
     "html-to-json-parser": "^2.0.0",
     "htmlparser2": "^9.0.0",
     "lodash": "^4.17.21",
