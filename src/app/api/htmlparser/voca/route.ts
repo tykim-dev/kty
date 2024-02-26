@@ -12,9 +12,9 @@ export async function GET(request: NextRequest) {
 
   // await connectDB();
 
-  // const LEVEL = ['N1','N2','N3'];
-  // let resultCnt = 0;
-  // let invalidSaves = Array();
+  const LEVEL = ['N1','N2','N3'];
+  let resultCnt = 0;
+  let invalidSaves = Array();
 
 
   // for (let levelIdx = 0; levelIdx < LEVEL.length; levelIdx++) {
@@ -176,5 +176,5 @@ export async function GET(request: NextRequest) {
   //   }
   // }
 
-  // return NextResponse.json({resultCnt: resultCnt, invalidSaves: invalidSaves})
+  return NextResponse.json({resultCnt: resultCnt, invalidSaves: invalidSaves})
 }
