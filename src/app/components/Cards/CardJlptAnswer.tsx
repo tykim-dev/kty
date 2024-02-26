@@ -16,7 +16,7 @@ const CardJlptAnswer = (props:JlptAnswerProps) => {
   }
 
   const parseHtml = (html: string) => {
-    return <span dangerouslySetInnerHTML={{ __html: html }} />;
+    return <span dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>') }} />;
   };
 
   return (

@@ -1,4 +1,5 @@
 import CardJlptAnswer from "@/app/components/Cards/CardJlptAnswer";
+import CardJlptContent from "@/app/components/Cards/CardJlptContent";
 import CardJlptQuestion from "@/app/components/Cards/CardJlptQuestion";
 import React, {memo} from "react";
 import { useJlptStore } from '@/app/store/jlptStore';
@@ -21,6 +22,7 @@ const Question = (props:QuestionProps) => {
   return (
     <>
       {questionType === 'group' && <CardJlptQuestion question={question} />}
+      {questionType === 'content' && <CardJlptContent question={question} />}
       {questionType === 'normal' && (
         <>
           <CardJlptQuestion question={question} id={`jlpt-question-${questionNo}`} />
