@@ -1,11 +1,9 @@
 "use client"; // 필수!
 import { useLevelUpStore } from '@/app/store/levelUpStore';
-import JlptLayout from '@/app/components/Layout/JlptLayout'
 import Question from '../components/question';
 import { useEffect, memo } from 'react';
 import ModalAnswer from '../components/modalAnswer';
 import LevelUpLayout from '@/app/components/Layout/LevelUpLayout';
-import Link from 'next/link';
 
 const JlptTestPage = () => {
   const { levelUpInfo, levelUpList, getLevelUpList, init } = useLevelUpStore();
