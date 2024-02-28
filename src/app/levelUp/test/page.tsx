@@ -5,6 +5,7 @@ import Question from '../components/question';
 import { useEffect, memo } from 'react';
 import ModalAnswer from '../components/modalAnswer';
 import LevelUpLayout from '@/app/components/Layout/LevelUpLayout';
+import Link from 'next/link';
 
 const JlptTestPage = () => {
   const { levelUpInfo, levelUpList, getLevelUpList, init } = useLevelUpStore();
@@ -32,7 +33,7 @@ const JlptTestPage = () => {
                 return (<Question key={`levelUp-test-${idx}`} questionInfo={questionInfo} />)
               })}
           </div>
-          <div className="rounded-b bg-white mb-0 border-t p-6 flex justify-center sticky bottom-0 z-50">
+          <div className="rounded-b bg-white mb-0 border-t p-6 sticky bottom-0 z-50">
             <ModalAnswer title={`레벨업 - ${levelUpInfo.level} 정답`} />
           </div>
         </div>

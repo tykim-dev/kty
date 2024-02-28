@@ -31,7 +31,7 @@ const JlptTestPage = () => {
                 return (<Question key={`jlpt-test-${idx}`} questionInfo={questionInfo} />)
               })}
           </div>
-          <div className="rounded-b bg-white mb-0 border-t p-6 flex justify-center sticky bottom-0 z-50">
+          <div className="rounded-b bg-white mb-0 border-t p-6 sticky bottom-0 z-50">
             <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} />
           </div>
         </div>

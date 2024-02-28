@@ -3,6 +3,7 @@ import CardJlptQuestion from "@/app/components/Cards/CardJlptQuestion";
 import React, {memo, useMemo} from "react";
 import { useJlptStore } from '@/app/store/jlptStore';
 import { maxBy } from "lodash";
+import Link from "next/link";
 
 type ModalAnswerProps = {
   title: String,
@@ -26,13 +27,18 @@ const ModalAnswer = (props:ModalAnswerProps) => {
 
   return (
     <>
-      <button
-        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => {setShowModal(true)}}
-      >
-        {btnTitle}
-      </button>
+      <div className="flex justify-between">
+        <Link scroll={false} href={`/jlpt`} className="text-blueGray-500 bg-transparent border border-solid border-blueGray-500 active:bg-blueGray-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+          목록
+        </Link>
+        <button
+          className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+          onClick={() => {setShowModal(true)}}
+        >
+          {btnTitle}
+        </button>
+      </div>
       {showModal ? (
         <>
           <div
