@@ -17,7 +17,7 @@ const CardLevelUpContent = (props:LevelUpContentProps) => {
       <div className="flex flex-col min-w-0 break-words rounded mb-1">
         <div className="flex-auto px-4 py-2">
           <div className="flex flex-wrap">
-            <p className="bg-blueGray-200">{parseHtml(content || '')}</p>
+            <div className="bg-blueGray-200">{parseHtml(content || '')}</div>
           </div>
         </div>
       </div>

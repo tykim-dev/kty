@@ -1,12 +1,12 @@
 import React, {memo} from "react";
 
-type JlptQuestionProps = {
+type LevelUpQuestionProps = {
   question: any,
   id?: string
   questionNo?: number,
 }
 
-const CardJlptQuestion = (props:JlptQuestionProps) => {
+const CardLevelUpQuestion = (props:LevelUpQuestionProps) => {
   const {question, id = '', questionNo} = props;
   const {content} = question;
 
@@ -19,7 +19,7 @@ const CardJlptQuestion = (props:JlptQuestionProps) => {
       <div className="flex flex-col min-w-0 break-words rounded mb-1">
         <div className="flex-auto px-4 py-2">
           <div className="flex flex-wrap" id={id}>
-            <span className="mr-1">{`${questionNo ? questionNo + '.' : ''}`}</span><span>{parseHtml(content || '')}</span>
+            <div className="mr-1">{`${questionNo ? questionNo + '.' : ''}`}</div><div>{parseHtml(content || '')}</div>
           </div>
         </div>
       </div>
@@ -27,4 +27,4 @@ const CardJlptQuestion = (props:JlptQuestionProps) => {
   );
 }
 
-export default memo(CardJlptQuestion);
+export default memo(CardLevelUpQuestion);
