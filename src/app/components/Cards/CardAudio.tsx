@@ -13,9 +13,12 @@ const CardAudio = (props:AudioProps) => {
   return (
     <>
       <div className="">
-        {link && <AudioPlayer
+        {/* {link && <AudioPlayer
           src={`${link}`}
-        />}
+        />} */}
+        <audio controls preload="none">
+          <source src={link} type="audio/mp3" />
+        </audio>
       </div>
     </>
   );
