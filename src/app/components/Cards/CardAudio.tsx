@@ -1,4 +1,3 @@
-'use client'
 import React, {memo} from "react";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -14,11 +13,9 @@ const CardAudio = (props:AudioProps) => {
   return (
     <>
       <div className="">
-        <AudioPlayer
-          autoPlay
-          src={link}
-          onPlay={e => console.log("onPlay")}
-        />
+        {link && <AudioPlayer
+          src={`${link}`}
+        />}
       </div>
     </>
   );

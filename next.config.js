@@ -27,9 +27,9 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'docs.google.com',
+        hostname: 'www.googleapis.com',
         port: '',
-        pathname: '/uc/**',
+        pathname: '/drive/v3/files/**',
       },
     ],
   },
