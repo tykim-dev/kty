@@ -137,6 +137,16 @@ export async function POST(request: NextRequest) {
     // 2. 문제 랜덤 조회
     resultData = await LevelUp.aggregate([ { $match: {level, classification, 'questionType': {'$ne': 'group'}} } , { $sample: { size : questionSize } } ]);
     levelUpList = [...levelUpList, ...resultData];
+  } else if('listening' === classification) {
+    questionSize = 5;
+
+    // 1. GROUP 문제 조회
+    resultData = await LevelUp.find({level, classification, questionType: 'group'}).exec();
+    levelUpList = [...levelUpList, ...resultData];
+
+    // 2. 문제 랜덤 조회
+    resultData = await LevelUp.aggregate([ { $match: {level, classification, 'questionType': {'$ne': 'group'}} } , { $sample: { size : questionSize } } ]);
+    levelUpList = [...levelUpList, ...resultData];
   }
 
   let questionNo = 0;

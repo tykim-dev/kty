@@ -3,6 +3,8 @@ import { useLevelUpStore } from '@/app/store/levelUpStore';
 import CardLevelUpQuestion from "@/app/components/Cards/CardLevelUpQuestion";
 import CardLevelUpContent from "@/app/components/Cards/CardLevelUpContent";
 import CardLevelUpAnswer from "@/app/components/Cards/CardLevelUpAnswer";
+import CardAudio from "@/app/components/Cards/CardAudio";
+import CardImage from "@/app/components/Cards/CardImage";
 
 type QuestionProps = {
   questionInfo: any

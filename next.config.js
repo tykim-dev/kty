@@ -19,6 +19,18 @@ const nextConfig = {
         port: '',
         pathname: '/300/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        port: '',
+        pathname: '/uc/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'docs.google.com',
+        port: '',
+        pathname: '/uc/**',
+      },
     ],
   },
   eslint: {

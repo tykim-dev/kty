@@ -1,4 +1,7 @@
 import React, {memo} from "react";
+import CardAudio from "./CardAudio";
+import CardImage from "./CardImage";
+import { isEmpty } from "lodash";
 
 type LevelUpQuestionProps = {
   question: any,
@@ -8,7 +11,7 @@ type LevelUpQuestionProps = {
 
 const CardLevelUpQuestion = (props:LevelUpQuestionProps) => {
   const {question, id = '', questionNo} = props;
-  const {content} = question;
+  const {content = '', audio = {}, image = {}} = question;
 
   const parseHtml = (html: string) => {
     return <div dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>') }} />;
@@ -21,6 +24,12 @@ const CardLevelUpQuestion = (props:LevelUpQuestionProps) => {
           <div className="flex flex-wrap" id={id}>
             <div className="mr-1">{`${questionNo ? questionNo + '.' : ''}`}</div><div>{parseHtml(content || '')}</div>
           </div>
+        </div>
+        <div className="flex-auto p-2">
+          {!isEmpty(audio) && <CardAudio audio={audio} />}
+        </div>
+        <div className="flex-auto p-2">
+          {!isEmpty(image) && <CardImage image={image} />}
         </div>
       </div>
     </>
