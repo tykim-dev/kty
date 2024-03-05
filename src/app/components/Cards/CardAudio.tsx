@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {memo, useEffect, useRef} from "react";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -7,18 +7,28 @@ type AudioProps = {
 }
 
 const CardAudio = (props:AudioProps) => {
+
   const {audio} = props;
   const {name, link} = audio;
+
+  const player = useRef<any>();
+  
+  useEffect(() => {
+    player.current.audio.current.pause();
+  }, [link]);
 
   return (
     <>
       <div className="">
-        {/* {link && <AudioPlayer
-          src={`${link}`}
-        />} */}
-        <audio controls preload="none">
-          <source src={link} type="audio/mp3" />
-        </audio>
+        <AudioPlayer
+          ref={player}
+          autoPlay={false}
+          src={`${link}?alt=media&key=AIzaSyBuE_vnpnm-jDx-V0yk4-4IpkH4boUnCUU`}
+          onPlay={e => console.log("onPlay")}
+        />
+        {/* <audio controls preload="none" autoPlay={false}>
+          <source src={`${link}?alt=media&key=AIzaSyBuE_vnpnm-jDx-V0yk4-4IpkH4boUnCUU`} type="audio/mp3" />
+        </audio> */}
       </div>
     </>
   );

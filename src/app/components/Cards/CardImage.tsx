@@ -12,7 +12,7 @@ const CardImage = (props:ImageProps) => {
   return (
     <>
       <div className="">
-        <Image src={link} alt={name} width={400} height={400} />
+        <Image src={link} alt={name} width={0} height={0} style={{ width: '400px', height: 'auto' }} />
       </div>
     </>
   );
