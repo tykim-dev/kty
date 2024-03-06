@@ -31,6 +31,6 @@ const wordSchema = new Schema({
   },
 }, {timestamps: true, collection: 'word'})
 
-const Word = models?.words || model('word', wordSchema)
+const Word = models?.word || model('word', wordSchema)
 
 export default Word;
