@@ -25,12 +25,16 @@ const CardLevelUpQuestion = (props:LevelUpQuestionProps) => {
             <div className="mr-1">{`${questionNo ? questionNo + '.' : ''}`}</div><div>{parseHtml(content || '')}</div>
           </div>
         </div>
-        <div className="flex-auto p-2">
-          {!isEmpty(audio) && <CardAudio audio={audio} />}
-        </div>
-        <div className="flex-auto p-2">
-          {!isEmpty(image) && <CardImage image={image} />}
-        </div>
+        {!isEmpty(audio) && (
+          <div className="flex-auto p-2">
+            <CardAudio audio={audio} />
+          </div>
+        )}
+        {!isEmpty(image) && (
+          <div className="flex-auto p-2">
+            <CardImage image={image} />
+          </div>
+        )}
       </div>
     </>
   );
