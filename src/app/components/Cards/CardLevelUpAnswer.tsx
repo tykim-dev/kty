@@ -16,7 +16,7 @@ const CardLevelUpAnswer = (props:LevelUpAnswerProps) => {
   }
 
   const parseHtml = (html: string) => {
-    return <span dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>') }} />;
+    return <span dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>').replaceAll('\\n', '<br>') }} />;
   };
 
   return (

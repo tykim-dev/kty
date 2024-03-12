@@ -9,7 +9,7 @@ const CardJlptContent = (props:JlptContentProps) => {
   const {content} = question;
 
   const parseHtml = (html: string) => {
-    return <div dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>') }} />;
+    return <div dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>').replaceAll('\\n', '<br>') }} />;
   };
 
   return (

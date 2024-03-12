@@ -9,7 +9,14 @@ const ChoiceSchema = new Schema({
 // 문제 스키마
 const QuestionSchema = new Schema({
   content: String,
-  audio: String
+  audio: {
+    link: {type: String},
+    name: {type: String}
+  },
+  image: {
+    link: {type: String},
+    name: {type: String}
+  }
 });
 
 const jlptSchema = new Schema({
