@@ -1,4 +1,7 @@
+import { isEmpty } from "lodash";
 import React, {memo} from "react";
+import CardAudio from "./CardAudio";
+import CardImage from "./CardImage";
 
 type JlptQuestionProps = {
   question: any,
@@ -7,7 +10,7 @@ type JlptQuestionProps = {
 
 const CardJlptQuestion = (props:JlptQuestionProps) => {
   const {question, id = ''} = props;
-  const {content} = question;
+  const {content = '', audio = {}, image = {}} = question;
 
   const parseHtml = (html: string) => {
     return <div dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>') }} />;
@@ -21,6 +24,16 @@ const CardJlptQuestion = (props:JlptQuestionProps) => {
             {parseHtml(content || '')}
           </div>
         </div>
+        {!isEmpty(audio) && (
+          <div className="flex-auto p-2">
+            <CardAudio audio={audio} />
+          </div>
+        )}
+        {!isEmpty(image) && (
+          <div className="flex-auto p-2">
+            <CardImage image={image} />
+          </div>
+        )}
       </div>
     </>
   );
