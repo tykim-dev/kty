@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
   await connectDB();
   
   const jlptConditions = await request.json();
-  const jlptList = await Jlpt.find(jlptConditions.params).exec();
+  const jlptList = await Jlpt.find(jlptConditions.params).sort({'sortNo': 1}).exec();
 
   // const userList = await User.find().select('-password');
 
