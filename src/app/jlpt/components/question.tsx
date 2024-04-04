@@ -19,6 +19,7 @@ const Question = (props:QuestionProps) => {
     setJlptAnswer(selectedData);
   }
 
+  
   return (
     <>
       {questionType === 'group' && <CardJlptQuestion question={question} />}
