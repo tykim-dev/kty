@@ -14,7 +14,7 @@ const CardLevelUpQuestion = (props:LevelUpQuestionProps) => {
   const {content = '', audio = {}, image = {}} = question;
 
   const parseHtml = (html: string) => {
-    return <div dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>').replaceAll('\\n', '<br>') }} />;
+    return <div dangerouslySetInnerHTML={{ __html: html.replaceAll('\\r\\n', '<br>').replaceAll('\\n', '<br>').replaceAll(/\s/g, "&nbsp;") }} />;
   };
 
   return (
