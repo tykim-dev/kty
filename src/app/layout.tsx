@@ -4,6 +4,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import '@/app/style/tailwind.css'
 import '@/app/style/common.css'
 import { SWRProvider } from "./providers/SWRProvider";
+import VisitHistory from "./components/Visit/VisitHistory";
+
 // import { Nanum_Gothic } from "next/font/google";
 
 // const nanum_gothic = Nanum_Gothic({
@@ -34,7 +36,8 @@ export default function RootLayout({
             </main>
           </SWRProvider>
         </SessionProvider>
-        {/* <script id="_wauy9w">var _wau = _wau || []; _wau.push(["classic", "2obpe3cnhe", "y9w"]);</script><script async src="//waust.at/c.js"></script> */}
+
+        <VisitHistory />
       </body>
     </html>
   )
