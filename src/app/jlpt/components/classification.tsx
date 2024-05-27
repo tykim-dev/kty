@@ -25,7 +25,13 @@ const Classification = (props: ClassificationProps) => {
         return (
           <div key={`class-${cIdx}`}>
             <h3 className="text-center text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800 uppercase shadow-lg shadow-blue-500/50 p-2 mt-2">
-              {classification}
+              {
+                {
+                  vocabulary: '[ 문자어휘 / 文字語彙 / Vocabulary ]',
+                  reading: '[ 문법독해 / 文法読解 / Grammar, Reading ]',
+                  listening: '[ 청해 / 聴解 / Listening ]',
+                }[classification as string]
+              }
             </h3>
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-2">
               {sortBy(classData.yearArr).reverse().map((year, yIdx) => {
