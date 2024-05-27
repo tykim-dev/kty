@@ -24,7 +24,7 @@ const Classification = (props: ClassificationProps) => {
       {sortBy(classData?.classificationArr).reverse().map((classification, cIdx) => {
         return (
           <div key={`class-${cIdx}`}>
-            <h3 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800 uppercase shadow-lg shadow-blue-500/50 p-2 mt-2">
+            <h3 className="text-center text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800 uppercase shadow-lg shadow-blue-500/50 p-2 mt-2">
               {classification}
             </h3>
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-2">
