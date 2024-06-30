@@ -1,3 +1,4 @@
+import Classification from "@/app/jlpt/components/classification";
 import React, { memo, useEffect, useState } from "react";
 import { MouseEvent } from 'react';
 
@@ -6,16 +7,21 @@ type TabDefaultProps = {
   selectedIdx?: number,
   onSearch?: (data: any) => any,
   onChange?: (data: any) => any,
+  onTestClick?: (data: any) => any,
 }
 
-const TabDefault = (props: TabDefaultProps) => {
-  const { data, selectedIdx = 0, onChange } = props;
+const TabDefaultNew = (props: TabDefaultProps) => {
+  const { data, selectedIdx = 0, onChange, onTestClick } = props;
   const [openTab, setOpenTab] = useState(selectedIdx);
 
   const handleClick = (selectedData: any) => (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setOpenTab(selectedData.idx);
     onChange && onChange(selectedData);
+  }
+
+  const handleTestClick = (selectedData: any) => {
+    onTestClick && onTestClick(selectedData);
   }
 
   useEffect(() => {
@@ -40,12 +46,12 @@ const TabDefault = (props: TabDefaultProps) => {
                         ? "text-white bg-blueGray-600"
                         : "text-blueGray-600 bg-white")
                     }
-                    onClick={handleClick({idx: idx, level: item.title})}
+                    onClick={handleClick({idx: idx, level: item.level})}
                     data-toggle="tab"
                     href={`#link${idx}`}
                     role="tablist"
                   >
-                    {item.title}
+                    {item.level}
                   </a>
                 </li>
               )
@@ -58,7 +64,7 @@ const TabDefault = (props: TabDefaultProps) => {
                   return (
                     <div key={`tab-content-${idx}`} className={openTab === idx ? "block" : "hidden"} id={`link${idx}`}>
                       <div>
-                        {item.content}
+                        <Classification classData={item.classifications} onClick={(data) => handleTestClick(data)}/>
                       </div>
                     </div>
                   )
@@ -72,4 +78,4 @@ const TabDefault = (props: TabDefaultProps) => {
   );
 };
 
-export default memo(TabDefault);
+export default memo(TabDefaultNew);
