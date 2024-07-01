@@ -4,9 +4,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import TabDefault from '@/app/components/Tabs/TabDefault';
 import { useJlptStore } from '@/app/store/jlptStore';
 import { useClassTypeList } from '@/app/swr/useJlpt';
-import { sortBy } from 'lodash';
-import Classification from './classification';
-import TabDefaultNew from '@/app/components/Tabs/TabDefaultNew';
 
 type JlptListProps = {
   level?: string,
