@@ -64,7 +64,7 @@ const TabDefaultNew = (props: TabDefaultProps) => {
                   return (
                     <div key={`tab-content-${idx}`} className={openTab === idx ? "block" : "hidden"} id={`link${idx}`}>
                       <div>
-                        <Classification classData={item.classifications} onClick={(data) => handleTestClick(data)}/>
+                        <Classification classData={item} onClick={(data) => handleTestClick(data)}/>
                       </div>
                     </div>
                   )

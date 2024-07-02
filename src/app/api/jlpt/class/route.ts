@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
               $sortArray: { input: "$years", sortBy: -1 }
             },
             months: {
-              $sortArray: { input: "$months", sortBy: -1 }
+              $sortArray: { input: "$months", sortBy: 1 }
             },
             classificationNm: {
               $switch: {
