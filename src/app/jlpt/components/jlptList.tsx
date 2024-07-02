@@ -4,6 +4,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import TabDefault from '@/app/components/Tabs/TabDefault';
 import { useJlptStore } from '@/app/store/jlptStore';
 import { useClassTypeList } from '@/app/swr/useJlpt';
+import { sortBy } from 'lodash';
+import Classification from './classification';
 
 type JlptListProps = {
   level?: string,
@@ -46,7 +48,13 @@ const JlptList = (props: JlptListProps) => {
             </div>
           </div>
           <div className="flex-auto mt-3 lg:px-10 py-10 pt-0">
-            <TabDefault onChange={handleTabChange} onTestClick={handleClick} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={classInfos} />
+            <TabDefault onChange={handleTabChange} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
+              sortBy(classInfos[0]?.levelArr).map((item, idx) => {
+                return {
+                  title: item,
+                  content: (<Classification classData={classInfos[0]} onClick={(data) => handleClick(data)}/>),
+                };
+              })} />
           </div>
         </div>
       </div>

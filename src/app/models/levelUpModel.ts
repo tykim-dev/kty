@@ -22,7 +22,7 @@ const QuestionSchema = new Schema({
 const levelUpSchema = new Schema({
   // 년도
   year: {
-    type: Number,
+    type: String,
     required: true,
     index: true,
   },
