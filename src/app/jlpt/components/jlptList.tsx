@@ -49,10 +49,10 @@ const JlptList = (props: JlptListProps) => {
           </div>
           <div className="flex-auto mt-3 lg:px-10 py-10 pt-0">
             <TabDefault onChange={handleTabChange} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
-              sortBy(classInfos[0]?.levelArr).map((item, idx) => {
+              classInfos.map((item: any, idx: number) => {
                 return {
-                  title: item,
-                  content: (<Classification classData={classInfos[0]} onClick={(data) => handleClick(data)}/>),
+                  title: item.level,
+                  content: (<Classification classData={item} onClick={(data) => handleClick(data)}/>),
                 };
               })} />
           </div>
