@@ -22,11 +22,11 @@ const Question = (props:QuestionProps) => {
 
   return (
     <>
-      {questionType === 'group' && <CardLevelUpQuestion question={question} />}
+      {questionType === 'group' && <CardLevelUpQuestion questionType={questionType} question={question} />}
       {questionType === 'content' && <CardLevelUpContent question={question} />}
       {questionType === 'normal' && (
         <>
-          <CardLevelUpQuestion question={question} id={`levelup-question-${questionNo}`} questionNo={questionNo} />
+          <CardLevelUpQuestion questionType={questionType} question={question} id={`levelup-question-${questionNo}`} questionNo={questionNo} />
           {choices && <CardLevelUpAnswer onClick={handleClick} questionNo={questionNo} choices={choices} answer={answer} />}
         </>
       )}
