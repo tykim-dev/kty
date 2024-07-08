@@ -35,7 +35,7 @@ const JlptTestPage = () => {
                 })}
             </div>
             <div className="rounded-b bg-white mb-0 border-t p-6 sticky bottom-0 z-50">
-              <ModalAnswer title={`레벨업 - ${levelUpInfo.level} 정답`} />
+              <ModalAnswer title={`Level up - ${levelUpInfo.level}`} />
             </div>
           </div>
         </div>

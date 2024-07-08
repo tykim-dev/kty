@@ -61,7 +61,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                     <div className="flex flex-wrap">
                       <div className="relative w-full pr-4 max-w-full flex-grow flex-1 text-center">
                         <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                          전체
+                          全体(전체)<br />total
                         </h5>
                         <span className="font-semibold text-xl text-blueGray-700">
                           {(levelUpList.filter((item) => item.answer) || []).length}
@@ -69,7 +69,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                       </div>
                       <div className="relative w-full pr-4 max-w-full flex-grow flex-1 text-center">
                         <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                          정답
+                          正解(정답)<br />correct answer
                         </h5>
                         <span className="font-semibold text-xl text-lightBlue-500">
                           {getCollectCnt('collect')}
@@ -77,7 +77,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                       </div>
                       <div className="relative w-full pr-4 max-w-full flex-grow flex-1 text-center">
                         <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                          오답
+                          誤答(오답)<br />wrong answer
                         </h5>
                         <span className="font-semibold text-xl text-red-500">
                           {getCollectCnt('uncollect')}
@@ -91,16 +91,16 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                     <thead>
                       <tr>
                         <th className="px-6 bg-blueGray-50 text-gray-800 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                          번호
+                          番号(번호)<br />No
                         </th>
                         <th className="px-6 bg-blueGray-50 text-gray-800 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                          선택
+                          選択(선택)<br />Choice
                         </th>
                         <th className="px-6 bg-blueGray-50 text-gray-800 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                          정답
+                          正解(정답)<br />Answer
                         </th>
                         <th className="px-6 bg-blueGray-50 text-gray-800 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                          바로가기
+                          問題確認<br />Check
                         </th>
                       </tr>
                     </thead>
@@ -114,11 +114,11 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-center text-gray-800">
                               {item.selectedAnswer === item.answer ? (
                                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-lightBlue-600 bg-lightBlue-200 uppercase last:mr-0 mr-1">
-                                  {item.selectedAnswer}: 정답
+                                  {item.selectedAnswer}: 正解
                                 </span>
                               ) : (
                                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1">
-                                  {item.selectedAnswer}: 오답
+                                  {item.selectedAnswer}: 誤答
                                 </span>
                               )}
                             </td>
@@ -130,7 +130,7 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                                 바로가기
                               </button> */}
                               <a href={`#levelup-question-${item.questionNo}`} className="bg-lightBlue-500 text-white active:bg-blueGray-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                                바로가기
+                                見る
                               </a>
                             </td>
                           </tr>
@@ -146,14 +146,14 @@ const ModalAnswer = (props:ModalAnswerProps) => {
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
-                    닫기
+                    閉じる
                   </button>
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
-                    확인
+                    確認
                   </button>
                 </div>
               </div>

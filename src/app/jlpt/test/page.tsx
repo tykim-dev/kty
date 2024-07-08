@@ -34,7 +34,7 @@ const JlptTestPage = () => {
               })}
           </div>
           <div className="rounded-b bg-white mb-0 border-t p-6 sticky bottom-0 z-50 uppercase">
-            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level} 정답`} />
+            <ModalAnswer title={`${jlptInfo.year}/${jlptInfo.month} - ${jlptInfo.level}`} />
           </div>
         </div>
       </div>
