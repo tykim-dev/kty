@@ -91,7 +91,7 @@ export async function GET(request: NextRequest) {
           $push: { 
             classification: '$_id.classification', 
             years: {
-              $sortArray: { input: "$years", sortBy: -1 }
+              $sortArray: { input: "$years", sortBy: 1 }
             },
             months: {
               $sortArray: { input: "$months", sortBy: 1 }

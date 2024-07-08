@@ -20,11 +20,12 @@ const CardJlptQuestion = (props:JlptQuestionProps) => {
   return (
     <>
       <div className="flex flex-col min-w-0 break-words rounded mb-1">
-        <div className={`flex-auto px-4 py-2 rounded-lg ${questionType === 'group' ? 'bg-green-400' : 'bg-green-100'}`}>
+        {!isEmpty(content) && (<div className={`flex-auto px-4 py-2 rounded-lg ${questionType === 'group' ? 'bg-green-400' : 'bg-green-100'}`}>
           <div className="flex flex-wrap" id={id}>
             {parseHtml(content || '')}
           </div>
         </div>
+        )}
         {!isEmpty(audio) && (
           <div className="flex-auto p-2">
             <CardAudio audio={audio} />
