@@ -43,13 +43,13 @@ const Classification = (props: ClassificationProps) => {
       })} */}
       <div className="grid grid-cols-4 gap-4 sm:grid-cols-2">
         <button onClick={handleClick({classification: 'vocabulary'})} className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          문자/어휘
+          문자어휘 文字語彙 <br/> VOCABULARY
         </button>
         <button onClick={handleClick({classification: 'grammar'})} className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          문법
+          문법 文法 <br/> GRAMMAR
         </button>
         <button onClick={handleClick({classification: 'listening'})} className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-          청해
+          청해 聴解 <br/> Listening
         </button>
       </div>
     </>
