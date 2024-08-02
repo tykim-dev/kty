@@ -9,14 +9,21 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   
   const levelList = await WordToday.aggregate([
-    { '$group' : 
-        {
-            '_id' : '$level', 
-            'levels': {'$addToSet' : '$level'},
-            // 'classificationArr' : {'$addToSet' : '$classification'}, 
-            // 'yearArr' : {'$addToSet' : '$year'}, 
-            // 'monthArr' : {'$addToSet' : '$month'}, 
+    { 
+      '$group' : {
+        _id: 0,
+        'levels' : {'$addToSet' : '$level'}
+      }
+    },
+    {
+      $set: {
+        levels: {
+          $sortArray: {
+            input: '$levels',
+            sortBy: 1
+          }
         }
+      }
     },
   ])
 

@@ -65,7 +65,7 @@ const wordTodaySchema = new Schema({
     type: Number,
     required: false,
   },
-}, {timestamps: true, collection: 'wordToday'})
+}, {timestamps: true, collection: 'word_today'})
 
 const WordToday = models?.wordToday || model('wordToday', wordTodaySchema)
 

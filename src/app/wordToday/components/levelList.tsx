@@ -2,10 +2,8 @@
 import React, {memo, useEffect} from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import TabDefault from '@/app/components/Tabs/TabDefault';
-import { useLevelUpStore } from '@/app/store/levelUpStore';
-import { useClassTypeList } from '@/app/swr/useLevelUp';
-import { sortBy } from 'lodash';
-import Classification from './classification';
+import { useWordTodayStore } from '@/app/store/wordTodayStore';
+import { useClassTypeList } from '@/app/swr/useWordToday';
 
 type LevelListProps = {
   level?: string,
@@ -20,22 +18,22 @@ const LevelList = (props: LevelListProps) => {
   
   const pathname = usePathname();
   const router = useRouter();
-  const levelUpInfo =useLevelUpStore((state) => state.levelUpInfo);
-  const setLevelUpInfo = useLevelUpStore((state) => state.setLevelUpInfo);
+  const wordTodayInfo =useWordTodayStore((state) => state.wordTodayInfo);
+  const setWordTodayInfo = useWordTodayStore((state) => state.setWordTodayInfo);
 
-  const {data: levelInfos = [], isLoading, error} = useClassTypeList({params: {level: levelUpInfo.level || level}});
+  const {data: levelInfos = [], isLoading, error} = useClassTypeList({params: {level: wordTodayInfo.level || level}});
 
   const handleClick = (selectedData: any) => {
-    setLevelUpInfo({...levelUpInfo, ...selectedData});
-    router.push('/levelUp/test');
+    setWordTodayInfo({...wordTodayInfo, ...selectedData});
+    router.push('/wordToday/test');
   }
 
   const handleTabChange = (selectedData: any) => {
-    setLevelUpInfo({...levelUpInfo, level: selectedData.level});
+    setWordTodayInfo({...wordTodayInfo, ...selectedData});
   }
 
   useEffect(() => {
-    setLevelUpInfo({...levelUpInfo, level: level});
+    setWordTodayInfo({...wordTodayInfo, level: level});
   }, [level])
 
   return (
@@ -49,16 +47,12 @@ const LevelList = (props: LevelListProps) => {
             </div>
           </div>
           <div className="flex-auto mt-3 lg:px-10 py-10 pt-0">
-            {/* <TabDefault onChange={handleTabChange} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
-              sortBy(classInfos[0]?.levelArr).map((item, idx) => {
+            <TabDefault onChange={handleTabChange} isUseContent={false} selectedIdx={Number(level?.substring(1,2)) - 1 || 0} data={
+              (levelInfos[0]?.levels || []).map((item: any, idx: number) => {
                 return {
                   title: item,
-                  content: (<Classification classData={classInfos[0]} onClick={(data) => handleClick(data)}/>),
                 };
-              })} /> */}
-              {/* {levelInfos[0]?.levels.map((item: any, idx: number) => {
-                return item;
-              })} */}
+              })} />
           </div>
         </div>
       </div>

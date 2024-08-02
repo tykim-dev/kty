@@ -84,7 +84,7 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
             <li className="items-center">
-                {/* /levelUp?level=N1 */}
+                {/* /levelUp?level=N1, /wordToday?level=N1 */}
                 <Link scroll={false} href="/levelUp?level=N1" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                   <i className="fas fa-paper-plane text-blueGray-400 mr-2 text-sm"></i>{" "}
                   今日の単語

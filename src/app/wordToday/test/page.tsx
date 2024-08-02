@@ -5,7 +5,7 @@ import { useEffect, memo, useState } from 'react';
 import ModalAnswer from '../components/modalAnswer';
 import LevelUpLayout from '@/app/components/Layout/LevelUpLayout';
 
-const JlptTestPage = () => {
+const WordTodayTestPage = () => {
   const { levelUpInfo, levelUpList, getLevelUpList, init } = useLevelUpStore();
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -44,4 +44,4 @@ const JlptTestPage = () => {
   )
 }
 
-export default memo(JlptTestPage)
+export default memo(WordTodayTestPage)

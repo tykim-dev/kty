@@ -4,12 +4,13 @@ import { MouseEvent } from 'react';
 type TabDefaultProps = {
   data: any[],
   selectedIdx?: number,
+  isUseContent?: boolean,
   onSearch?: (data: any) => any,
   onChange?: (data: any) => any,
 }
 
 const TabDefault = (props: TabDefaultProps) => {
-  const { data, selectedIdx = 0, onChange } = props;
+  const { data, selectedIdx = 0, isUseContent = true, onChange } = props;
   const [openTab, setOpenTab] = useState(selectedIdx);
 
   const handleClick = (selectedData: any) => (e: MouseEvent<HTMLElement>) => {
@@ -30,7 +31,7 @@ const TabDefault = (props: TabDefaultProps) => {
             className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
             role="tablist"
           >
-            {data.map((item, idx) => {
+            {data.map((item: any, idx: number) => {
               return (
                 <li key={`tab-title-${idx}`} className="-mb-px mr-2 last:mr-0 flex-auto text-center">
                   <a
@@ -51,21 +52,23 @@ const TabDefault = (props: TabDefaultProps) => {
               )
             })}
           </ul>
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-            <div className="px-4 py-5 flex-auto">
-              <div className="tab-content tab-space">
-                {data.map((item, idx) => {
-                  return (
-                    <div key={`tab-content-${idx}`} className={openTab === idx ? "block" : "hidden"} id={`link${idx}`}>
-                      <div>
-                        {item.content}
+          {isUseContent && (
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+              <div className="px-4 py-5 flex-auto">
+                <div className="tab-content tab-space">
+                  {data.map((item, idx) => {
+                    return (
+                      <div key={`tab-content-${idx}`} className={openTab === idx ? "block" : "hidden"} id={`link${idx}`}>
+                        <div>
+                          {item.content}
+                        </div>
                       </div>
-                    </div>
-                  )
-                })}
+                    )
+                  })}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
