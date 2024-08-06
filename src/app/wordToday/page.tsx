@@ -5,7 +5,6 @@ import { useWordTodayStore } from '@/app/store/wordTodayStore';
 import WordTodayLayout from "../components/Layout/WordTodayLayout";
 import WordTodayTestPage from "./test/page";
 import LevelList from "./components/levelList";
-import { Suspense } from "react";
 
 const JlptPage = () => {
   const searchParams = useSearchParams();
@@ -15,12 +14,10 @@ const JlptPage = () => {
   const { data: session } = useSession();
 
   return (
-    <Suspense>
-      <WordTodayLayout>
-        <LevelList level={searchParams.get('level') || wordTodayInfo.level || 'N1'} />
-        <WordTodayTestPage  />
-      </WordTodayLayout>
-    </Suspense>
+    <WordTodayLayout>
+      <LevelList level={searchParams.get('level') || wordTodayInfo.level || 'N1'} />
+      <WordTodayTestPage  />
+    </WordTodayLayout>
   )
 }
 

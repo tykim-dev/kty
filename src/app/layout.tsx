@@ -5,6 +5,7 @@ import '@/app/style/tailwind.css'
 import '@/app/style/common.css'
 import { SWRProvider } from "./providers/SWRProvider";
 import VisitHistory from "./components/Visit/VisitHistory";
+import { Suspense } from "react";
 
 // import { Nanum_Gothic } from "next/font/google";
 
@@ -32,7 +33,9 @@ export default function RootLayout({
         <SessionProvider>
           <SWRProvider>
             <main>
-              {children}
+              <Suspense>
+                {children}
+              </Suspense>
             </main>
           </SWRProvider>
         </SessionProvider>
