@@ -29,7 +29,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^7.4.2",
     "next": "^14.2.5",
-    "next-auth": "^4.22.3",
+    "next-auth": "^4.24.7",
     "node-html-parser": "^6.1.11",
     "postcss": "8.4.27",
     "react": "^18.3.1",
