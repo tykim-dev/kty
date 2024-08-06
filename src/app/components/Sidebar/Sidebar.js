@@ -143,7 +143,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              JLPT 기출문제
+              JLPT(2023~2010)
             </h6>
             {/* Navigation */}
 
@@ -184,7 +184,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              단어 외우기
+              단어 | 単語 | WORD
             </h6>
             {/* Navigation */}
 
@@ -192,13 +192,13 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link scroll={false} href="/word/jlpt" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                   <i className="fas fa-spell-check text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  JLPT
+                  JLPT(N1~N5)
                 </Link>
               </li>
               <li className="items-center">
                 <Link scroll={false} href="/word/slide" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                   <i className="fas fa-spell-check text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  단어암기
+                  マタダキ単語
                 </Link>
               </li>
             </ul>

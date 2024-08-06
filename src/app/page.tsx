@@ -100,10 +100,10 @@ export default function Home() {
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                     <i className="fas fa-paper-plane"></i>
                   </div>
-                  <h6 className="text-xl font-semibold">레벨업 문제풀이</h6>
-                  <p className="mt-2 mb-4 text-blueGray-500">
+                  <h6 className="text-xl font-semibold">레벨업(LEVEL UP)</h6>
+                  {/* <p className="mt-2 mb-4 text-blueGray-500">
                     과목별 문제를 테스트, 채점기능을 제공한다.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </Link>
@@ -114,10 +114,10 @@ export default function Home() {
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
                     <i className="fas fa-list-ol"></i>
                   </div>
-                  <h6 className="text-xl font-semibold">JLPT 기출문제</h6>
-                  <p className="mt-2 mb-4 text-blueGray-500">
+                  <h6 className="text-xl font-semibold">JLPT<br/>(2023~2010)</h6>
+                  {/* <p className="mt-2 mb-4 text-blueGray-500">
                     과목별 기출문제를 테스트, 채점기능을 제공한다.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </Link>
@@ -128,10 +128,10 @@ export default function Home() {
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                     <i className="fas fa-spell-check"></i>
                   </div>
-                  <h6 className="text-xl font-semibold">단어 외우기</h6>
-                  <p className="mt-2 mb-4 text-blueGray-500">
+                  <h6 className="text-xl font-semibold">단어 | 単語 | WORD</h6>
+                  {/* <p className="mt-2 mb-4 text-blueGray-500">
                     등급별, 품사별 단어 외우기 학습을 할수있다.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </Link>
