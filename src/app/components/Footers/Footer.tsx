@@ -23,17 +23,17 @@ export default function Footer() {
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <Link scroll={false} href={'/levelUp'} className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75">
-                    레벨업 문제풀이
+                    레벨업(Level up)
                   </Link>
                 </li>
                 <li>
                   <Link scroll={false} href={'/jlpt'} className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75">
-                    JLPT 기출문제
-                    </Link>
+                    JLPT(2023~2010)
+                  </Link>
                 </li>
                 <li>
                   <Link scroll={false} href={'/word/jlpt'} className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75">
-                    단어 외우기
+                    단어 | 単語 | WORD
                   </Link>
                 </li>
               </ul>
