@@ -38,7 +38,8 @@ export async function GET(request: NextRequest) {
               $switch: {
                 branches: [
                   { case: { $eq: ['$_id.classification', 'vocabulary'] }, then: '[ 문자어휘 / 文字語彙 / Vocabulary ]' },
-                  { case: { $eq: ['$_id.classification', 'reading'] }, then: '[ 문법독해 / 文法読解 / Grammar, Reading ]' },
+                  { case: { $eq: ['$_id.classification', 'grammar'] }, then: '[ 문법 / 文法 / Grammar ]' },
+                  { case: { $eq: ['$_id.classification', 'reading'] }, then: '[ 독해 / 読解 / Reading ]' },
                   { case: { $eq: ['$_id.classification', 'listening'] }, then: '[ 청해 / 聴解 / Listening ]' },
                 ],
                 default: ''
@@ -48,8 +49,9 @@ export async function GET(request: NextRequest) {
               $switch: {
                 branches: [
                   { case: { $eq: ['$_id.classification', 'vocabulary'] }, then: '0' },
-                  { case: { $eq: ['$_id.classification', 'reading'] }, then: '1' },
-                  { case: { $eq: ['$_id.classification', 'listening'] }, then: '2' },
+                  { case: { $eq: ['$_id.classification', 'grammar'] }, then: '1' },
+                  { case: { $eq: ['$_id.classification', 'reading'] }, then: '2' },
+                  { case: { $eq: ['$_id.classification', 'listening'] }, then: '3' },
                 ],
                 default: 4
               }
