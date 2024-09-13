@@ -24,7 +24,7 @@ const JlptPage = () => {
     <WordLayout>
       <SearchBar onSearch={(data: any) => handleSearch(data)} />
 
-      <div className="w-full h-auto relative">
+      <div onContextMenu={(e) => e.preventDefault()} onMouseDown={(e) => e.preventDefault()} className="w-full h-auto relative">
         <WordContent conditions={conditions} />
         <Pagination conditions={conditions} onPageChange={(newPage: number) => handlePageChange(newPage)} />
       </div>
