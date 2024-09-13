@@ -10,7 +10,7 @@ type QuestionProps = {
 
 const Question = (props:QuestionProps) => {
   const {questionInfo} = props;
-  const {year, month, level, classification, question, questionNo, questionType, choices, answer} = questionInfo;
+  const {year, month, level, classification, question, questionNo, questionType, choices, answer, sentence} = questionInfo;
 
   const jlptList = useJlptStore((state) => state.jlptList);
   const setJlptAnswer = useJlptStore((state) => state.setJlptAnswer);
@@ -21,11 +21,11 @@ const Question = (props:QuestionProps) => {
 
   return (
     <>
-      {questionType === 'group' && <CardJlptQuestion questionType={questionType} question={question} />}
+      {questionType === 'group' && <CardJlptQuestion questionType={questionType} question={question} sentence={sentence} />}
       {questionType === 'content' && <CardJlptContent questionType={questionType} question={question} />}
       {questionType === 'normal' && (
         <>
-          <CardJlptQuestion questionType={questionType} question={question} id={`jlpt-question-${questionNo}`} />
+          <CardJlptQuestion questionType={questionType} question={question} sentence={sentence} id={`jlpt-question-${questionNo}`} />
           {choices && <CardJlptAnswer onClick={handleClick} questionNo={questionNo} choices={choices} answer={answer} />}
         </>
       )}

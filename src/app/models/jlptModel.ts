@@ -19,6 +19,11 @@ const QuestionSchema = new Schema({
   }
 });
 
+// 문장
+const SentenceSchema = new Schema({
+  translation: String
+});
+
 const jlptSchema = new Schema({
   // 년도
   year: {
@@ -62,8 +67,8 @@ const jlptSchema = new Schema({
     required: true,
   },
   // 해석
-  translation: {
-    type: Array,
+  sentence: {
+    type: SentenceSchema,
     require: false,
   },
   // 문제 구분

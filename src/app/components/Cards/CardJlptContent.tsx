@@ -21,7 +21,9 @@ const CardJlptContent = (props:JlptContentProps) => {
       <div className="flex flex-col min-w-0 break-words rounded mb-1">
         {!isEmpty(content) && (<div className="flex-auto px-4 py-2">
           <div className="flex flex-wrap">
-            <div className="bg-blueGray-200 rounded-lg p-4">{parseHtml(content || '')}</div>
+            <div className="bg-blueGray-200 rounded-lg p-4">
+              {parseHtml(content || '')}
+            </div>
           </div>
         </div>
         )}
