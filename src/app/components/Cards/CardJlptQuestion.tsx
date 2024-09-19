@@ -33,7 +33,7 @@ const CardJlptQuestion = (props:JlptQuestionProps) => {
           </div>
           {open && (
             <div className="flex flex-wrap">
-              <Collapse open={open} className="w-full">
+              <Collapse open={open} className="w-full mt-1">
                 <Card>
                   <CardBody className="px-3 py-2">
                     <Typography>
