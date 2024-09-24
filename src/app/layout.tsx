@@ -7,13 +7,13 @@ import { SWRProvider } from "./providers/SWRProvider";
 import VisitHistory from "./components/Visit/VisitHistory";
 import { Suspense } from "react";
 
-import { Noto_Serif_JP } from "next/font/google";
+//import { Noto_Serif_JP } from "next/font/google";
 
-const notoSerifJP = Noto_Serif_JP({
+/*const notoSerifJP = Noto_Serif_JP({
    subsets: ["korea"],
    weight: ["400", "700", "800"],
    display: 'swap',
-});
+});*/
 
 export const metadata = {
   title: "JLPTCODE",
@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={notoSerifJP.className}>
+      <body>
         <SessionProvider>
           <SWRProvider>
             <main>
