@@ -32,6 +32,7 @@ const nextConfig = {
   },
   experimental: {
     missingSuspenseWithCSRBailout: false,
+    fontLoaders: [{ loader: '@next/font/google', options: { subsets: ['Noto_Serif_JP'] } }],
   },
 }
 
