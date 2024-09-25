@@ -7,13 +7,19 @@ import { SWRProvider } from "./providers/SWRProvider";
 import VisitHistory from "./components/Visit/VisitHistory";
 import { Suspense } from "react";
 
-//import { Noto_Serif_JP } from "next/font/google";
+import { Nanum_Gothic, Noto_Serif_JP } from "next/font/google";
 
-/*const notoSerifJP = Noto_Serif_JP({
-   subsets: ["korea"],
-   weight: ["400", "700", "800"],
-   display: 'swap',
-});*/
+const nanumGothic = Nanum_Gothic({
+  preload: false,
+  weight: ["400", "700", "800"],
+  display: 'swap',
+});
+
+const notoSerifJP = Noto_Serif_JP({
+  preload: false,
+  weight: ["400", "700", "900"],
+  display: 'swap',
+});
 
 export const metadata = {
   title: "JLPTCODE",
@@ -29,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>
+      <body className={`${nanumGothic.className} ${notoSerifJP.className}`}>
         <SessionProvider>
           <SWRProvider>
             <main>
