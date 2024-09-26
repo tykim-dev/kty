@@ -57,7 +57,7 @@ const jlptSchema = new Schema({
   },
   // 문제번호
   questionNo: {
-    type: Number,
+    type: String,
     required: false,
     index: false,
   },
