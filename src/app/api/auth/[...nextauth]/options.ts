@@ -81,8 +81,8 @@ export const options: NextAuthOptions = {
 }
 
 const signInWithOAuth = async ({ user, account, profile }: { user: any, account: any, profile: any}) => {
-  console.log({ account, profile });
-  
+  console.log({ user, account, profile });
+
   let newUser = new User();
 
   if(account.provider === 'kakao') {
