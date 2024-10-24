@@ -24,14 +24,26 @@ const SignInPage = (props: SigninProps) => {
           />
           <p>{session.user.name || ""}</p>
           <p className="text-sky-600"> {session.user.email}</p> */}
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => signOut()}>
+          <button onClick={() => signOut()} className="text-white align-middle rounded-md flex items-center border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
             Sign Out
           </button>
         </>
         : <>
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => signIn()}>
-              Sign In
-            </button>
+          <button onClick={() => signIn()} className="text-white align-middle rounded-md flex items-center border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            {/* <img
+              src="https://docs.material-tailwind.com/icons/metamask.svg"
+              alt="metamask"
+              className="h-5 w-5 mr-2"
+            /> */}
+            {/* <Image
+              src={'https://docs.material-tailwind.com/icons/metamask.svg'}
+              className="h-5 w-5 mr-2"
+              width={500}
+              height={500}
+              alt="Picture of the author"
+            /> */}
+            Sign In
+          </button>
         </>
       }
     </div>
