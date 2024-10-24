@@ -2,11 +2,11 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 
-type SigninProps = {
+type SignInPageProps = {
   className?: string,
 }
 
-const SignInPage = (props: SigninProps) => {
+const SignInPage = (props: SignInPageProps) => {
   const { className } = props
   const { data: session } = useSession();
 
