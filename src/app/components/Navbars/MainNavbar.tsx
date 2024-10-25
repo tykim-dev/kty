@@ -42,12 +42,14 @@ export default function MainNavbar() {
               href="/">
               JLPTCODE
             </a>
-            <SignInPage className="lg:hidden" />
-            <button onClick={(e) => handleClickMenuBtn(e)} className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
-              <span className="block relative w-6 h-px rounded-sm bg-white"></span>
-              <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-              <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-            </button>
+            <div className="flex items-center">
+              <div className="lg:hidden"><SignInPage /></div>
+              <button onClick={(e) => handleClickMenuBtn(e)} className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
+                <span className="block relative w-6 h-px rounded-sm bg-white"></span>
+                <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+              </button>
+            </div>
           </div>
           <div className="flex-col md:flex-row list-none items-center hidden lg:flex">
             <SignInPage />

@@ -2,47 +2,23 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 
-type SignInPageProps = {
-  className?: string,
-}
-
-const SignInPage = (props: SignInPageProps) => {
-  const { className } = props
+const SignInPage = () => {
   const { data: session } = useSession();
 
   return (
-    <div className={`flex gap-2 ml-auto ${className}`}>
+    <div className="flex gap-2 ml-auto">
       {
         session
         ? <>
-          {/* <Image
-            src={session.user.image || ''}
-            className="w-8 h-8 rounded-full"
-            width={500}
-            height={500}
-            alt="Picture of the author"
-          />
-          <p>{session.user.name || ""}</p>
-          <p className="text-sky-600"> {session.user.email}</p> */}
-          <button onClick={() => signOut()} className="text-white align-middle rounded-md flex items-center border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-            Sign Out
+          <button onClick={() => signOut()} className="rounded-lg border border-white px-3 py-2 flex items-center text-xs font-bold leading-snug text-white hover:opacity-75" type="button">
+            {session.user.name}님
+            <i className="fas fa-right-from-bracket ml-1" />
           </button>
         </>
         : <>
-          <button onClick={() => signIn()} className="text-white align-middle rounded-md flex items-center border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-            {/* <img
-              src="https://docs.material-tailwind.com/icons/metamask.svg"
-              alt="metamask"
-              className="h-5 w-5 mr-2"
-            /> */}
-            {/* <Image
-              src={'https://docs.material-tailwind.com/icons/metamask.svg'}
-              className="h-5 w-5 mr-2"
-              width={500}
-              height={500}
-              alt="Picture of the author"
-            /> */}
-            Sign In
+          <button onClick={() => signIn()} className="rounded-lg border border-white px-3 py-2 flex items-center text-xs font-bold leading-snug text-white hover:opacity-75" type="button">
+            로그인
+            <i className="fas fa-right-to-bracket ml-1" />
           </button>
         </>
       }
