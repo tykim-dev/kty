@@ -15,14 +15,14 @@ export const options: NextAuthOptions = {
       clientId: process.env.KAKAO_CLIENT_ID as string,
       clientSecret: process.env.KAKAO_SECRET as string,
     }),
-    {/*NaverProvider({
+    /*NaverProvider({
       clientId: process.env.NAVER_CLIENT_ID as string,
       clientSecret: process.env.NAVER_SECRET as string,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
-    }),*/}
+    }),*/
     // CredentialsProvider({
     //   name: "Sign in",
     //   credentials: {
