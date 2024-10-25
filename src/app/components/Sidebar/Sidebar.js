@@ -4,6 +4,7 @@ import Link from "next/link";
 // import { useRouter } from "next/router";
 
 import { useRouter, usePathname } from 'next/navigation';
+import SignInSidebarPage from "@/app/signinSidebar/page";
 
 // import NotificationDropdown from "@/app/components/Dropdowns/NotificationDropdown";
 // import UserDropdown from "@/app/components/Dropdowns/UserDropdown";
@@ -37,10 +38,7 @@ export default function Sidebar() {
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
-              {/* <NotificationDropdown /> */}
-            </li>
-            <li className="inline-block relative">
-              {/* <UserDropdown /> */}
+              <SignInSidebarPage />
             </li>
           </ul>
           {/* Collapse */}
@@ -74,6 +72,12 @@ export default function Sidebar() {
                 </div>
               </div>
             </div>
+
+            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+              <li className="items-center">
+                <SignInSidebarPage />
+              </li>
+            </ul>
 
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
