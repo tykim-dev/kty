@@ -123,6 +123,7 @@ const signInWithOAuth = async ({ user, account, profile }: { user: any, account:
     await newUser.save();
   }
 
+  
   return true;
 }
 
